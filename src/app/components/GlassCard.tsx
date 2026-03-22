@@ -10,8 +10,7 @@ export function GlassCard({ children, className, gradient = false, ...props }: G
   return (
     <div
       className={cn(
-        "rounded-3xl border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.04)] backdrop-blur-md overflow-hidden",
-        gradient ? "bg-gradient-to-br from-white/80 to-white/40" : "bg-white/70",
+        "rounded-[20px] bg-white border border-black/[0.04] shadow-[0_2px_12px_rgba(0,0,0,0.03)] overflow-hidden",
         className
       )}
       {...props}
