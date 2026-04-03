@@ -1,0 +1,30 @@
+{
+  "date": "2025-11-06",
+  "exercise_index": 0,
+  "set_index": 1,
+  "completed_exercises": [
+    {
+      "name": "Decline Push-ups",
+      "target_sets": 3,
+      "target_reps": 12,
+      "original_sets": 3,
+      "original_reps": 12,
+      "completed_sets": [
+        12
+      ],
+      "total_reps_completed": 12,
+      "calories_burned": 5.7142857142857135,
+      "set_durations": [
+        36
+      ],
+      "rest_durations": [],
+      "set_calories": [
+        5.7142857142857135
+      ],
+      "metric": "reps",
+      "total_time_seconds": 0,
+      "adaptation_applied": false
+    }
+  ],
+  "timestamp": "2025-11-06T23:47:26.831499"
+}

@@ -1,0 +1,5 @@
+- Engines go in /packages/engines
+- API routes in /apps/web/api
+- No Python allowed
+- All logic must be modular
+- Use TypeScript only

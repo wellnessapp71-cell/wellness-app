@@ -1,0 +1,32 @@
+{
+  "title": "Understanding Stress",
+  "category": "stress",
+  "duration": "5 min",
+  "difficulty": "beginner",
+  "slides": [
+    {
+      "text": "Stress is your body's natural alarm system.",
+      "audio": "/audio/understanding_stress_0.mp3"
+    },
+    {
+      "text": "Stress helps you stay focused and motivated.",
+      "audio": "/audio/understanding_stress_1.mp3"
+    },
+    {
+      "text": "Too much stress can weaken your immune system.",
+      "audio": "/audio/understanding_stress_2.mp3"
+    },
+    {
+      "text": "Your body has a stress response cycle.",
+      "audio": "/audio/understanding_stress_3.mp3"
+    },
+    {
+      "text": "The stress cycle has four steps: trigger,\nactivation, response, and recovery.",
+      "audio": "/audio/understanding_stress_4.mp3"
+    },
+    {
+      "text": "Completing the stress cycle helps your body return to normal.",
+      "audio": "/audio/understanding_stress_5.mp3"
+    }
+  ]
+}

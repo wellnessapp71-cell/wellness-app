@@ -1,0 +1,2543 @@
+{
+  "user_2_e1": [
+    {
+      "date": "2025-09-24T13:46:34.539869",
+      "session_name": "Workout - Wednesday",
+      "exercises_completed": [
+        {
+          "name": "Squats",
+          "target_sets": 2,
+          "target_reps": 12,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            12,
+            12
+          ],
+          "total_reps_completed": 24,
+          "calories_burned": 2.8571428571428568,
+          "set_durations": [
+            36,
+            36
+          ],
+          "rest_durations": [
+            20.351919
+          ],
+          "set_calories": [
+            1.4285714285714284,
+            1.4285714285714284
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        },
+        {
+          "name": "Lunges",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 2.2857142857142856,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            8.794626
+          ],
+          "set_calories": [
+            1.1428571428571428,
+            1.1428571428571428
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        },
+        {
+          "name": "Calf Raises",
+          "target_sets": 2,
+          "target_reps": 12,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            12,
+            12
+          ],
+          "total_reps_completed": 24,
+          "calories_burned": 1.1428571428571428,
+          "set_durations": [
+            36,
+            36
+          ],
+          "rest_durations": [
+            1.2089
+          ],
+          "set_calories": [
+            0.5714285714285714,
+            0.5714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        },
+        {
+          "name": "Wall Sits",
+          "target_sets": 2,
+          "target_reps": 30,
+          "original_sets": 2,
+          "original_reps": 30,
+          "completed_sets": [
+            30,
+            30
+          ],
+          "total_reps_completed": 0,
+          "calories_burned": 1.7142857142857142,
+          "set_durations": [
+            90,
+            90
+          ],
+          "rest_durations": [
+            3.715468
+          ],
+          "set_calories": [
+            0.8571428571428571,
+            0.8571428571428571
+          ],
+          "metric": "seconds",
+          "total_time_seconds": 60,
+          "adaptation_applied": false
+        },
+        {
+          "name": "Step-ups",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 2.0,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.243402
+          ],
+          "set_calories": [
+            1.0,
+            1.0
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        },
+        {
+          "name": "Leg Press",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 1.7142857142857142,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.746871
+          ],
+          "set_calories": [
+            0.8571428571428571,
+            0.8571428571428571
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 2,
+      "calories_burned": 11.714285714285714,
+      "notes": "",
+      "difficulty_rating": 4,
+      "completion_percentage": 83.33333333333333
+    },
+    {
+      "date": "2025-09-25T13:55:00.798217",
+      "session_name": "Workout - Thursday",
+      "exercises_completed": [
+        {
+          "name": "Bench Press",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 1.7142857142857142,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            2.556885
+          ],
+          "set_calories": [
+            0.8571428571428571,
+            0.8571428571428571
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        },
+        {
+          "name": "Shoulder Press",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 1.7142857142857142,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            2.694552
+          ],
+          "set_calories": [
+            0.8571428571428571,
+            0.8571428571428571
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        },
+        {
+          "name": "Lateral Raises",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 1.1428571428571428,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.406597
+          ],
+          "set_calories": [
+            0.5714285714285714,
+            0.5714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        },
+        {
+          "name": "Dumbbell Press",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 2.0,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.73789
+          ],
+          "set_calories": [
+            1.0,
+            1.0
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        },
+        {
+          "name": "Reverse Flyes",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 1.1428571428571428,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.179015
+          ],
+          "set_calories": [
+            0.5714285714285714,
+            0.5714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 7.7142857142857135,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 100.0
+    }
+  ],
+  "user_3_e2": [
+    {
+      "date": "2025-09-25T14:59:26.518513",
+      "session_name": "Workout - Thursday",
+      "exercises_completed": [
+        {
+          "name": "Bench Press",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.81225
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 6.118458
+        },
+        {
+          "name": "Shoulder Press",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.375269
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.77709
+        },
+        {
+          "name": "Lateral Raises",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 5.714285714285714,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            2.895959
+          ],
+          "set_calories": [
+            2.857142857142857,
+            2.857142857142857
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 2.034219
+        },
+        {
+          "name": "Dumbbell Press",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 10.0,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.904642
+          ],
+          "set_calories": [
+            5.0,
+            5.0
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.416456
+        },
+        {
+          "name": "Reverse Flyes",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 5.714285714285714,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.536841
+          ],
+          "set_calories": [
+            2.857142857142857,
+            2.857142857142857
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 1,
+      "calories_burned": 38.57142857142857,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 100.0
+    },
+    {
+      "date": "2025-09-24T15:37:45.697966",
+      "session_name": "Workout - Wednesday",
+      "exercises_completed": [
+        {
+          "name": "Squats",
+          "target_sets": 2,
+          "target_reps": 12,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            10,
+            12
+          ],
+          "total_reps_completed": 22,
+          "calories_burned": 14.285714285714286,
+          "set_durations": [
+            36,
+            36
+          ],
+          "rest_durations": [
+            2.910367
+          ],
+          "set_calories": [
+            7.142857142857143,
+            7.142857142857143
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 3.484917
+        },
+        {
+          "name": "Lunges",
+          "target_sets": 2,
+          "target_reps": 5,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            5,
+            5
+          ],
+          "total_reps_completed": 10,
+          "calories_burned": 11.428571428571429,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            3.799224
+          ],
+          "set_calories": [
+            5.714285714285714,
+            5.714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 2.843331
+        },
+        {
+          "name": "Calf Raises",
+          "target_sets": 2,
+          "target_reps": 9,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            9,
+            8
+          ],
+          "total_reps_completed": 17,
+          "calories_burned": 5.714285714285714,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            4.412451
+          ],
+          "set_calories": [
+            2.857142857142857,
+            2.857142857142857
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true,
+          "post_exercise_rest": 1.41621
+        },
+        {
+          "name": "Wall Sits",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 30,
+          "completed_sets": [
+            15,
+            10
+          ],
+          "total_reps_completed": 0,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            15,
+            10
+          ],
+          "rest_durations": [
+            1.410223
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "seconds",
+          "total_time_seconds": 25,
+          "adaptation_applied": true,
+          "post_exercise_rest": 2.112493
+        },
+        {
+          "name": "Step-ups",
+          "target_sets": 2,
+          "target_reps": 5,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            5,
+            10
+          ],
+          "total_reps_completed": 15,
+          "calories_burned": 10.0,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.210368
+          ],
+          "set_calories": [
+            5.0,
+            5.0
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true,
+          "post_exercise_rest": 1.100546
+        },
+        {
+          "name": "Leg Press",
+          "target_sets": 2,
+          "target_reps": 7,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.649603
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true
+        }
+      ],
+      "total_duration": 4,
+      "calories_burned": 58.57142857142857,
+      "notes": "",
+      "difficulty_rating": 2,
+      "completion_percentage": 64.58333333333333
+    },
+    {
+      "date": "2025-11-06T23:27:16.414470",
+      "session_name": "Workout - Thursday",
+      "exercises_completed": [
+        {
+          "name": "Bench Press",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            14
+          ],
+          "rest_durations": [
+            3.001516
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 3.001472
+        },
+        {
+          "name": "Shoulder Press",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            3,
+            30
+          ],
+          "rest_durations": [
+            3.001462
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 3.001402
+        },
+        {
+          "name": "Lateral Raises",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 5.714285714285714,
+          "set_durations": [
+            30,
+            2
+          ],
+          "rest_durations": [
+            3.001428
+          ],
+          "set_calories": [
+            2.857142857142857,
+            2.857142857142857
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 3.001444
+        },
+        {
+          "name": "Dumbbell Press",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 10.0,
+          "set_durations": [
+            30,
+            1
+          ],
+          "rest_durations": [
+            3.001455
+          ],
+          "set_calories": [
+            5.0,
+            5.0
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 3.001396
+        },
+        {
+          "name": "Reverse Flyes",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 5.714285714285714,
+          "set_durations": [
+            2,
+            7
+          ],
+          "rest_durations": [
+            3.001421
+          ],
+          "set_calories": [
+            2.857142857142857,
+            2.857142857142857
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        },
+        {
+          "name": "Reverse Flyes",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [],
+          "total_reps_completed": 0,
+          "calories_burned": 0.0,
+          "set_durations": [],
+          "rest_durations": [],
+          "set_calories": [],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 0.0,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 100.0
+    }
+  ],
+  "user_4_e3": [
+    {
+      "date": "2025-09-24T16:25:49.599082",
+      "session_name": "Workout - Wednesday",
+      "exercises_completed": [
+        {
+          "name": "Squats",
+          "target_sets": 2,
+          "target_reps": 12,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            12,
+            12
+          ],
+          "total_reps_completed": 24,
+          "calories_burned": 11.428571428571427,
+          "set_durations": [
+            36,
+            36
+          ],
+          "rest_durations": [
+            3.880566
+          ],
+          "set_calories": [
+            5.7142857142857135,
+            5.7142857142857135
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.924603
+        },
+        {
+          "name": "Lunges",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 9.142857142857142,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.448854
+          ],
+          "set_calories": [
+            4.571428571428571,
+            4.571428571428571
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.324812
+        },
+        {
+          "name": "Calf Raises",
+          "target_sets": 2,
+          "target_reps": 12,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            12,
+            12
+          ],
+          "total_reps_completed": 24,
+          "calories_burned": 4.571428571428571,
+          "set_durations": [
+            36,
+            36
+          ],
+          "rest_durations": [
+            1.592406
+          ],
+          "set_calories": [
+            2.2857142857142856,
+            2.2857142857142856
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.310187
+        },
+        {
+          "name": "Wall Sits",
+          "target_sets": 2,
+          "target_reps": 30,
+          "original_sets": 2,
+          "original_reps": 30,
+          "completed_sets": [
+            30,
+            30
+          ],
+          "total_reps_completed": 0,
+          "calories_burned": 6.857142857142857,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.093147
+          ],
+          "set_calories": [
+            3.4285714285714284,
+            3.4285714285714284
+          ],
+          "metric": "seconds",
+          "total_time_seconds": 60,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.197217
+        },
+        {
+          "name": "Step-ups",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 8.0,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.098683
+          ],
+          "set_calories": [
+            4.0,
+            4.0
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 39.99999999999999,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 80.0
+    }
+  ],
+  "user_5_e4": [
+    {
+      "date": "2025-09-24T16:42:02.889946",
+      "session_name": "Workout - Wednesday",
+      "exercises_completed": [
+        {
+          "name": "Squats",
+          "target_sets": 2,
+          "target_reps": 12,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            12,
+            12
+          ],
+          "total_reps_completed": 24,
+          "calories_burned": 11.428571428571427,
+          "set_durations": [
+            36,
+            36
+          ],
+          "rest_durations": [
+            1.561663
+          ],
+          "set_calories": [
+            5.7142857142857135,
+            5.7142857142857135
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 18.699891
+        },
+        {
+          "name": "Lunges",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 9.142857142857142,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.040152
+          ],
+          "set_calories": [
+            4.571428571428571,
+            4.571428571428571
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.008112
+        },
+        {
+          "name": "Calf Raises",
+          "target_sets": 2,
+          "target_reps": 12,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            12,
+            12
+          ],
+          "total_reps_completed": 24,
+          "calories_burned": 4.571428571428571,
+          "set_durations": [
+            36,
+            36
+          ],
+          "rest_durations": [
+            1.090194
+          ],
+          "set_calories": [
+            2.2857142857142856,
+            2.2857142857142856
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.241078
+        },
+        {
+          "name": "Wall Sits",
+          "target_sets": 2,
+          "target_reps": 30,
+          "original_sets": 2,
+          "original_reps": 30,
+          "completed_sets": [
+            30,
+            30
+          ],
+          "total_reps_completed": 0,
+          "calories_burned": 6.857142857142857,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.007583
+          ],
+          "set_calories": [
+            3.4285714285714284,
+            3.4285714285714284
+          ],
+          "metric": "seconds",
+          "total_time_seconds": 60,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 31.999999999999993,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 100.0
+    },
+    {
+      "date": "2025-09-25T16:45:51.821141",
+      "session_name": "Workout - Thursday",
+      "exercises_completed": [
+        {
+          "name": "Push-ups",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 9.142857142857142,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.165207
+          ],
+          "set_calories": [
+            4.571428571428571,
+            4.571428571428571
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.073868
+        },
+        {
+          "name": "Pull-ups",
+          "target_sets": 2,
+          "target_reps": 3,
+          "original_sets": 2,
+          "original_reps": 3,
+          "completed_sets": [
+            3,
+            3
+          ],
+          "total_reps_completed": 6,
+          "calories_burned": 10.285714285714285,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.067099
+          ],
+          "set_calories": [
+            5.142857142857142,
+            5.142857142857142
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.806079
+        },
+        {
+          "name": "Tricep Dips",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 6.857142857142857,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.083859
+          ],
+          "set_calories": [
+            3.4285714285714284,
+            3.4285714285714284
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.971316
+        },
+        {
+          "name": "Incline Push-ups",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 6.857142857142857,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.464121
+          ],
+          "set_calories": [
+            3.4285714285714284,
+            3.4285714285714284
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.198028
+        },
+        {
+          "name": "Superman",
+          "target_sets": 2,
+          "target_reps": 12,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            12,
+            12
+          ],
+          "total_reps_completed": 24,
+          "calories_burned": 5.7142857142857135,
+          "set_durations": [
+            36,
+            36
+          ],
+          "rest_durations": [
+            1.339313
+          ],
+          "set_calories": [
+            2.8571428571428568,
+            2.8571428571428568
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 38.85714285714285,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 100.0
+    }
+  ],
+  "user_6_e5": [
+    {
+      "date": "2025-09-25T17:01:31.927755",
+      "session_name": "Workout - Thursday",
+      "exercises_completed": [
+        {
+          "name": "Push-ups",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 11.428571428571429,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.471853
+          ],
+          "set_calories": [
+            5.714285714285714,
+            5.714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.061325
+        },
+        {
+          "name": "Pull-ups",
+          "target_sets": 2,
+          "target_reps": 3,
+          "original_sets": 2,
+          "original_reps": 3,
+          "completed_sets": [
+            3,
+            3
+          ],
+          "total_reps_completed": 6,
+          "calories_burned": 12.857142857142858,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            0.919985
+          ],
+          "set_calories": [
+            6.428571428571429,
+            6.428571428571429
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.002785
+        },
+        {
+          "name": "Tricep Dips",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            0.940163
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.985337
+        },
+        {
+          "name": "Incline Push-ups",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.085248
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 41.42857142857142,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 100.0
+    },
+    {
+      "date": "2025-09-24T17:02:46.985927",
+      "session_name": "Workout - Wednesday",
+      "exercises_completed": [
+        {
+          "name": "Squats",
+          "target_sets": 2,
+          "target_reps": 12,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            12,
+            12
+          ],
+          "total_reps_completed": 24,
+          "calories_burned": 14.285714285714286,
+          "set_durations": [
+            36,
+            36
+          ],
+          "rest_durations": [
+            1.129341
+          ],
+          "set_calories": [
+            7.142857142857143,
+            7.142857142857143
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.305659
+        },
+        {
+          "name": "Lunges",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 11.428571428571429,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            0.970861
+          ],
+          "set_calories": [
+            5.714285714285714,
+            5.714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.956403
+        },
+        {
+          "name": "Calf Raises",
+          "target_sets": 2,
+          "target_reps": 12,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            12,
+            12
+          ],
+          "total_reps_completed": 24,
+          "calories_burned": 5.714285714285714,
+          "set_durations": [
+            36,
+            36
+          ],
+          "rest_durations": [
+            0.941937
+          ],
+          "set_calories": [
+            2.857142857142857,
+            2.857142857142857
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.935077
+        },
+        {
+          "name": "Wall Sits",
+          "target_sets": 2,
+          "target_reps": 30,
+          "original_sets": 2,
+          "original_reps": 30,
+          "completed_sets": [
+            30,
+            30
+          ],
+          "total_reps_completed": 0,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.029192
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "seconds",
+          "total_time_seconds": 60,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 40.0,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 100.0
+    },
+    {
+      "date": "2025-09-23T17:03:22.911532",
+      "session_name": "Workout - Tuesday",
+      "exercises_completed": [
+        {
+          "name": "Pull-ups",
+          "target_sets": 2,
+          "target_reps": 3,
+          "original_sets": 2,
+          "original_reps": 3,
+          "completed_sets": [
+            3,
+            3
+          ],
+          "total_reps_completed": 6,
+          "calories_burned": 12.857142857142858,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.072509
+          ],
+          "set_calories": [
+            6.428571428571429,
+            6.428571428571429
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.74843
+        },
+        {
+          "name": "Superman",
+          "target_sets": 2,
+          "target_reps": 12,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            12,
+            12
+          ],
+          "total_reps_completed": 24,
+          "calories_burned": 7.142857142857143,
+          "set_durations": [
+            36,
+            36
+          ],
+          "rest_durations": [
+            1.05883
+          ],
+          "set_calories": [
+            3.5714285714285716,
+            3.5714285714285716
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 20.000000000000004,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 100.0
+    },
+    {
+      "date": "2025-09-22T17:03:58.575257",
+      "session_name": "Workout - Monday",
+      "exercises_completed": [
+        {
+          "name": "Push-ups",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 11.428571428571429,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.14953
+          ],
+          "set_calories": [
+            5.714285714285714,
+            5.714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.844184
+        },
+        {
+          "name": "Incline Push-ups",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            0.977604
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.942453
+        },
+        {
+          "name": "Close Grip Push-ups",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 10.0,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.026674
+          ],
+          "set_calories": [
+            5.0,
+            5.0
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 30.0,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 100.0
+    },
+    {
+      "date": "2025-09-26T17:06:48.449127",
+      "session_name": "Workout - Friday",
+      "exercises_completed": [
+        {
+          "name": "Push-ups",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 11.428571428571429,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.23902
+          ],
+          "set_calories": [
+            5.714285714285714,
+            5.714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.044936
+        },
+        {
+          "name": "Pull-ups",
+          "target_sets": 2,
+          "target_reps": 3,
+          "original_sets": 2,
+          "original_reps": 3,
+          "completed_sets": [
+            3,
+            3
+          ],
+          "total_reps_completed": 6,
+          "calories_burned": 12.857142857142858,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.175435
+          ],
+          "set_calories": [
+            6.428571428571429,
+            6.428571428571429
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.19072
+        },
+        {
+          "name": "Tricep Dips",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.115348
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.917736
+        },
+        {
+          "name": "Incline Push-ups",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.231831
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 41.42857142857142,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 100.0
+    },
+    {
+      "date": "2025-09-27T17:08:03.423117",
+      "session_name": "Workout - Saturday",
+      "exercises_completed": [
+        {
+          "name": "Push-ups",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 8,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 11.428571428571429,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.443993
+          ],
+          "set_calories": [
+            5.714285714285714,
+            5.714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.902876
+        },
+        {
+          "name": "Squats",
+          "target_sets": 2,
+          "target_reps": 12,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            12,
+            12
+          ],
+          "total_reps_completed": 24,
+          "calories_burned": 14.285714285714286,
+          "set_durations": [
+            36,
+            36
+          ],
+          "rest_durations": [
+            0.98446
+          ],
+          "set_calories": [
+            7.142857142857143,
+            7.142857142857143
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.612387
+        },
+        {
+          "name": "Lunges",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 11.428571428571429,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.00084
+          ],
+          "set_calories": [
+            5.714285714285714,
+            5.714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.188407
+        },
+        {
+          "name": "Plank",
+          "target_sets": 2,
+          "target_reps": 30,
+          "original_sets": 2,
+          "original_reps": 30,
+          "completed_sets": [
+            30,
+            30
+          ],
+          "total_reps_completed": 0,
+          "calories_burned": 7.142857142857143,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.110887
+          ],
+          "set_calories": [
+            3.5714285714285716,
+            3.5714285714285716
+          ],
+          "metric": "seconds",
+          "total_time_seconds": 60,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 44.285714285714285,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 100.0
+    },
+    {
+      "date": "2025-09-29T17:12:55.353039",
+      "session_name": "Workout - Monday",
+      "exercises_completed": [
+        {
+          "name": "Push-ups",
+          "target_sets": 2,
+          "target_reps": 3,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            10,
+            3
+          ],
+          "total_reps_completed": 13,
+          "calories_burned": 11.428571428571429,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            5.140438
+          ],
+          "set_calories": [
+            5.714285714285714,
+            5.714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 2.860054
+        },
+        {
+          "name": "Incline Push-ups",
+          "target_sets": 2,
+          "target_reps": 1,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            9,
+            1
+          ],
+          "total_reps_completed": 10,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.565224
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true,
+          "post_exercise_rest": 1.875478
+        },
+        {
+          "name": "Close Grip Push-ups",
+          "target_sets": 2,
+          "target_reps": 4,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            5,
+            4
+          ],
+          "total_reps_completed": 9,
+          "calories_burned": 10.0,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.382753
+          ],
+          "set_calories": [
+            5.0,
+            5.0
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 30.0,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 50.555555555555564
+    },
+    {
+      "date": "2025-09-30T17:16:27.205868",
+      "session_name": "Workout - Tuesday",
+      "exercises_completed": [
+        {
+          "name": "Pull-ups",
+          "target_sets": 2,
+          "target_reps": 3,
+          "original_sets": 2,
+          "original_reps": 5,
+          "completed_sets": [
+            3,
+            4
+          ],
+          "total_reps_completed": 7,
+          "calories_burned": 12.857142857142858,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            3.631551
+          ],
+          "set_calories": [
+            6.428571428571429,
+            6.428571428571429
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.541601
+        },
+        {
+          "name": "Superman",
+          "target_sets": 2,
+          "target_reps": 5,
+          "original_sets": 2,
+          "original_reps": 15,
+          "completed_sets": [
+            10,
+            5
+          ],
+          "total_reps_completed": 15,
+          "calories_burned": 7.142857142857143,
+          "set_durations": [
+            45,
+            30
+          ],
+          "rest_durations": [
+            7.235188
+          ],
+          "set_calories": [
+            3.5714285714285716,
+            3.5714285714285716
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 20.000000000000004,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 60.0
+    },
+    {
+      "date": "2025-10-01T17:17:38.623946",
+      "session_name": "Workout - Wednesday",
+      "exercises_completed": [
+        {
+          "name": "Squats",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 15,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 14.285714285714286,
+          "set_durations": [
+            45,
+            30
+          ],
+          "rest_durations": [
+            1.554415
+          ],
+          "set_calories": [
+            7.142857142857143,
+            7.142857142857143
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.936164
+        },
+        {
+          "name": "Lunges",
+          "target_sets": 2,
+          "target_reps": 10,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            10,
+            10
+          ],
+          "total_reps_completed": 20,
+          "calories_burned": 11.428571428571429,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            0.804829
+          ],
+          "set_calories": [
+            5.714285714285714,
+            5.714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true,
+          "post_exercise_rest": 0.796382
+        },
+        {
+          "name": "Calf Raises",
+          "target_sets": 2,
+          "target_reps": 11,
+          "original_sets": 2,
+          "original_reps": 15,
+          "completed_sets": [
+            11,
+            11
+          ],
+          "total_reps_completed": 22,
+          "calories_burned": 5.714285714285714,
+          "set_durations": [
+            33,
+            33
+          ],
+          "rest_durations": [
+            2.641588
+          ],
+          "set_calories": [
+            2.857142857142857,
+            2.857142857142857
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true,
+          "post_exercise_rest": 1.017013
+        },
+        {
+          "name": "Wall Sits",
+          "target_sets": 2,
+          "target_reps": 31,
+          "original_sets": 2,
+          "original_reps": 40,
+          "completed_sets": [
+            31,
+            31
+          ],
+          "total_reps_completed": 0,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            31,
+            31
+          ],
+          "rest_durations": [
+            0.94615
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "seconds",
+          "total_time_seconds": 62,
+          "adaptation_applied": true
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 40.0,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 75.20833333333333
+    },
+    {
+      "date": "2025-10-02T17:18:19.056773",
+      "session_name": "Workout - Thursday",
+      "exercises_completed": [
+        {
+          "name": "Push-ups",
+          "target_sets": 2,
+          "target_reps": 1,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            2,
+            1
+          ],
+          "total_reps_completed": 3,
+          "calories_burned": 11.428571428571429,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.372881
+          ],
+          "set_calories": [
+            5.714285714285714,
+            5.714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 1.096645
+        },
+        {
+          "name": "Pull-ups",
+          "target_sets": 2,
+          "target_reps": 1,
+          "original_sets": 2,
+          "original_reps": 5,
+          "completed_sets": [
+            1,
+            1
+          ],
+          "total_reps_completed": 2,
+          "calories_burned": 12.857142857142858,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.011719
+          ],
+          "set_calories": [
+            6.428571428571429,
+            6.428571428571429
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true,
+          "post_exercise_rest": 1.078004
+        },
+        {
+          "name": "Tricep Dips",
+          "target_sets": 2,
+          "target_reps": 8,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            8,
+            8
+          ],
+          "total_reps_completed": 16,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.087648
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true,
+          "post_exercise_rest": 1.012822
+        },
+        {
+          "name": "Incline Push-ups",
+          "target_sets": 2,
+          "target_reps": 1,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            1,
+            1
+          ],
+          "total_reps_completed": 2,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.074345
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 41.42857142857142,
+      "notes": "",
+      "difficulty_rating": 10,
+      "completion_percentage": 30.833333333333332
+    },
+    {
+      "date": "2025-10-03T17:20:40.440895",
+      "session_name": "Workout - Friday",
+      "exercises_completed": [
+        {
+          "name": "Push-ups",
+          "target_sets": 2,
+          "target_reps": 1,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            1,
+            1
+          ],
+          "total_reps_completed": 2,
+          "calories_burned": 11.428571428571429,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            0.755239
+          ],
+          "set_calories": [
+            5.714285714285714,
+            5.714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.544719
+        },
+        {
+          "name": "Pull-ups",
+          "target_sets": 2,
+          "target_reps": 1,
+          "original_sets": 2,
+          "original_reps": 5,
+          "completed_sets": [
+            1,
+            1
+          ],
+          "total_reps_completed": 2,
+          "calories_burned": 12.857142857142858,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            0.770952
+          ],
+          "set_calories": [
+            6.428571428571429,
+            6.428571428571429
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true,
+          "post_exercise_rest": 0.618644
+        },
+        {
+          "name": "Tricep Dips",
+          "target_sets": 2,
+          "target_reps": 1,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            1,
+            1
+          ],
+          "total_reps_completed": 2,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.660894
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true,
+          "post_exercise_rest": 0.64196
+        },
+        {
+          "name": "Incline Push-ups",
+          "target_sets": 2,
+          "target_reps": 1,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            1,
+            1
+          ],
+          "total_reps_completed": 2,
+          "calories_burned": 8.571428571428571,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            0.943395
+          ],
+          "set_calories": [
+            4.285714285714286,
+            4.285714285714286
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 41.42857142857142,
+      "notes": "",
+      "difficulty_rating": 10,
+      "completion_percentage": 12.083333333333332
+    },
+    {
+      "date": "2025-10-04T17:21:24.724595",
+      "session_name": "Workout - Saturday",
+      "exercises_completed": [
+        {
+          "name": "Push-ups",
+          "target_sets": 2,
+          "target_reps": 1,
+          "original_sets": 2,
+          "original_reps": 10,
+          "completed_sets": [
+            1,
+            1
+          ],
+          "total_reps_completed": 2,
+          "calories_burned": 11.428571428571429,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            1.109429
+          ],
+          "set_calories": [
+            5.714285714285714,
+            5.714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": false,
+          "post_exercise_rest": 0.688768
+        },
+        {
+          "name": "Squats",
+          "target_sets": 2,
+          "target_reps": 1,
+          "original_sets": 2,
+          "original_reps": 15,
+          "completed_sets": [
+            1,
+            1
+          ],
+          "total_reps_completed": 2,
+          "calories_burned": 14.285714285714286,
+          "set_durations": [
+            39,
+            30
+          ],
+          "rest_durations": [
+            0.464116
+          ],
+          "set_calories": [
+            7.142857142857143,
+            7.142857142857143
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true,
+          "post_exercise_rest": 0.786014
+        },
+        {
+          "name": "Lunges",
+          "target_sets": 2,
+          "target_reps": 1,
+          "original_sets": 2,
+          "original_reps": 12,
+          "completed_sets": [
+            1,
+            1
+          ],
+          "total_reps_completed": 2,
+          "calories_burned": 11.428571428571429,
+          "set_durations": [
+            30,
+            30
+          ],
+          "rest_durations": [
+            0.311557
+          ],
+          "set_calories": [
+            5.714285714285714,
+            5.714285714285714
+          ],
+          "metric": "reps",
+          "total_time_seconds": 0,
+          "adaptation_applied": true,
+          "post_exercise_rest": 1.037848
+        },
+        {
+          "name": "Plank",
+          "target_sets": 2,
+          "target_reps": 1,
+          "original_sets": 2,
+          "original_reps": 40,
+          "completed_sets": [
+            1,
+            1
+          ],
+          "total_reps_completed": 0,
+          "calories_burned": 7.142857142857143,
+          "set_durations": [
+            1,
+            1
+          ],
+          "rest_durations": [
+            0.870409
+          ],
+          "set_calories": [
+            3.5714285714285716,
+            3.5714285714285716
+          ],
+          "metric": "seconds",
+          "total_time_seconds": 2,
+          "adaptation_applied": true
+        }
+      ],
+      "total_duration": 0,
+      "calories_burned": 44.285714285714285,
+      "notes": "",
+      "difficulty_rating": 5,
+      "completion_percentage": 6.875
+    }
+  ]
+}

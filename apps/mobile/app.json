@@ -1,0 +1,55 @@
+{
+  "expo": {
+    "name": "Aura Wellness",
+    "slug": "aura-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "scheme": "aura",
+    "splash": {
+      "backgroundColor": "#F2F2F7"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.aura.wellness",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSCameraUsageDescription": "Allow Aura to use your camera for stress scan and movement tracking.",
+        "NSMicrophoneUsageDescription": "Allow Aura to access your microphone for guided wellness experiences."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#F2F2F7"
+      },
+      "package": "com.aura.wellness",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow Aura to access your microphone for guided wellness experiences."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Aura to use camera for stress scan"
+        }
+      ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "7395f452-c173-4e61-a9ca-b03973d61ba6"
+      }
+    }
+  }
+}

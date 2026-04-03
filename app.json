@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "60a410dd-9ee6-432b-b682-bf5403a314ee"
+      }
+    },
+    "android": {
+      "package": "com.wellnessapp78.aurawellness"
+    }
+  }
+}

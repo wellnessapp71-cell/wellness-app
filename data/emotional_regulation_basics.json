@@ -1,0 +1,32 @@
+{
+  "title": "Emotional Regulation Basics",
+  "category": "emotional_regulation",
+  "duration": "10 min",
+  "difficulty": "beginner",
+  "slides": [
+    {
+      "text": "Emotional regulation is noticing what you're feeling,\nunderstanding why, and choosing how to respond.",
+      "audio": "/audio/emotional_regulation_basics_0.mp3"
+    },
+    {
+      "text": "Recognize your emotions. What am I feeling right now? Name the emotion.",
+      "audio": "/audio/emotional_regulation_basics_1.mp3"
+    },
+    {
+      "text": "Allow your feelings. It's okay to feel this way.\nEmotions are information, not instructions.",
+      "audio": "/audio/emotional_regulation_basics_2.mp3"
+    },
+    {
+      "text": "I am not my emotion. I am a person experiencing an emotion.",
+      "audio": "/audio/emotional_regulation_basics_3.mp3"
+    },
+    {
+      "text": "Take a time gap. Wait 90 seconds when triggered.",
+      "audio": "/audio/emotional_regulation_basics_4.mp3"
+    },
+    {
+      "text": "If emotions feel overwhelming, talk to a professional.",
+      "audio": "/audio/emotional_regulation_basics_5.mp3"
+    }
+  ]
+}

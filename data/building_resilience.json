@@ -1,0 +1,32 @@
+{
+  "title": "Building Resilience",
+  "category": "resilience",
+  "duration": "10 min",
+  "difficulty": "intermediate",
+  "slides": [
+    {
+      "text": "Resilience is about getting back up quickly and effectively.",
+      "audio": "/audio/building_resilience_0.mp3"
+    },
+    {
+      "text": "Break problems into smaller pieces,\nprocess through journaling or talking.",
+      "audio": "/audio/building_resilience_1.mp3"
+    },
+    {
+      "text": "Failures are data, not verdicts, effort matters more than talent.",
+      "audio": "/audio/building_resilience_2.mp3"
+    },
+    {
+      "text": "Strong relationships help you recover from adversity faster.",
+      "audio": "/audio/building_resilience_3.mp3"
+    },
+    {
+      "text": "Ask what you can learn from a situation,\npractice genuine pattern recognition.",
+      "audio": "/audio/building_resilience_4.mp3"
+    },
+    {
+      "text": "Build resilience with daily habits like writing good things,\nfacing challenges, and recovery rituals.",
+      "audio": "/audio/building_resilience_5.mp3"
+    }
+  ]
+}

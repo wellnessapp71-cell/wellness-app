@@ -1,0 +1,4300 @@
+{
+  "user_1_taniya_taragi": {
+    "week_start": "2025-09-24T00:00:00",
+    "user_id": "user_1_taniya_taragi",
+    "sessions": {
+      "monday": {
+        "date": "2025-09-24T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 3,
+            "reps": 14,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Incline Push-ups",
+            "description": "Easier variation of push-ups",
+            "sets": 3,
+            "reps": 16,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Place hands on elevated surface (bench, step)",
+              "Keep body straight from head to heels",
+              "Lower chest to surface",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Start with higher surface for easier version",
+              "Keep core tight throughout",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms"
+            ]
+          },
+          {
+            "name": "Decline Push-ups",
+            "description": "Advanced variation of push-ups",
+            "sets": 3,
+            "reps": 12,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Place feet on elevated surface",
+              "Hands on ground, body at angle",
+              "Lower chest to ground",
+              "Push back up with control"
+            ],
+            "tips": [
+              "More challenging than regular push-ups",
+              "Focuses more on upper chest",
+              "Keep body straight"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Chest Dips",
+            "description": "Advanced chest exercise",
+            "sets": 3,
+            "reps": 12,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Support body on parallel bars",
+              "Lean forward slightly",
+              "Lower body until chest stretch",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Lean forward to target chest",
+              "Don't go too low if it hurts shoulders",
+              "Use assistance if needed"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Close Grip Push-ups",
+            "description": "Tricep-focused push-up variation",
+            "sets": 3,
+            "reps": 12,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Start in push-up position",
+              "Place hands closer than shoulder-width",
+              "Lower body until chest nearly touches hands",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep elbows close to body",
+              "Focus on tricep engagement",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "arms",
+              "chest"
+            ]
+          }
+        ],
+        "duration_minutes": 45,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "tuesday": {
+        "date": "2025-09-25T00:00:00",
+        "exercises": [
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 3,
+            "reps": 8,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Superman",
+            "description": "Lower back bodyweight exercise",
+            "sets": 3,
+            "reps": 18,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie face down on ground",
+              "Arms extended in front",
+              "Lift chest and legs off ground",
+              "Hold for 2-3 seconds, then lower"
+            ],
+            "tips": [
+              "Don't lift too high",
+              "Focus on lower back",
+              "Keep neck neutral"
+            ],
+            "body_parts": [
+              "back",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 45,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "wednesday": {
+        "date": "2025-09-26T00:00:00",
+        "exercises": [
+          {
+            "name": "Squats",
+            "description": "Fundamental leg exercise",
+            "sets": 3,
+            "reps": 18,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Stand with feet shoulder-width apart",
+              "Lower body as if sitting back into chair",
+              "Go down until thighs parallel to floor",
+              "Drive through heels to stand up"
+            ],
+            "tips": [
+              "Keep knees tracking over toes",
+              "Don't let knees cave inward",
+              "Keep chest up and core tight"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Lunges",
+            "description": "Single-leg leg exercise",
+            "sets": 3,
+            "reps": 14,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Step forward into lunge position",
+              "Lower back knee toward ground",
+              "Push back to starting position",
+              "Alternate legs"
+            ],
+            "tips": [
+              "Keep front knee over ankle",
+              "Don't let front knee go past toes",
+              "Keep torso upright"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Calf Raises",
+            "description": "Calf muscle exercise",
+            "sets": 3,
+            "reps": 18,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Stand on edge of step or ground",
+              "Rise up on toes as high as possible",
+              "Lower heels below step level",
+              "Repeat with control"
+            ],
+            "tips": [
+              "Full range of motion",
+              "Control the movement",
+              "Can hold weights for added resistance"
+            ],
+            "body_parts": [
+              "legs"
+            ]
+          },
+          {
+            "name": "Wall Sits",
+            "description": "Isometric leg exercise",
+            "sets": 3,
+            "reps": 55,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Stand with back against wall",
+              "Slide down until thighs parallel to floor",
+              "Hold position for specified time",
+              "Keep back flat against wall"
+            ],
+            "tips": [
+              "Don't let knees go past toes",
+              "Keep weight in heels",
+              "Breathe normally"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Step-ups",
+            "description": "Leg exercise using step or bench",
+            "sets": 3,
+            "reps": 14,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Stand in front of step or bench",
+              "Step up with one foot",
+              "Bring other foot up to step",
+              "Step down with control"
+            ],
+            "tips": [
+              "Keep knee over ankle",
+              "Don't let knee cave inward",
+              "Can hold weights for added resistance"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Bulgarian Split Squats",
+            "description": "Advanced single-leg exercise",
+            "sets": 3,
+            "reps": 12,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Stand 2-3 feet in front of bench",
+              "Place rear foot on bench behind you",
+              "Lower body until front thigh parallel",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep front knee over ankle",
+              "Don't let knee go past toes",
+              "Can hold weights for added resistance"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 45,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "thursday": {
+        "date": "2025-09-27T00:00:00",
+        "exercises": [
+          {
+            "name": "Decline Push-ups",
+            "description": "Advanced variation of push-ups",
+            "sets": 3,
+            "reps": 12,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Place feet on elevated surface",
+              "Hands on ground, body at angle",
+              "Lower chest to ground",
+              "Push back up with control"
+            ],
+            "tips": [
+              "More challenging than regular push-ups",
+              "Focuses more on upper chest",
+              "Keep body straight"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Chest Dips",
+            "description": "Advanced chest exercise",
+            "sets": 3,
+            "reps": 12,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Support body on parallel bars",
+              "Lean forward slightly",
+              "Lower body until chest stretch",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Lean forward to target chest",
+              "Don't go too low if it hurts shoulders",
+              "Use assistance if needed"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          }
+        ],
+        "duration_minutes": 45,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "friday": {
+        "date": "2025-09-28T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 3,
+            "reps": 14,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 3,
+            "reps": 8,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Tricep Dips",
+            "description": "Bodyweight tricep exercise",
+            "sets": 3,
+            "reps": 12,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit on edge of chair or bench",
+              "Place hands beside hips",
+              "Lower body by bending elbows",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep body close to chair",
+              "Don't go too low if it hurts shoulders",
+              "Use legs to assist if needed"
+            ],
+            "body_parts": [
+              "arms"
+            ]
+          },
+          {
+            "name": "Incline Push-ups",
+            "description": "Easier variation of push-ups",
+            "sets": 3,
+            "reps": 16,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Place hands on elevated surface (bench, step)",
+              "Keep body straight from head to heels",
+              "Lower chest to surface",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Start with higher surface for easier version",
+              "Keep core tight throughout",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms"
+            ]
+          },
+          {
+            "name": "Decline Push-ups",
+            "description": "Advanced variation of push-ups",
+            "sets": 3,
+            "reps": 12,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Place feet on elevated surface",
+              "Hands on ground, body at angle",
+              "Lower chest to ground",
+              "Push back up with control"
+            ],
+            "tips": [
+              "More challenging than regular push-ups",
+              "Focuses more on upper chest",
+              "Keep body straight"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Chest Dips",
+            "description": "Advanced chest exercise",
+            "sets": 3,
+            "reps": 12,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Support body on parallel bars",
+              "Lean forward slightly",
+              "Lower body until chest stretch",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Lean forward to target chest",
+              "Don't go too low if it hurts shoulders",
+              "Use assistance if needed"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Close Grip Push-ups",
+            "description": "Tricep-focused push-up variation",
+            "sets": 3,
+            "reps": 12,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Start in push-up position",
+              "Place hands closer than shoulder-width",
+              "Lower body until chest nearly touches hands",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep elbows close to body",
+              "Focus on tricep engagement",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "arms",
+              "chest"
+            ]
+          }
+        ],
+        "duration_minutes": 45,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "saturday": {
+        "date": "2025-09-29T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 3,
+            "reps": 14,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Squats",
+            "description": "Fundamental leg exercise",
+            "sets": 3,
+            "reps": 18,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Stand with feet shoulder-width apart",
+              "Lower body as if sitting back into chair",
+              "Go down until thighs parallel to floor",
+              "Drive through heels to stand up"
+            ],
+            "tips": [
+              "Keep knees tracking over toes",
+              "Don't let knees cave inward",
+              "Keep chest up and core tight"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Lunges",
+            "description": "Single-leg leg exercise",
+            "sets": 3,
+            "reps": 14,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Step forward into lunge position",
+              "Lower back knee toward ground",
+              "Push back to starting position",
+              "Alternate legs"
+            ],
+            "tips": [
+              "Keep front knee over ankle",
+              "Don't let front knee go past toes",
+              "Keep torso upright"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Plank",
+            "description": "Isometric core exercise",
+            "sets": 3,
+            "reps": 60,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Start in push-up position",
+              "Lower to forearms",
+              "Keep body straight from head to heels",
+              "Hold position"
+            ],
+            "tips": [
+              "Don't let hips sag or pike up",
+              "Breathe normally",
+              "Engage core throughout"
+            ],
+            "body_parts": [
+              "core"
+            ]
+          },
+          {
+            "name": "Crunches",
+            "description": "Basic abdominal exercise",
+            "sets": 3,
+            "reps": 18,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Lie on back with knees bent",
+              "Place hands behind head",
+              "Lift shoulders off ground",
+              "Lower with control"
+            ],
+            "tips": [
+              "Don't pull on neck",
+              "Focus on lifting with abs",
+              "Keep lower back on ground"
+            ],
+            "body_parts": [
+              "core"
+            ]
+          },
+          {
+            "name": "Superman",
+            "description": "Lower back bodyweight exercise",
+            "sets": 3,
+            "reps": 18,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie face down on ground",
+              "Arms extended in front",
+              "Lift chest and legs off ground",
+              "Hold for 2-3 seconds, then lower"
+            ],
+            "tips": [
+              "Don't lift too high",
+              "Focus on lower back",
+              "Keep neck neutral"
+            ],
+            "body_parts": [
+              "back",
+              "core"
+            ]
+          },
+          {
+            "name": "Wall Sits",
+            "description": "Isometric leg exercise",
+            "sets": 3,
+            "reps": 55,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Stand with back against wall",
+              "Slide down until thighs parallel to floor",
+              "Hold position for specified time",
+              "Keep back flat against wall"
+            ],
+            "tips": [
+              "Don't let knees go past toes",
+              "Keep weight in heels",
+              "Breathe normally"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 45,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      }
+    },
+    "goals": [
+      "fat_loss",
+      "endurance",
+      "body_part_legs"
+    ],
+    "total_calories_target": 375.4285714285714,
+    "notes": ""
+  },
+  "user_2_e1": {
+    "week_start": "2025-09-24T00:00:00",
+    "user_id": "user_2_e1",
+    "sessions": {
+      "monday": {
+        "date": "2025-09-24T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Bench Press",
+            "description": "Classic chest exercise with barbell",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Lie on bench with feet flat on floor",
+              "Grip bar slightly wider than shoulders",
+              "Lower bar to chest with control",
+              "Press bar up to starting position"
+            ],
+            "tips": [
+              "Keep shoulder blades retracted",
+              "Don't bounce the bar off chest",
+              "Use spotter for heavy weights"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Dumbbell Flyes",
+            "description": "Isolation chest exercise with dumbbells",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie on bench holding dumbbells above chest",
+              "Lower weights in wide arc until chest stretch",
+              "Bring weights back together above chest",
+              "Keep slight bend in elbows"
+            ],
+            "tips": [
+              "Control the weight, don't let gravity do the work",
+              "Focus on chest squeeze at the top",
+              "Don't go too heavy to maintain form"
+            ],
+            "body_parts": [
+              "chest"
+            ]
+          },
+          {
+            "name": "Incline Push-ups",
+            "description": "Easier variation of push-ups",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Place hands on elevated surface (bench, step)",
+              "Keep body straight from head to heels",
+              "Lower chest to surface",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Start with higher surface for easier version",
+              "Keep core tight throughout",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms"
+            ]
+          },
+          {
+            "name": "Dumbbell Press",
+            "description": "Chest exercise with dumbbells",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Lie on bench holding dumbbells at chest level",
+              "Press weights up and together",
+              "Lower with control to chest",
+              "Keep shoulder blades retracted"
+            ],
+            "tips": [
+              "Control the weight throughout",
+              "Don't bounce off chest",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Cable Flyes",
+            "description": "Chest isolation with cables",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Stand between cable machines",
+              "Hold handles at chest level",
+              "Bring hands together in arc motion",
+              "Return to starting position"
+            ],
+            "tips": [
+              "Keep slight bend in elbows",
+              "Focus on chest squeeze",
+              "Control the weight"
+            ],
+            "body_parts": [
+              "chest"
+            ]
+          },
+          {
+            "name": "Close Grip Push-ups",
+            "description": "Tricep-focused push-up variation",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Start in push-up position",
+              "Place hands closer than shoulder-width",
+              "Lower body until chest nearly touches hands",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep elbows close to body",
+              "Focus on tricep engagement",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "arms",
+              "chest"
+            ]
+          }
+        ],
+        "duration_minutes": 55,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "tuesday": {
+        "date": "2025-09-25T00:00:00",
+        "exercises": [
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 2,
+            "reps": 3,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Bent-over Rows",
+            "description": "Back exercise with barbell or dumbbells",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Stand with feet hip-width apart",
+              "Hinge at hips, keeping back straight",
+              "Pull weight to lower chest/upper abdomen",
+              "Squeeze shoulder blades together"
+            ],
+            "tips": [
+              "Keep core tight to protect lower back",
+              "Don't use momentum to lift weight",
+              "Focus on pulling with back muscles"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Lat Pulldowns",
+            "description": "Back exercise with cable machine",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit at lat pulldown machine",
+              "Grip bar wider than shoulders",
+              "Pull bar to upper chest",
+              "Control the weight back up"
+            ],
+            "tips": [
+              "Don't use momentum",
+              "Focus on pulling with back",
+              "Keep chest up"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Seated Rows",
+            "description": "Back exercise with cable machine",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit at cable row machine",
+              "Grip handle with both hands",
+              "Pull handle to lower chest",
+              "Squeeze shoulder blades together"
+            ],
+            "tips": [
+              "Keep back straight",
+              "Don't lean back excessively",
+              "Focus on back muscles"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Reverse Flyes",
+            "description": "Upper back exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Bend forward at hips",
+              "Hold weights with arms hanging",
+              "Raise arms out to sides",
+              "Squeeze shoulder blades together"
+            ],
+            "tips": [
+              "Keep slight bend in elbows",
+              "Don't use heavy weights",
+              "Focus on upper back"
+            ],
+            "body_parts": [
+              "back",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Superman",
+            "description": "Lower back bodyweight exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie face down on ground",
+              "Arms extended in front",
+              "Lift chest and legs off ground",
+              "Hold for 2-3 seconds, then lower"
+            ],
+            "tips": [
+              "Don't lift too high",
+              "Focus on lower back",
+              "Keep neck neutral"
+            ],
+            "body_parts": [
+              "back",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 55,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "wednesday": {
+        "date": "2025-09-26T00:00:00",
+        "exercises": [
+          {
+            "name": "Squats",
+            "description": "Fundamental leg exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Stand with feet shoulder-width apart",
+              "Lower body as if sitting back into chair",
+              "Go down until thighs parallel to floor",
+              "Drive through heels to stand up"
+            ],
+            "tips": [
+              "Keep knees tracking over toes",
+              "Don't let knees cave inward",
+              "Keep chest up and core tight"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Lunges",
+            "description": "Single-leg leg exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Step forward into lunge position",
+              "Lower back knee toward ground",
+              "Push back to starting position",
+              "Alternate legs"
+            ],
+            "tips": [
+              "Keep front knee over ankle",
+              "Don't let front knee go past toes",
+              "Keep torso upright"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Calf Raises",
+            "description": "Calf muscle exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Stand on edge of step or ground",
+              "Rise up on toes as high as possible",
+              "Lower heels below step level",
+              "Repeat with control"
+            ],
+            "tips": [
+              "Full range of motion",
+              "Control the movement",
+              "Can hold weights for added resistance"
+            ],
+            "body_parts": [
+              "legs"
+            ]
+          },
+          {
+            "name": "Wall Sits",
+            "description": "Isometric leg exercise",
+            "sets": 2,
+            "reps": 30,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Stand with back against wall",
+              "Slide down until thighs parallel to floor",
+              "Hold position for specified time",
+              "Keep back flat against wall"
+            ],
+            "tips": [
+              "Don't let knees go past toes",
+              "Keep weight in heels",
+              "Breathe normally"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Step-ups",
+            "description": "Leg exercise using step or bench",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Stand in front of step or bench",
+              "Step up with one foot",
+              "Bring other foot up to step",
+              "Step down with control"
+            ],
+            "tips": [
+              "Keep knee over ankle",
+              "Don't let knee cave inward",
+              "Can hold weights for added resistance"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Leg Press",
+            "description": "Leg exercise with machine",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit in leg press machine",
+              "Place feet on platform shoulder-width apart",
+              "Lower weight until knees at 90 degrees",
+              "Press weight back to starting position"
+            ],
+            "tips": [
+              "Don't lock knees at top",
+              "Keep knees tracking over toes",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "legs"
+            ]
+          }
+        ],
+        "duration_minutes": 55,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "thursday": {
+        "date": "2025-09-27T00:00:00",
+        "exercises": [
+          {
+            "name": "Bench Press",
+            "description": "Classic chest exercise with barbell",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Lie on bench with feet flat on floor",
+              "Grip bar slightly wider than shoulders",
+              "Lower bar to chest with control",
+              "Press bar up to starting position"
+            ],
+            "tips": [
+              "Keep shoulder blades retracted",
+              "Don't bounce the bar off chest",
+              "Use spotter for heavy weights"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Shoulder Press",
+            "description": "Shoulder exercise with dumbbells",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit or stand holding weights at shoulder level",
+              "Press weights straight up overhead",
+              "Lower with control to starting position",
+              "Keep core engaged"
+            ],
+            "tips": [
+              "Don't arch back excessively",
+              "Keep wrists straight",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "shoulders",
+              "arms"
+            ]
+          },
+          {
+            "name": "Lateral Raises",
+            "description": "Shoulder isolation exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Stand holding weights at sides",
+              "Raise arms out to sides to shoulder height",
+              "Lower with control",
+              "Keep slight bend in elbows"
+            ],
+            "tips": [
+              "Don't use momentum",
+              "Control the weight on the way down",
+              "Focus on shoulder muscles"
+            ],
+            "body_parts": [
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Dumbbell Press",
+            "description": "Chest exercise with dumbbells",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Lie on bench holding dumbbells at chest level",
+              "Press weights up and together",
+              "Lower with control to chest",
+              "Keep shoulder blades retracted"
+            ],
+            "tips": [
+              "Control the weight throughout",
+              "Don't bounce off chest",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Reverse Flyes",
+            "description": "Upper back exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Bend forward at hips",
+              "Hold weights with arms hanging",
+              "Raise arms out to sides",
+              "Squeeze shoulder blades together"
+            ],
+            "tips": [
+              "Keep slight bend in elbows",
+              "Don't use heavy weights",
+              "Focus on upper back"
+            ],
+            "body_parts": [
+              "back",
+              "shoulders"
+            ]
+          }
+        ],
+        "duration_minutes": 55,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "friday": {
+        "date": "2025-09-28T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Bench Press",
+            "description": "Classic chest exercise with barbell",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Lie on bench with feet flat on floor",
+              "Grip bar slightly wider than shoulders",
+              "Lower bar to chest with control",
+              "Press bar up to starting position"
+            ],
+            "tips": [
+              "Keep shoulder blades retracted",
+              "Don't bounce the bar off chest",
+              "Use spotter for heavy weights"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 2,
+            "reps": 3,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Bent-over Rows",
+            "description": "Back exercise with barbell or dumbbells",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Stand with feet hip-width apart",
+              "Hinge at hips, keeping back straight",
+              "Pull weight to lower chest/upper abdomen",
+              "Squeeze shoulder blades together"
+            ],
+            "tips": [
+              "Keep core tight to protect lower back",
+              "Don't use momentum to lift weight",
+              "Focus on pulling with back muscles"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Bicep Curls",
+            "description": "Arm exercise for biceps",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Stand holding weights at sides",
+              "Curl weights up to shoulders",
+              "Squeeze biceps at top",
+              "Lower with control"
+            ],
+            "tips": [
+              "Keep elbows at sides",
+              "Don't swing the weights",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "arms"
+            ]
+          },
+          {
+            "name": "Tricep Dips",
+            "description": "Bodyweight tricep exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit on edge of chair or bench",
+              "Place hands beside hips",
+              "Lower body by bending elbows",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep body close to chair",
+              "Don't go too low if it hurts shoulders",
+              "Use legs to assist if needed"
+            ],
+            "body_parts": [
+              "arms"
+            ]
+          },
+          {
+            "name": "Shoulder Press",
+            "description": "Shoulder exercise with dumbbells",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit or stand holding weights at shoulder level",
+              "Press weights straight up overhead",
+              "Lower with control to starting position",
+              "Keep core engaged"
+            ],
+            "tips": [
+              "Don't arch back excessively",
+              "Keep wrists straight",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "shoulders",
+              "arms"
+            ]
+          }
+        ],
+        "duration_minutes": 55,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "saturday": {
+        "date": "2025-09-29T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Squats",
+            "description": "Fundamental leg exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Stand with feet shoulder-width apart",
+              "Lower body as if sitting back into chair",
+              "Go down until thighs parallel to floor",
+              "Drive through heels to stand up"
+            ],
+            "tips": [
+              "Keep knees tracking over toes",
+              "Don't let knees cave inward",
+              "Keep chest up and core tight"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Lunges",
+            "description": "Single-leg leg exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Step forward into lunge position",
+              "Lower back knee toward ground",
+              "Push back to starting position",
+              "Alternate legs"
+            ],
+            "tips": [
+              "Keep front knee over ankle",
+              "Don't let front knee go past toes",
+              "Keep torso upright"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Plank",
+            "description": "Isometric core exercise",
+            "sets": 2,
+            "reps": 30,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Start in push-up position",
+              "Lower to forearms",
+              "Keep body straight from head to heels",
+              "Hold position"
+            ],
+            "tips": [
+              "Don't let hips sag or pike up",
+              "Breathe normally",
+              "Engage core throughout"
+            ],
+            "body_parts": [
+              "core"
+            ]
+          },
+          {
+            "name": "Crunches",
+            "description": "Basic abdominal exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Lie on back with knees bent",
+              "Place hands behind head",
+              "Lift shoulders off ground",
+              "Lower with control"
+            ],
+            "tips": [
+              "Don't pull on neck",
+              "Focus on lifting with abs",
+              "Keep lower back on ground"
+            ],
+            "body_parts": [
+              "core"
+            ]
+          },
+          {
+            "name": "Superman",
+            "description": "Lower back bodyweight exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie face down on ground",
+              "Arms extended in front",
+              "Lift chest and legs off ground",
+              "Hold for 2-3 seconds, then lower"
+            ],
+            "tips": [
+              "Don't lift too high",
+              "Focus on lower back",
+              "Keep neck neutral"
+            ],
+            "body_parts": [
+              "back",
+              "core"
+            ]
+          },
+          {
+            "name": "Wall Sits",
+            "description": "Isometric leg exercise",
+            "sets": 2,
+            "reps": 30,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Stand with back against wall",
+              "Slide down until thighs parallel to floor",
+              "Hold position for specified time",
+              "Keep back flat against wall"
+            ],
+            "tips": [
+              "Don't let knees go past toes",
+              "Keep weight in heels",
+              "Breathe normally"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 55,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      }
+    },
+    "goals": [
+      "muscle_gain",
+      "endurance",
+      "body_part_chest"
+    ],
+    "total_calories_target": 104.14285714285714,
+    "notes": ""
+  },
+  "user_3_e2": {
+    "week_start": "2025-11-06T00:00:00",
+    "user_id": "user_3_e2",
+    "sessions": {
+      "monday": {
+        "date": "2025-11-06T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Bench Press",
+            "description": "Classic chest exercise with barbell",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Lie on bench with feet flat on floor",
+              "Grip bar slightly wider than shoulders",
+              "Lower bar to chest with control",
+              "Press bar up to starting position"
+            ],
+            "tips": [
+              "Keep shoulder blades retracted",
+              "Don't bounce the bar off chest",
+              "Use spotter for heavy weights"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Dumbbell Flyes",
+            "description": "Isolation chest exercise with dumbbells",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie on bench holding dumbbells above chest",
+              "Lower weights in wide arc until chest stretch",
+              "Bring weights back together above chest",
+              "Keep slight bend in elbows"
+            ],
+            "tips": [
+              "Control the weight, don't let gravity do the work",
+              "Focus on chest squeeze at the top",
+              "Don't go too heavy to maintain form"
+            ],
+            "body_parts": [
+              "chest"
+            ]
+          },
+          {
+            "name": "Incline Push-ups",
+            "description": "Easier variation of push-ups",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Place hands on elevated surface (bench, step)",
+              "Keep body straight from head to heels",
+              "Lower chest to surface",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Start with higher surface for easier version",
+              "Keep core tight throughout",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms"
+            ]
+          },
+          {
+            "name": "Dumbbell Press",
+            "description": "Chest exercise with dumbbells",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Lie on bench holding dumbbells at chest level",
+              "Press weights up and together",
+              "Lower with control to chest",
+              "Keep shoulder blades retracted"
+            ],
+            "tips": [
+              "Control the weight throughout",
+              "Don't bounce off chest",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Cable Flyes",
+            "description": "Chest isolation with cables",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Stand between cable machines",
+              "Hold handles at chest level",
+              "Bring hands together in arc motion",
+              "Return to starting position"
+            ],
+            "tips": [
+              "Keep slight bend in elbows",
+              "Focus on chest squeeze",
+              "Control the weight"
+            ],
+            "body_parts": [
+              "chest"
+            ]
+          },
+          {
+            "name": "Close Grip Push-ups",
+            "description": "Tricep-focused push-up variation",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Start in push-up position",
+              "Place hands closer than shoulder-width",
+              "Lower body until chest nearly touches hands",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep elbows close to body",
+              "Focus on tricep engagement",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "arms",
+              "chest"
+            ]
+          }
+        ],
+        "duration_minutes": 35,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "tuesday": {
+        "date": "2025-11-07T00:00:00",
+        "exercises": [
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 2,
+            "reps": 3,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Bent-over Rows",
+            "description": "Back exercise with barbell or dumbbells",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Stand with feet hip-width apart",
+              "Hinge at hips, keeping back straight",
+              "Pull weight to lower chest/upper abdomen",
+              "Squeeze shoulder blades together"
+            ],
+            "tips": [
+              "Keep core tight to protect lower back",
+              "Don't use momentum to lift weight",
+              "Focus on pulling with back muscles"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Lat Pulldowns",
+            "description": "Back exercise with cable machine",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit at lat pulldown machine",
+              "Grip bar wider than shoulders",
+              "Pull bar to upper chest",
+              "Control the weight back up"
+            ],
+            "tips": [
+              "Don't use momentum",
+              "Focus on pulling with back",
+              "Keep chest up"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Seated Rows",
+            "description": "Back exercise with cable machine",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit at cable row machine",
+              "Grip handle with both hands",
+              "Pull handle to lower chest",
+              "Squeeze shoulder blades together"
+            ],
+            "tips": [
+              "Keep back straight",
+              "Don't lean back excessively",
+              "Focus on back muscles"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Reverse Flyes",
+            "description": "Upper back exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Bend forward at hips",
+              "Hold weights with arms hanging",
+              "Raise arms out to sides",
+              "Squeeze shoulder blades together"
+            ],
+            "tips": [
+              "Keep slight bend in elbows",
+              "Don't use heavy weights",
+              "Focus on upper back"
+            ],
+            "body_parts": [
+              "back",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Superman",
+            "description": "Lower back bodyweight exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie face down on ground",
+              "Arms extended in front",
+              "Lift chest and legs off ground",
+              "Hold for 2-3 seconds, then lower"
+            ],
+            "tips": [
+              "Don't lift too high",
+              "Focus on lower back",
+              "Keep neck neutral"
+            ],
+            "body_parts": [
+              "back",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 35,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "wednesday": {
+        "date": "2025-11-08T00:00:00",
+        "exercises": [
+          {
+            "name": "Squats",
+            "description": "Fundamental leg exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Stand with feet shoulder-width apart",
+              "Lower body as if sitting back into chair",
+              "Go down until thighs parallel to floor",
+              "Drive through heels to stand up"
+            ],
+            "tips": [
+              "Keep knees tracking over toes",
+              "Don't let knees cave inward",
+              "Keep chest up and core tight"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Lunges",
+            "description": "Single-leg leg exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Step forward into lunge position",
+              "Lower back knee toward ground",
+              "Push back to starting position",
+              "Alternate legs"
+            ],
+            "tips": [
+              "Keep front knee over ankle",
+              "Don't let front knee go past toes",
+              "Keep torso upright"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Calf Raises",
+            "description": "Calf muscle exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Stand on edge of step or ground",
+              "Rise up on toes as high as possible",
+              "Lower heels below step level",
+              "Repeat with control"
+            ],
+            "tips": [
+              "Full range of motion",
+              "Control the movement",
+              "Can hold weights for added resistance"
+            ],
+            "body_parts": [
+              "legs"
+            ]
+          },
+          {
+            "name": "Wall Sits",
+            "description": "Isometric leg exercise",
+            "sets": 2,
+            "reps": 30,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Stand with back against wall",
+              "Slide down until thighs parallel to floor",
+              "Hold position for specified time",
+              "Keep back flat against wall"
+            ],
+            "tips": [
+              "Don't let knees go past toes",
+              "Keep weight in heels",
+              "Breathe normally"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Step-ups",
+            "description": "Leg exercise using step or bench",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Stand in front of step or bench",
+              "Step up with one foot",
+              "Bring other foot up to step",
+              "Step down with control"
+            ],
+            "tips": [
+              "Keep knee over ankle",
+              "Don't let knee cave inward",
+              "Can hold weights for added resistance"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Leg Press",
+            "description": "Leg exercise with machine",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit in leg press machine",
+              "Place feet on platform shoulder-width apart",
+              "Lower weight until knees at 90 degrees",
+              "Press weight back to starting position"
+            ],
+            "tips": [
+              "Don't lock knees at top",
+              "Keep knees tracking over toes",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "legs"
+            ]
+          }
+        ],
+        "duration_minutes": 35,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "thursday": {
+        "date": "2025-11-09T00:00:00",
+        "exercises": [
+          {
+            "name": "Bench Press",
+            "description": "Classic chest exercise with barbell",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Lie on bench with feet flat on floor",
+              "Grip bar slightly wider than shoulders",
+              "Lower bar to chest with control",
+              "Press bar up to starting position"
+            ],
+            "tips": [
+              "Keep shoulder blades retracted",
+              "Don't bounce the bar off chest",
+              "Use spotter for heavy weights"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Shoulder Press",
+            "description": "Shoulder exercise with dumbbells",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit or stand holding weights at shoulder level",
+              "Press weights straight up overhead",
+              "Lower with control to starting position",
+              "Keep core engaged"
+            ],
+            "tips": [
+              "Don't arch back excessively",
+              "Keep wrists straight",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "shoulders",
+              "arms"
+            ]
+          },
+          {
+            "name": "Lateral Raises",
+            "description": "Shoulder isolation exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Stand holding weights at sides",
+              "Raise arms out to sides to shoulder height",
+              "Lower with control",
+              "Keep slight bend in elbows"
+            ],
+            "tips": [
+              "Don't use momentum",
+              "Control the weight on the way down",
+              "Focus on shoulder muscles"
+            ],
+            "body_parts": [
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Dumbbell Press",
+            "description": "Chest exercise with dumbbells",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Lie on bench holding dumbbells at chest level",
+              "Press weights up and together",
+              "Lower with control to chest",
+              "Keep shoulder blades retracted"
+            ],
+            "tips": [
+              "Control the weight throughout",
+              "Don't bounce off chest",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Reverse Flyes",
+            "description": "Upper back exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Bend forward at hips",
+              "Hold weights with arms hanging",
+              "Raise arms out to sides",
+              "Squeeze shoulder blades together"
+            ],
+            "tips": [
+              "Keep slight bend in elbows",
+              "Don't use heavy weights",
+              "Focus on upper back"
+            ],
+            "body_parts": [
+              "back",
+              "shoulders"
+            ]
+          }
+        ],
+        "duration_minutes": 35,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "friday": {
+        "date": "2025-11-10T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Bench Press",
+            "description": "Classic chest exercise with barbell",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Lie on bench with feet flat on floor",
+              "Grip bar slightly wider than shoulders",
+              "Lower bar to chest with control",
+              "Press bar up to starting position"
+            ],
+            "tips": [
+              "Keep shoulder blades retracted",
+              "Don't bounce the bar off chest",
+              "Use spotter for heavy weights"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "shoulders"
+            ]
+          },
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 2,
+            "reps": 3,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Bent-over Rows",
+            "description": "Back exercise with barbell or dumbbells",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Stand with feet hip-width apart",
+              "Hinge at hips, keeping back straight",
+              "Pull weight to lower chest/upper abdomen",
+              "Squeeze shoulder blades together"
+            ],
+            "tips": [
+              "Keep core tight to protect lower back",
+              "Don't use momentum to lift weight",
+              "Focus on pulling with back muscles"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Bicep Curls",
+            "description": "Arm exercise for biceps",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Stand holding weights at sides",
+              "Curl weights up to shoulders",
+              "Squeeze biceps at top",
+              "Lower with control"
+            ],
+            "tips": [
+              "Keep elbows at sides",
+              "Don't swing the weights",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "arms"
+            ]
+          },
+          {
+            "name": "Tricep Dips",
+            "description": "Bodyweight tricep exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit on edge of chair or bench",
+              "Place hands beside hips",
+              "Lower body by bending elbows",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep body close to chair",
+              "Don't go too low if it hurts shoulders",
+              "Use legs to assist if needed"
+            ],
+            "body_parts": [
+              "arms"
+            ]
+          },
+          {
+            "name": "Shoulder Press",
+            "description": "Shoulder exercise with dumbbells",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit or stand holding weights at shoulder level",
+              "Press weights straight up overhead",
+              "Lower with control to starting position",
+              "Keep core engaged"
+            ],
+            "tips": [
+              "Don't arch back excessively",
+              "Keep wrists straight",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "shoulders",
+              "arms"
+            ]
+          }
+        ],
+        "duration_minutes": 35,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "saturday": {
+        "date": "2025-11-11T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Squats",
+            "description": "Fundamental leg exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Stand with feet shoulder-width apart",
+              "Lower body as if sitting back into chair",
+              "Go down until thighs parallel to floor",
+              "Drive through heels to stand up"
+            ],
+            "tips": [
+              "Keep knees tracking over toes",
+              "Don't let knees cave inward",
+              "Keep chest up and core tight"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Lunges",
+            "description": "Single-leg leg exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Step forward into lunge position",
+              "Lower back knee toward ground",
+              "Push back to starting position",
+              "Alternate legs"
+            ],
+            "tips": [
+              "Keep front knee over ankle",
+              "Don't let front knee go past toes",
+              "Keep torso upright"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Plank",
+            "description": "Isometric core exercise",
+            "sets": 2,
+            "reps": 30,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Start in push-up position",
+              "Lower to forearms",
+              "Keep body straight from head to heels",
+              "Hold position"
+            ],
+            "tips": [
+              "Don't let hips sag or pike up",
+              "Breathe normally",
+              "Engage core throughout"
+            ],
+            "body_parts": [
+              "core"
+            ]
+          },
+          {
+            "name": "Crunches",
+            "description": "Basic abdominal exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Lie on back with knees bent",
+              "Place hands behind head",
+              "Lift shoulders off ground",
+              "Lower with control"
+            ],
+            "tips": [
+              "Don't pull on neck",
+              "Focus on lifting with abs",
+              "Keep lower back on ground"
+            ],
+            "body_parts": [
+              "core"
+            ]
+          },
+          {
+            "name": "Superman",
+            "description": "Lower back bodyweight exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie face down on ground",
+              "Arms extended in front",
+              "Lift chest and legs off ground",
+              "Hold for 2-3 seconds, then lower"
+            ],
+            "tips": [
+              "Don't lift too high",
+              "Focus on lower back",
+              "Keep neck neutral"
+            ],
+            "body_parts": [
+              "back",
+              "core"
+            ]
+          },
+          {
+            "name": "Wall Sits",
+            "description": "Isometric leg exercise",
+            "sets": 2,
+            "reps": 30,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Stand with back against wall",
+              "Slide down until thighs parallel to floor",
+              "Hold position for specified time",
+              "Keep back flat against wall"
+            ],
+            "tips": [
+              "Don't let knees go past toes",
+              "Keep weight in heels",
+              "Breathe normally"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 35,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      }
+    },
+    "goals": [
+      "muscle_gain",
+      "endurance",
+      "body_part_chest"
+    ],
+    "total_calories_target": 520.7142857142857,
+    "notes": ""
+  },
+  "user_4_e3": {
+    "week_start": "2025-09-24T00:00:00",
+    "user_id": "user_4_e3",
+    "sessions": {
+      "monday": {
+        "date": "2025-09-24T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Incline Push-ups",
+            "description": "Easier variation of push-ups",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Place hands on elevated surface (bench, step)",
+              "Keep body straight from head to heels",
+              "Lower chest to surface",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Start with higher surface for easier version",
+              "Keep core tight throughout",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms"
+            ]
+          },
+          {
+            "name": "Close Grip Push-ups",
+            "description": "Tricep-focused push-up variation",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Start in push-up position",
+              "Place hands closer than shoulder-width",
+              "Lower body until chest nearly touches hands",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep elbows close to body",
+              "Focus on tricep engagement",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "arms",
+              "chest"
+            ]
+          }
+        ],
+        "duration_minutes": 5,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "tuesday": {
+        "date": "2025-09-25T00:00:00",
+        "exercises": [
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 2,
+            "reps": 3,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Superman",
+            "description": "Lower back bodyweight exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie face down on ground",
+              "Arms extended in front",
+              "Lift chest and legs off ground",
+              "Hold for 2-3 seconds, then lower"
+            ],
+            "tips": [
+              "Don't lift too high",
+              "Focus on lower back",
+              "Keep neck neutral"
+            ],
+            "body_parts": [
+              "back",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 5,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "wednesday": {
+        "date": "2025-09-26T00:00:00",
+        "exercises": [
+          {
+            "name": "Squats",
+            "description": "Fundamental leg exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Stand with feet shoulder-width apart",
+              "Lower body as if sitting back into chair",
+              "Go down until thighs parallel to floor",
+              "Drive through heels to stand up"
+            ],
+            "tips": [
+              "Keep knees tracking over toes",
+              "Don't let knees cave inward",
+              "Keep chest up and core tight"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Lunges",
+            "description": "Single-leg leg exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Step forward into lunge position",
+              "Lower back knee toward ground",
+              "Push back to starting position",
+              "Alternate legs"
+            ],
+            "tips": [
+              "Keep front knee over ankle",
+              "Don't let front knee go past toes",
+              "Keep torso upright"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Calf Raises",
+            "description": "Calf muscle exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Stand on edge of step or ground",
+              "Rise up on toes as high as possible",
+              "Lower heels below step level",
+              "Repeat with control"
+            ],
+            "tips": [
+              "Full range of motion",
+              "Control the movement",
+              "Can hold weights for added resistance"
+            ],
+            "body_parts": [
+              "legs"
+            ]
+          },
+          {
+            "name": "Wall Sits",
+            "description": "Isometric leg exercise",
+            "sets": 2,
+            "reps": 30,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Stand with back against wall",
+              "Slide down until thighs parallel to floor",
+              "Hold position for specified time",
+              "Keep back flat against wall"
+            ],
+            "tips": [
+              "Don't let knees go past toes",
+              "Keep weight in heels",
+              "Breathe normally"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Step-ups",
+            "description": "Leg exercise using step or bench",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Stand in front of step or bench",
+              "Step up with one foot",
+              "Bring other foot up to step",
+              "Step down with control"
+            ],
+            "tips": [
+              "Keep knee over ankle",
+              "Don't let knee cave inward",
+              "Can hold weights for added resistance"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 7,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "thursday": {
+        "date": "2025-09-27T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 2,
+            "reps": 3,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Tricep Dips",
+            "description": "Bodyweight tricep exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit on edge of chair or bench",
+              "Place hands beside hips",
+              "Lower body by bending elbows",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep body close to chair",
+              "Don't go too low if it hurts shoulders",
+              "Use legs to assist if needed"
+            ],
+            "body_parts": [
+              "arms"
+            ]
+          },
+          {
+            "name": "Incline Push-ups",
+            "description": "Easier variation of push-ups",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Place hands on elevated surface (bench, step)",
+              "Keep body straight from head to heels",
+              "Lower chest to surface",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Start with higher surface for easier version",
+              "Keep core tight throughout",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms"
+            ]
+          },
+          {
+            "name": "Superman",
+            "description": "Lower back bodyweight exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie face down on ground",
+              "Arms extended in front",
+              "Lift chest and legs off ground",
+              "Hold for 2-3 seconds, then lower"
+            ],
+            "tips": [
+              "Don't lift too high",
+              "Focus on lower back",
+              "Keep neck neutral"
+            ],
+            "body_parts": [
+              "back",
+              "core"
+            ]
+          },
+          {
+            "name": "Close Grip Push-ups",
+            "description": "Tricep-focused push-up variation",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Start in push-up position",
+              "Place hands closer than shoulder-width",
+              "Lower body until chest nearly touches hands",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep elbows close to body",
+              "Focus on tricep engagement",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "arms",
+              "chest"
+            ]
+          }
+        ],
+        "duration_minutes": 6,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "friday": {
+        "date": "2025-09-28T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 2,
+            "reps": 3,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Tricep Dips",
+            "description": "Bodyweight tricep exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit on edge of chair or bench",
+              "Place hands beside hips",
+              "Lower body by bending elbows",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep body close to chair",
+              "Don't go too low if it hurts shoulders",
+              "Use legs to assist if needed"
+            ],
+            "body_parts": [
+              "arms"
+            ]
+          },
+          {
+            "name": "Incline Push-ups",
+            "description": "Easier variation of push-ups",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Place hands on elevated surface (bench, step)",
+              "Keep body straight from head to heels",
+              "Lower chest to surface",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Start with higher surface for easier version",
+              "Keep core tight throughout",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms"
+            ]
+          },
+          {
+            "name": "Close Grip Push-ups",
+            "description": "Tricep-focused push-up variation",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Start in push-up position",
+              "Place hands closer than shoulder-width",
+              "Lower body until chest nearly touches hands",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep elbows close to body",
+              "Focus on tricep engagement",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "arms",
+              "chest"
+            ]
+          }
+        ],
+        "duration_minutes": 5,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "saturday": {
+        "date": "2025-09-29T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Squats",
+            "description": "Fundamental leg exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Stand with feet shoulder-width apart",
+              "Lower body as if sitting back into chair",
+              "Go down until thighs parallel to floor",
+              "Drive through heels to stand up"
+            ],
+            "tips": [
+              "Keep knees tracking over toes",
+              "Don't let knees cave inward",
+              "Keep chest up and core tight"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Lunges",
+            "description": "Single-leg leg exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Step forward into lunge position",
+              "Lower back knee toward ground",
+              "Push back to starting position",
+              "Alternate legs"
+            ],
+            "tips": [
+              "Keep front knee over ankle",
+              "Don't let front knee go past toes",
+              "Keep torso upright"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Plank",
+            "description": "Isometric core exercise",
+            "sets": 2,
+            "reps": 30,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Start in push-up position",
+              "Lower to forearms",
+              "Keep body straight from head to heels",
+              "Hold position"
+            ],
+            "tips": [
+              "Don't let hips sag or pike up",
+              "Breathe normally",
+              "Engage core throughout"
+            ],
+            "body_parts": [
+              "core"
+            ]
+          },
+          {
+            "name": "Crunches",
+            "description": "Basic abdominal exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Lie on back with knees bent",
+              "Place hands behind head",
+              "Lift shoulders off ground",
+              "Lower with control"
+            ],
+            "tips": [
+              "Don't pull on neck",
+              "Focus on lifting with abs",
+              "Keep lower back on ground"
+            ],
+            "body_parts": [
+              "core"
+            ]
+          },
+          {
+            "name": "Superman",
+            "description": "Lower back bodyweight exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie face down on ground",
+              "Arms extended in front",
+              "Lift chest and legs off ground",
+              "Hold for 2-3 seconds, then lower"
+            ],
+            "tips": [
+              "Don't lift too high",
+              "Focus on lower back",
+              "Keep neck neutral"
+            ],
+            "body_parts": [
+              "back",
+              "core"
+            ]
+          },
+          {
+            "name": "Step-ups",
+            "description": "Leg exercise using step or bench",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Stand in front of step or bench",
+              "Step up with one foot",
+              "Bring other foot up to step",
+              "Step down with control"
+            ],
+            "tips": [
+              "Keep knee over ankle",
+              "Don't let knee cave inward",
+              "Can hold weights for added resistance"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 9,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      }
+    },
+    "goals": [
+      "muscle_gain",
+      "endurance",
+      "body_part_chest"
+    ],
+    "total_calories_target": 336.0,
+    "notes": ""
+  },
+  "user_5_e4": {
+    "week_start": "2025-09-24T00:00:00",
+    "user_id": "user_5_e4",
+    "sessions": {
+      "monday": {
+        "date": "2025-09-24T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Incline Push-ups",
+            "description": "Easier variation of push-ups",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Place hands on elevated surface (bench, step)",
+              "Keep body straight from head to heels",
+              "Lower chest to surface",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Start with higher surface for easier version",
+              "Keep core tight throughout",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms"
+            ]
+          },
+          {
+            "name": "Close Grip Push-ups",
+            "description": "Tricep-focused push-up variation",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Start in push-up position",
+              "Place hands closer than shoulder-width",
+              "Lower body until chest nearly touches hands",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep elbows close to body",
+              "Focus on tricep engagement",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "arms",
+              "chest"
+            ]
+          }
+        ],
+        "duration_minutes": 3,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "tuesday": {
+        "date": "2025-09-25T00:00:00",
+        "exercises": [
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 2,
+            "reps": 3,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Superman",
+            "description": "Lower back bodyweight exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie face down on ground",
+              "Arms extended in front",
+              "Lift chest and legs off ground",
+              "Hold for 2-3 seconds, then lower"
+            ],
+            "tips": [
+              "Don't lift too high",
+              "Focus on lower back",
+              "Keep neck neutral"
+            ],
+            "body_parts": [
+              "back",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 2,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "wednesday": {
+        "date": "2025-09-26T00:00:00",
+        "exercises": [
+          {
+            "name": "Squats",
+            "description": "Fundamental leg exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Stand with feet shoulder-width apart",
+              "Lower body as if sitting back into chair",
+              "Go down until thighs parallel to floor",
+              "Drive through heels to stand up"
+            ],
+            "tips": [
+              "Keep knees tracking over toes",
+              "Don't let knees cave inward",
+              "Keep chest up and core tight"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Lunges",
+            "description": "Single-leg leg exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Step forward into lunge position",
+              "Lower back knee toward ground",
+              "Push back to starting position",
+              "Alternate legs"
+            ],
+            "tips": [
+              "Keep front knee over ankle",
+              "Don't let front knee go past toes",
+              "Keep torso upright"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Calf Raises",
+            "description": "Calf muscle exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Stand on edge of step or ground",
+              "Rise up on toes as high as possible",
+              "Lower heels below step level",
+              "Repeat with control"
+            ],
+            "tips": [
+              "Full range of motion",
+              "Control the movement",
+              "Can hold weights for added resistance"
+            ],
+            "body_parts": [
+              "legs"
+            ]
+          },
+          {
+            "name": "Wall Sits",
+            "description": "Isometric leg exercise",
+            "sets": 2,
+            "reps": 30,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Stand with back against wall",
+              "Slide down until thighs parallel to floor",
+              "Hold position for specified time",
+              "Keep back flat against wall"
+            ],
+            "tips": [
+              "Don't let knees go past toes",
+              "Keep weight in heels",
+              "Breathe normally"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 6,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "thursday": {
+        "date": "2025-09-27T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 2,
+            "reps": 3,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Tricep Dips",
+            "description": "Bodyweight tricep exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit on edge of chair or bench",
+              "Place hands beside hips",
+              "Lower body by bending elbows",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep body close to chair",
+              "Don't go too low if it hurts shoulders",
+              "Use legs to assist if needed"
+            ],
+            "body_parts": [
+              "arms"
+            ]
+          },
+          {
+            "name": "Incline Push-ups",
+            "description": "Easier variation of push-ups",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Place hands on elevated surface (bench, step)",
+              "Keep body straight from head to heels",
+              "Lower chest to surface",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Start with higher surface for easier version",
+              "Keep core tight throughout",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms"
+            ]
+          },
+          {
+            "name": "Superman",
+            "description": "Lower back bodyweight exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie face down on ground",
+              "Arms extended in front",
+              "Lift chest and legs off ground",
+              "Hold for 2-3 seconds, then lower"
+            ],
+            "tips": [
+              "Don't lift too high",
+              "Focus on lower back",
+              "Keep neck neutral"
+            ],
+            "body_parts": [
+              "back",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 5,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "friday": {
+        "date": "2025-09-28T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 2,
+            "reps": 3,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Tricep Dips",
+            "description": "Bodyweight tricep exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit on edge of chair or bench",
+              "Place hands beside hips",
+              "Lower body by bending elbows",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep body close to chair",
+              "Don't go too low if it hurts shoulders",
+              "Use legs to assist if needed"
+            ],
+            "body_parts": [
+              "arms"
+            ]
+          },
+          {
+            "name": "Incline Push-ups",
+            "description": "Easier variation of push-ups",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Place hands on elevated surface (bench, step)",
+              "Keep body straight from head to heels",
+              "Lower chest to surface",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Start with higher surface for easier version",
+              "Keep core tight throughout",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms"
+            ]
+          },
+          {
+            "name": "Close Grip Push-ups",
+            "description": "Tricep-focused push-up variation",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Start in push-up position",
+              "Place hands closer than shoulder-width",
+              "Lower body until chest nearly touches hands",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep elbows close to body",
+              "Focus on tricep engagement",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "arms",
+              "chest"
+            ]
+          }
+        ],
+        "duration_minutes": 5,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "saturday": {
+        "date": "2025-09-29T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 8,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Squats",
+            "description": "Fundamental leg exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Stand with feet shoulder-width apart",
+              "Lower body as if sitting back into chair",
+              "Go down until thighs parallel to floor",
+              "Drive through heels to stand up"
+            ],
+            "tips": [
+              "Keep knees tracking over toes",
+              "Don't let knees cave inward",
+              "Keep chest up and core tight"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Lunges",
+            "description": "Single-leg leg exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Step forward into lunge position",
+              "Lower back knee toward ground",
+              "Push back to starting position",
+              "Alternate legs"
+            ],
+            "tips": [
+              "Keep front knee over ankle",
+              "Don't let front knee go past toes",
+              "Keep torso upright"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Plank",
+            "description": "Isometric core exercise",
+            "sets": 2,
+            "reps": 30,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Start in push-up position",
+              "Lower to forearms",
+              "Keep body straight from head to heels",
+              "Hold position"
+            ],
+            "tips": [
+              "Don't let hips sag or pike up",
+              "Breathe normally",
+              "Engage core throughout"
+            ],
+            "body_parts": [
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 6,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      }
+    },
+    "goals": [
+      "muscle_gain",
+      "endurance",
+      "body_part_arms"
+    ],
+    "total_calories_target": 281.1428571428571,
+    "notes": ""
+  },
+  "user_6_e5": {
+    "week_start": "2025-09-24T00:00:00",
+    "user_id": "user_6_e5",
+    "sessions": {
+      "monday": {
+        "date": "2025-09-24T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Incline Push-ups",
+            "description": "Easier variation of push-ups",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Place hands on elevated surface (bench, step)",
+              "Keep body straight from head to heels",
+              "Lower chest to surface",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Start with higher surface for easier version",
+              "Keep core tight throughout",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms"
+            ]
+          },
+          {
+            "name": "Close Grip Push-ups",
+            "description": "Tricep-focused push-up variation",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 7.0,
+            "instructions": [
+              "Start in push-up position",
+              "Place hands closer than shoulder-width",
+              "Lower body until chest nearly touches hands",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep elbows close to body",
+              "Focus on tricep engagement",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "arms",
+              "chest"
+            ]
+          }
+        ],
+        "duration_minutes": 3,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "tuesday": {
+        "date": "2025-09-25T00:00:00",
+        "exercises": [
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 2,
+            "reps": 5,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Superman",
+            "description": "Lower back bodyweight exercise",
+            "sets": 2,
+            "reps": 15,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Lie face down on ground",
+              "Arms extended in front",
+              "Lift chest and legs off ground",
+              "Hold for 2-3 seconds, then lower"
+            ],
+            "tips": [
+              "Don't lift too high",
+              "Focus on lower back",
+              "Keep neck neutral"
+            ],
+            "body_parts": [
+              "back",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 3,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "wednesday": {
+        "date": "2025-09-26T00:00:00",
+        "exercises": [
+          {
+            "name": "Squats",
+            "description": "Fundamental leg exercise",
+            "sets": 2,
+            "reps": 15,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Stand with feet shoulder-width apart",
+              "Lower body as if sitting back into chair",
+              "Go down until thighs parallel to floor",
+              "Drive through heels to stand up"
+            ],
+            "tips": [
+              "Keep knees tracking over toes",
+              "Don't let knees cave inward",
+              "Keep chest up and core tight"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Lunges",
+            "description": "Single-leg leg exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Step forward into lunge position",
+              "Lower back knee toward ground",
+              "Push back to starting position",
+              "Alternate legs"
+            ],
+            "tips": [
+              "Keep front knee over ankle",
+              "Don't let front knee go past toes",
+              "Keep torso upright"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Calf Raises",
+            "description": "Calf muscle exercise",
+            "sets": 2,
+            "reps": 15,
+            "calories_per_minute": 4.0,
+            "instructions": [
+              "Stand on edge of step or ground",
+              "Rise up on toes as high as possible",
+              "Lower heels below step level",
+              "Repeat with control"
+            ],
+            "tips": [
+              "Full range of motion",
+              "Control the movement",
+              "Can hold weights for added resistance"
+            ],
+            "body_parts": [
+              "legs"
+            ]
+          },
+          {
+            "name": "Wall Sits",
+            "description": "Isometric leg exercise",
+            "sets": 2,
+            "reps": 40,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Stand with back against wall",
+              "Slide down until thighs parallel to floor",
+              "Hold position for specified time",
+              "Keep back flat against wall"
+            ],
+            "tips": [
+              "Don't let knees go past toes",
+              "Keep weight in heels",
+              "Breathe normally"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 7,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "thursday": {
+        "date": "2025-09-27T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 2,
+            "reps": 5,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Tricep Dips",
+            "description": "Bodyweight tricep exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit on edge of chair or bench",
+              "Place hands beside hips",
+              "Lower body by bending elbows",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep body close to chair",
+              "Don't go too low if it hurts shoulders",
+              "Use legs to assist if needed"
+            ],
+            "body_parts": [
+              "arms"
+            ]
+          },
+          {
+            "name": "Incline Push-ups",
+            "description": "Easier variation of push-ups",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Place hands on elevated surface (bench, step)",
+              "Keep body straight from head to heels",
+              "Lower chest to surface",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Start with higher surface for easier version",
+              "Keep core tight throughout",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms"
+            ]
+          }
+        ],
+        "duration_minutes": 4,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "friday": {
+        "date": "2025-09-28T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Pull-ups",
+            "description": "Bodyweight back exercise",
+            "sets": 2,
+            "reps": 5,
+            "calories_per_minute": 9.0,
+            "instructions": [
+              "Hang from bar with overhand grip",
+              "Pull body up until chin clears bar",
+              "Lower with control to starting position",
+              "Keep core engaged throughout"
+            ],
+            "tips": [
+              "Start with assisted pull-ups if needed",
+              "Focus on pulling with back, not just arms",
+              "Full range of motion is key"
+            ],
+            "body_parts": [
+              "back",
+              "arms"
+            ]
+          },
+          {
+            "name": "Tricep Dips",
+            "description": "Bodyweight tricep exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Sit on edge of chair or bench",
+              "Place hands beside hips",
+              "Lower body by bending elbows",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Keep body close to chair",
+              "Don't go too low if it hurts shoulders",
+              "Use legs to assist if needed"
+            ],
+            "body_parts": [
+              "arms"
+            ]
+          },
+          {
+            "name": "Incline Push-ups",
+            "description": "Easier variation of push-ups",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 6.0,
+            "instructions": [
+              "Place hands on elevated surface (bench, step)",
+              "Keep body straight from head to heels",
+              "Lower chest to surface",
+              "Push back up to starting position"
+            ],
+            "tips": [
+              "Start with higher surface for easier version",
+              "Keep core tight throughout",
+              "Full range of motion"
+            ],
+            "body_parts": [
+              "chest",
+              "arms"
+            ]
+          }
+        ],
+        "duration_minutes": 4,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      },
+      "saturday": {
+        "date": "2025-09-29T00:00:00",
+        "exercises": [
+          {
+            "name": "Push-ups",
+            "description": "Classic bodyweight chest exercise",
+            "sets": 2,
+            "reps": 10,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Start in plank position with hands slightly wider than shoulders",
+              "Lower your body until chest nearly touches the floor",
+              "Push back up to starting position",
+              "Keep core tight and body straight"
+            ],
+            "tips": [
+              "Keep elbows at 45-degree angle",
+              "Don't let hips sag or pike up",
+              "Breathe out on the way up"
+            ],
+            "body_parts": [
+              "chest",
+              "arms",
+              "core"
+            ]
+          },
+          {
+            "name": "Squats",
+            "description": "Fundamental leg exercise",
+            "sets": 2,
+            "reps": 15,
+            "calories_per_minute": 10.0,
+            "instructions": [
+              "Stand with feet shoulder-width apart",
+              "Lower body as if sitting back into chair",
+              "Go down until thighs parallel to floor",
+              "Drive through heels to stand up"
+            ],
+            "tips": [
+              "Keep knees tracking over toes",
+              "Don't let knees cave inward",
+              "Keep chest up and core tight"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Lunges",
+            "description": "Single-leg leg exercise",
+            "sets": 2,
+            "reps": 12,
+            "calories_per_minute": 8.0,
+            "instructions": [
+              "Step forward into lunge position",
+              "Lower back knee toward ground",
+              "Push back to starting position",
+              "Alternate legs"
+            ],
+            "tips": [
+              "Keep front knee over ankle",
+              "Don't let front knee go past toes",
+              "Keep torso upright"
+            ],
+            "body_parts": [
+              "legs",
+              "core"
+            ]
+          },
+          {
+            "name": "Plank",
+            "description": "Isometric core exercise",
+            "sets": 2,
+            "reps": 40,
+            "calories_per_minute": 5.0,
+            "instructions": [
+              "Start in push-up position",
+              "Lower to forearms",
+              "Keep body straight from head to heels",
+              "Hold position"
+            ],
+            "tips": [
+              "Don't let hips sag or pike up",
+              "Breathe normally",
+              "Engage core throughout"
+            ],
+            "body_parts": [
+              "core"
+            ]
+          }
+        ],
+        "duration_minutes": 7,
+        "calories_burned": 0.0,
+        "completed": false,
+        "notes": ""
+      }
+    },
+    "goals": [
+      "muscle_gain",
+      "endurance",
+      "body_part_core"
+    ],
+    "total_calories_target": 325.7142857142857,
+    "notes": ""
+  }
+}

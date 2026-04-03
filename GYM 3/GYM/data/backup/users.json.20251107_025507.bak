@@ -1,0 +1,28 @@
+{
+  "user_1_chart_data_tester": {
+    "id": "user_1_chart_data_tester",
+    "name": "Chart Data Tester",
+    "age": 25,
+    "gender": "male",
+    "current_weight": 70.0,
+    "target_weight": 65.0,
+    "has_home_equipment": false,
+    "has_gym_access": false,
+    "goals": [
+      "flexibility"
+    ],
+    "fitness_level": "beginner",
+    "fitness_sublevel": 1,
+    "fitness_score": null,
+    "fitness_type": "yoga",
+    "created_at": "2025-11-07T02:55:06.181060",
+    "last_workout": null,
+    "workout_streak": 0,
+    "total_workouts": 0,
+    "calories_burned_total": 0.0,
+    "weekly_calorie_intake": 0.0,
+    "weekly_calorie_burned": 0.0,
+    "nutrition_goal": "maintain",
+    "calorie_balance_history": []
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Daily Mindfulness Practice",
+  "category": "emotional_regulation",
+  "duration": "5 min",
+  "difficulty": "beginner",
+  "slides": [
+    {
+      "text": "Mindfulness is paying attention to the present moment without judgment.",
+      "audio": "/audio/daily_mindfulness_practice_0.mp3"
+    },
+    {
+      "text": "Sit comfortably with a straight spine, eyes closed or gazing softly.",
+      "audio": "/audio/daily_mindfulness_practice_1.mp3"
+    },
+    {
+      "text": "Notice your breath, feeling it at your nostrils, chest, or belly.",
+      "audio": "/audio/daily_mindfulness_practice_2.mp3"
+    },
+    {
+      "text": "When your mind wanders, gently return to your breath without judgment.",
+      "audio": "/audio/daily_mindfulness_practice_3.mp3"
+    },
+    {
+      "text": "Practice mindfulness daily, even just 5 minutes,\nto improve your well-being.",
+      "audio": "/audio/daily_mindfulness_practice_4.mp3"
+    },
+    {
+      "text": "Regular practice reduces stress and improves\nemotional regulation and focus.",
+      "audio": "/audio/daily_mindfulness_practice_5.mp3"
+    }
+  ]
+}

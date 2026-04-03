@@ -1,0 +1,32 @@
+{
+  "title": "Sleep Hygiene Foundations",
+  "category": "sleep",
+  "duration": "7 min",
+  "difficulty": "beginner",
+  "slides": [
+    {
+      "text": "Sleep is the most important factor in mental health recovery.",
+      "audio": "/audio/sleep_hygiene_foundations_0.mp3"
+    },
+    {
+      "text": "Keep your room at 65-68°F to help your body sleep.",
+      "audio": "/audio/sleep_hygiene_foundations_1.mp3"
+    },
+    {
+      "text": "Block blue light before bed and get morning sunlight.",
+      "audio": "/audio/sleep_hygiene_foundations_2.mp3"
+    },
+    {
+      "text": "Use consistent background noise and a bedtime routine.",
+      "audio": "/audio/sleep_hygiene_foundations_3.mp3"
+    },
+    {
+      "text": "Wind down before bed with gentle activities.",
+      "audio": "/audio/sleep_hygiene_foundations_4.mp3"
+    },
+    {
+      "text": "Track your sleep hours to see how it affects your mood.",
+      "audio": "/audio/sleep_hygiene_foundations_5.mp3"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Breathing Techniques 101",
+  "category": "stress",
+  "duration": "8 min",
+  "difficulty": "beginner",
+  "slides": [
+    {
+      "text": "Breathe to shift from stress to calm",
+      "audio": "/audio/breathing_techniques_101_0.mp3"
+    },
+    {
+      "text": "Slow exhales calm your body",
+      "audio": "/audio/breathing_techniques_101_1.mp3"
+    },
+    {
+      "text": "Inhale 4, hold 4, exhale 4, hold 4",
+      "audio": "/audio/breathing_techniques_101_2.mp3"
+    },
+    {
+      "text": "Inhale 4, hold 7, exhale 8 for sleep",
+      "audio": "/audio/breathing_techniques_101_3.mp3"
+    },
+    {
+      "text": "Breathe deep: inhale 4, exhale 6",
+      "audio": "/audio/breathing_techniques_101_4.mp3"
+    },
+    {
+      "text": "Breathe through your nose, feel your belly rise",
+      "audio": "/audio/breathing_techniques_101_5.mp3"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "date": "2025-11-07",
+  "exercise_index": 0,
+  "set_index": 2,
+  "completed_exercises": [
+    {
+      "name": "Push-ups",
+      "target_sets": 3,
+      "target_reps": 14,
+      "original_sets": 3,
+      "original_reps": 14,
+      "completed_sets": [
+        14,
+        14
+      ],
+      "total_reps_completed": 28,
+      "calories_burned": 13.714285714285714,
+      "set_durations": [
+        134,
+        70
+      ],
+      "rest_durations": [
+        35.280214
+      ],
+      "set_calories": [
+        9.142857142857142,
+        4.571428571428571
+      ],
+      "metric": "reps",
+      "total_time_seconds": 0,
+      "adaptation_applied": false
+    }
+  ],
+  "timestamp": "2025-11-07T01:10:02.756426"
+}

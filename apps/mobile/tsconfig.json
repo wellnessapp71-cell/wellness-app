@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": ["./*"],
+      "@aura/lifestyle-engine": ["../../packages/engines/lifestyle-engine/src"],
+      "@aura/lib": ["../../packages/lib/src"],
+      "@aura/types": ["../../packages/types/src"],
+      "react-native-svg": ["./stubs/react-native-svg"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts", "nativewind-env.d.ts"],
+  "extends": "expo/tsconfig.base"
+}

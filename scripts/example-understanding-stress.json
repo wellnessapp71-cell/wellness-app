@@ -1,0 +1,32 @@
+{
+  "title": "Understanding Stress",
+  "category": "stress",
+  "duration": "5 min",
+  "difficulty": "beginner",
+  "slides": [
+    {
+      "text": "Stress is your body's alarm.\nIt gets you ready to act.",
+      "audio": "/audio/understanding_stress_0.mp3"
+    },
+    {
+      "text": "Some stress can help you focus.\nToo much stress can wear you down.",
+      "audio": "/audio/understanding_stress_1.mp3"
+    },
+    {
+      "text": "Stress moves in a cycle:\ntrigger, response, recovery.",
+      "audio": "/audio/understanding_stress_2.mp3"
+    },
+    {
+      "text": "Trouble grows when recovery\nnever has time to happen.",
+      "audio": "/audio/understanding_stress_3.mp3"
+    },
+    {
+      "text": "Slow breathing and grounding\nhelp your body feel safe again.",
+      "audio": "/audio/understanding_stress_4.mp3"
+    },
+    {
+      "text": "A few calm minutes each day\ncan make stress easier to handle.",
+      "audio": "/audio/understanding_stress_5.mp3"
+    }
+  ]
+}

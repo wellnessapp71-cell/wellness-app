@@ -1,0 +1,20 @@
+=== YOGA ===
+{"ok":true,"data":{"userId":"test_user_123","createdAtIso":"2026-03-23T20:30:06.883Z","level":"beginner","sessions":{"monday":{"durationMinutes":30,"warmUp":[{"name":"Shoulder Rolls","durationSeconds"
+
+=== NUTRITION: estimate-meal ===
+{"ok":true,"action":"estimate-meal","data":{"entry":{"dateIso":"2026-03-23T20:30:07.452Z","mealDescription":"A bowl of oatmeal","calories":150},"estimate":{"totalCalories":150,"matches":[{"token":"oat
+
+=== NUTRITION: analyze-week ===
+{"ok":true,"action":"analyze-week","data":{"summary":{"totalCaloriesConsumed":400,"totalCaloriesBurned":2000,"netCalorieBalance":-1600,"entries":[{"dateIso":"2026-03-24T00:00:00Z","mealDescription":"O
+
+=== NUTRITION: build-meal-plan-prompt ===
+{"ok":true,"action":"build-meal-plan-prompt","data":{"userPrompt":"You are a nutritionist AI. Generate a 1-day personalized meal plan with Breakfast, Lunch, Snack, and Dinner.\nReturn dish names, raw 
+
+=== GET PLANS (test_user_123) ===
+{"ok":true,"data":{"items":[{"id":"cmn3n3prb000dv2989yevth49","type":"yoga","content":{"level":"beginner","userId":"test_user_123","sessions":{"friday":{"focus":["General Wellness"],"warmUp":[{"name":"Seated Side Stretch","benefits":"Stretches the side body","durationSeconds":60},{"name":"Cat-Cow Stretch","benefits":"Warms up the spine","durationSeconds":60},{"name":"Mountain Pose (Tadasana)","benefits":"Improves posture and balance","durationSeconds":30},{"name":"Shoulder Rolls","benefits":"Loo
+
+=== GET PROGRESS (test_user_123) ===
+{"ok":true,"data":{"items":[{"id":"cmn3n3qm8000hv2983jvqawhz","type":"nutrition","data":{"summary":{"entries":[{"dateIso":"2026-03-24T00:00:00Z","calories":400,"mealDescription":"Oatmeal"}],"netCalorieBalance":-1600,"totalCaloriesBurned":2000,"totalCaloriesConsumed":400},"analysis":{"burned":2000,"balance":-1600,"onTrack":false,"consumed":400,"weeklyTarget":0,"recommendation":"You are burning more calories than you are consuming. Consider increasing intake.","recommendedIntake":2623.375}},"recor
+
+=== GET PROGRESS (default user) ===
+{"ok":true,"data":{"items":[{"id":"cmn3n3qdq000fv298kzlpr7f8","type":"nutrition","data":{"entry":{"dateIso":"2026-03-23T20:30:07.452Z","calories":150,"mealDescription":"A bowl of oatmeal"},"estimate":{"matches":[{"token":"oatmeal","calories":150}],"unrecognized":["a","of"],"usedFallback":false,"totalCalories":150}},"recordedAt":"2026-03-23T20:30:07.453Z"},{"id":"cmn3n3f720007v298efgrh82t","type":"nutrition","data":{"entry":{"dateIso":"2026-03-23T20:29:53.197Z","calories":150,"mealDescription":"A

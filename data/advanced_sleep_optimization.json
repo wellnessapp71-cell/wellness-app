@@ -1,0 +1,32 @@
+{
+  "title": "Advanced Sleep Optimization",
+  "category": "sleep",
+  "duration": "10 min",
+  "difficulty": "advanced",
+  "slides": [
+    {
+      "text": "A full sleep cycle is 90 minutes long.",
+      "audio": "/audio/advanced_sleep_optimization_0.mp3"
+    },
+    {
+      "text": "You need 5-6 complete cycles per night.",
+      "audio": "/audio/advanced_sleep_optimization_1.mp3"
+    },
+    {
+      "text": "Sleep debt adds up quickly, 1 hour lost per night.",
+      "audio": "/audio/advanced_sleep_optimization_2.mp3"
+    },
+    {
+      "text": "Morning light helps your body wake up.",
+      "audio": "/audio/advanced_sleep_optimization_3.mp3"
+    },
+    {
+      "text": "A consistent wake time is very important.",
+      "audio": "/audio/advanced_sleep_optimization_4.mp3"
+    },
+    {
+      "text": "See a professional if you have chronic insomnia.",
+      "audio": "/audio/advanced_sleep_optimization_5.mp3"
+    }
+  ]
+}

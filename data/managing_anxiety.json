@@ -1,0 +1,32 @@
+{
+  "title": "Managing Anxiety",
+  "category": "stress",
+  "duration": "12 min",
+  "difficulty": "intermediate",
+  "slides": [
+    {
+      "text": "Anxiety is your brain predicting danger that may or may not happen.",
+      "audio": "/audio/managing_anxiety_0.mp3"
+    },
+    {
+      "text": "Catch anxious thoughts and examine the evidence for and against them.",
+      "audio": "/audio/managing_anxiety_1.mp3"
+    },
+    {
+      "text": "Scheduling worry time can help reduce it.",
+      "audio": "/audio/managing_anxiety_2.mp3"
+    },
+    {
+      "text": "Use the 5-4-3-2-1 technique to ground yourself when anxiety spikes.",
+      "audio": "/audio/managing_anxiety_3.mp3"
+    },
+    {
+      "text": "Fighting anxiety makes it worse, accepting it reduces its power.",
+      "audio": "/audio/managing_anxiety_4.mp3"
+    },
+    {
+      "text": "Your body cannot stay in peak anxiety forever, it always comes down.",
+      "audio": "/audio/managing_anxiety_5.mp3"
+    }
+  ]
+}

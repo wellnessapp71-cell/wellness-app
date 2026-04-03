@@ -1,0 +1,32 @@
+{
+  "title": "Relationship Wellness",
+  "category": "boundaries",
+  "duration": "10 min",
+  "difficulty": "intermediate",
+  "slides": [
+    {
+      "text": "Healthy relationships are key to happiness and longevity.",
+      "audio": "/audio/relationship_wellness_0.mp3"
+    },
+    {
+      "text": "Criticism can hurt. Say 'I feel' instead of 'You always'.",
+      "audio": "/audio/relationship_wellness_1.mp3"
+    },
+    {
+      "text": "Show appreciation daily to avoid contempt.",
+      "audio": "/audio/relationship_wellness_2.mp3"
+    },
+    {
+      "text": "Start conversations softly, with 'I', not 'You'.",
+      "audio": "/audio/relationship_wellness_3.mp3"
+    },
+    {
+      "text": "Daily check-ins and physical touch can reduce stress.",
+      "audio": "/audio/relationship_wellness_4.mp3"
+    },
+    {
+      "text": "Make time for shared experiences and individual space.",
+      "audio": "/audio/relationship_wellness_5.mp3"
+    }
+  ]
+}

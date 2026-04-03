@@ -1,0 +1,53 @@
+[
+  {
+    "id": "586fffcb-c463-4245-9f4f-9fe76e8c412b",
+    "status": "ERRORED",
+    "platform": "ANDROID",
+    "error": {
+      "errorCode": "UNKNOWN_ERROR",
+      "message": "Unknown error. See logs of the Bundle JavaScript build phase for more information."
+    },
+    "artifacts": {},
+    "fingerprint": {
+      "id": "019d29b2-d336-7585-b454-5541dbeb388c",
+      "hash": "0502f4b48f154c0beda72b47d5506fbe095a97dd"
+    },
+    "initiatingActor": {
+      "id": "ea26da21-0e7b-4f07-a3bb-1857a8d7d036",
+      "displayName": "wellness-app78"
+    },
+    "logFiles": [
+      "https://job-logs.eascdn.net/production/586fffcb-c463-4245-9f4f-9fe76e8c412b/1774521078855-7f95c0ff-8c48-461b-9333-dd7cf8c6159e.txt?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=www-production%40exponentjs.iam.gserviceaccount.com%2F20260326%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260326T103328Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=840c56fc1d7357e3e4e719971668be433f51740c89abc46f106183aa7358ea2bc5a5216394930b40e1cb24c82d0c3f0b1956dedb5a466e01cfba1244ceb1c3b114a6e19c2664c01c24c102e1e7a10e3696a0c83e51751c87f74ab1eca82e5a255dcaf807c45b9865d5a0dbcfe2bf8a1f02d1a008de5c44878af001a93bd3cc4d19c6bf23da9c11065a9a7ca8ad260e9dd0b0afcaad3732c09bf1c6ab0ccbac2f7e98116d4b4f32e24adebaafa966d54a3f54588c74f3ac757c65b943cf5399f480225989a6302fc6ce0a70050cb3fe80512d998249bb77400f0af3730bd80b6f2af6ac94a5c550d6a8785c30d5d60dcf9f00e2fd1208ca1f5721d69a403d29a7",
+      "https://job-logs.eascdn.net/production/586fffcb-c463-4245-9f4f-9fe76e8c412b/1774521458082-6ad01445-e6b7-4cfd-b13f-ea86b22b00b5.txt?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=www-production%40exponentjs.iam.gserviceaccount.com%2F20260326%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260326T103750Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=61a7df5d5902ea4d19c06d5a372e146963436e62c7eb05728ca6d1c198d53724bbfd81bc1e0cf7151c83d0d00ed02c6655011fe6f1907ec7100a11999242e004505c08127bdb25e83995548b443914c4622fc4dc2dd859349e09ad3c560a24cc831286e1e80ec6b2ab58c3b8031419c46fb3ce811354f0457a5e0977d33d6d2aafd68aa7d7566b689e2bf47057debee501950109fedf03d7b1ebb5139a469f3e126b5f9d8118247e647ccdfa0f5392a60817c7c06e15d97d800aff721f00ef0e94dfa7ad53bbfd6c33cfa750efff358be4ef0cd7593f4777351b41b7eadcca10a1c396ef40f97814654e4ee8b7c1360c77ce45ef7c0e831c5aade9b66008378f",
+      "https://job-logs.eascdn.net/production/586fffcb-c463-4245-9f4f-9fe76e8c412b/1774521458360-41ed6b24-c3c0-45f0-ac63-702b47a9ee0d.txt?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=www-production%40exponentjs.iam.gserviceaccount.com%2F20260326%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260326T103750Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=64500b7fa4b1d3cd821099643632933042d8615b87b3ce8bd39f5122ff79ad8000b7e142a5776c86d922f7b3ca699eead5ded905af5bcd738a7c980a0f5130bb271f7d69c52083f589a34683b265f36be1515b6caf5565b12c3637e5071e1a1475ed90018097590732829c8631bfd8bdb2d60056beaa6ae026508f2b2da42a8de7c5de359ba3b80b832dcff3c7c18d91808e0cd785578c4a27f3386e80e0cfd09d3c68f3ccc2851b8b1cdd64b4c18e60ea1e756cf7ecca06fdf5c45d18b454a24728f522ecd123354894714bd2da907890eeae4d29565a11882d603ce417caba880c47709f61eb42c4d2822f5a79f05822a29740e5e60c33288ca214faf23657",
+      "https://job-logs.eascdn.net/production/586fffcb-c463-4245-9f4f-9fe76e8c412b/1774521458577-b92a676f-0587-4b0b-a65f-fc4d37f6bf4f.txt?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=www-production%40exponentjs.iam.gserviceaccount.com%2F20260326%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260326T103811Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=3f409f751b3606a96572bca0fd31e1577524c56657942bf879ae734b9ebaca6cc9daea92ed555903df99be6e4da79078e0bbca0373c7dfc5666f1826d5d8274d6c1a0ba9669a769fc76612fb7d2f21480b61209f9126c27074b337646bffe0d300cfa961d1ff912ae70dd590c969c1716e98208e1f1b14838ad64c1db8514f91b97ff22d2ce89ad5e832de27befa187ad0d4c540d7cb884289cdd42a25315bbe32fb4148f81f153ca6b0a25278c928467eb345974903e11a3f06ba415dd9b0ab5d0afdd0cd010e0ea4590a978b63a5a98074ad7d7fb787af7ae0b9fbfa038223277d94ace7eae0f73a8be328ff1378e0046457669444b1f92bb971fb9ae803c3"
+    ],
+    "project": {
+      "id": "60a410dd-9ee6-432b-b682-bf5403a314ee",
+      "name": "aura-wellness",
+      "slug": "aura-wellness",
+      "ownerAccount": {
+        "id": "e74d7c6e-29f6-48ee-b6ae-16228fc72643",
+        "name": "wellness-app78"
+      }
+    },
+    "distribution": "STORE",
+    "buildProfile": "production",
+    "sdkVersion": "53.0.0",
+    "appVersion": "1.0.0",
+    "appBuildVersion": "15",
+    "gitCommitHash": "19c5f07e028c74d0372c8730d138ff912adefd48",
+    "gitCommitMessage": "migrated to nextjs",
+    "priority": "NORMAL",
+    "createdAt": "2026-03-26T10:31:17.883Z",
+    "updatedAt": "2026-03-26T10:39:01.194Z",
+    "completedAt": "2026-03-26T10:38:58.750Z",
+    "expirationDate": "2026-04-25T10:31:18.556Z",
+    "isForIosSimulator": false,
+    "metrics": {
+      "buildWaitTime": 841,
+      "buildQueueTime": 408615,
+      "buildDuration": 50448
+    }
+  }
+]
