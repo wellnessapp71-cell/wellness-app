@@ -49,10 +49,12 @@ export function setStoredAuth(auth: StoredAuthUser) {
   const normalized = normalizeStoredAuth(auth);
   if (!normalized) {
     window.localStorage.removeItem(AUTH_STORAGE_KEY);
+    clearAuthCookie();
     return;
   }
 
   window.localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(normalized));
+  setAuthCookie(normalized.token);
 }
 
 export function clearStoredAuth() {
@@ -61,6 +63,20 @@ export function clearStoredAuth() {
   }
 
   window.localStorage.removeItem(AUTH_STORAGE_KEY);
+  clearAuthCookie();
+}
+
+// ── Cookie helpers (for server-side middleware route protection) ──────────
+
+const AUTH_COOKIE_NAME = "aura-token";
+const COOKIE_MAX_AGE_SECONDS = 7 * 24 * 60 * 60; // 7 days (matches JWT_EXPIRY)
+
+function setAuthCookie(token: string) {
+  document.cookie = `${AUTH_COOKIE_NAME}=${token}; path=/; max-age=${COOKIE_MAX_AGE_SECONDS}; SameSite=Lax`;
+}
+
+function clearAuthCookie() {
+  document.cookie = `${AUTH_COOKIE_NAME}=; path=/; max-age=0; SameSite=Lax`;
 }
 
 export async function fetchWithAuth<T>(path: string, init: RequestInit = {}) {

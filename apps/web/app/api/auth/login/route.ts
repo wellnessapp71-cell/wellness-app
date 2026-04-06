@@ -5,6 +5,9 @@ import { signAuthToken } from "@/lib/auth/jwt";
 import { verifyPassword } from "@/lib/auth/password";
 import { errorResponse, ok } from "@/lib/api/response";
 import { parseRequestJson } from "@/lib/api/validation";
+import { rateLimit, getClientIp } from "@/lib/rate-limit";
+
+const LOGIN_RATE_LIMIT = { windowMs: 60_000, maxRequests: 10 };
 
 const loginSchema = z
   .object({
@@ -15,6 +18,17 @@ const loginSchema = z
   .strict();
 
 export async function POST(request: Request): Promise<NextResponse> {
+  // ── Rate limiting ──────────────────────────────────────────────────────
+  const ip = getClientIp(request);
+  const rl = rateLimit(`login:${ip}`, LOGIN_RATE_LIMIT);
+  if (!rl.success) {
+    const retryAfter = Math.ceil(rl.resetMs / 1000);
+    return NextResponse.json(
+      { ok: false, error: { code: "RATE_LIMITED", message: "Too many login attempts. Please try again later." } },
+      { status: 429, headers: { "Retry-After": String(retryAfter) } },
+    );
+  }
+
   const parsed = await parseRequestJson(request);
   if (!parsed.success) {
     return errorResponse(parsed.status ?? 400, "INVALID_JSON", parsed.error, parsed.details);
