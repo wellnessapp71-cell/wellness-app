@@ -1,72 +1,33 @@
 {
   "expo": {
     "name": "Aura Wellness",
-    "slug": "aura-mobile",
     "version": "1.0.0",
-    "orientation": "portrait",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "scheme": "aura",
+    "icon": "./assets/icon.png",
     "splash": {
+      "image": "./assets/splash.png",
       "backgroundColor": "#F2F2F7"
     },
     "ios": {
-      "supportsTablet": true,
       "bundleIdentifier": "com.aura.wellness",
-      "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false,
-        "NSCameraUsageDescription": "Allow Aura to use your camera for stress scan and movement tracking.",
-        "NSMicrophoneUsageDescription": "Allow Aura to access your microphone for guided wellness experiences."
-      }
+      "buildNumber": "1"
     },
     "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#F2F2F7"
-      },
       "package": "com.aura.wellness",
-      "permissions": [
-        "android.permission.CAMERA",
-        "android.permission.RECORD_AUDIO"
-      ]
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#F2F2F7"
+      }
     },
     "plugins": [
-      "expo-router",
-      "expo-font",
       [
         "@sentry/react-native",
         {
           "url": "https://sentry.io/",
-          "note": "Set SENTRY_AUTH_TOKEN, SENTRY_ORG, and SENTRY_PROJECT env vars for source map uploads.",
-          "organization": "SET_YOUR_ORG",
-          "project": "SET_YOUR_PROJECT"
+          "organization": "shivansh-srivastava",
+          "project": "aura-mobile"
         }
-      ],
-      [
-        "expo-notifications",
-        {
-          "icon": "./assets/icon.png",
-          "color": "#007AFF"
-        }
-      ],
-      [
-        "expo-audio",
-        {
-          "microphonePermission": "Allow Aura to access your microphone for guided wellness experiences."
-        }
-      ],
-      [
-        "expo-camera",
-        {
-          "cameraPermission": "Allow Aura to use camera for stress scan"
-        }
-      ],
-      "expo-secure-store"
-    ],
-    "extra": {
-      "router": {},
-      "eas": {
-        "projectId": "7395f452-c173-4e61-a9ca-b03973d61ba6"
-      }
-    }
+      ]
+    ]
   }
 }

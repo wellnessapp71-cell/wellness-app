@@ -8,10 +8,41 @@ function normalizeApiBaseUrl(rawUrl: string): string {
   return trimmed.endsWith("/api") ? trimmed : `${trimmed}/api`;
 }
 
+function isLocalOnlyHost(hostname: string): boolean {
+  const normalized = hostname.toLowerCase();
+  return (
+    normalized === "localhost" ||
+    normalized === "127.0.0.1" ||
+    normalized === "10.0.2.2" ||
+    normalized.endsWith(".local") ||
+    /^192\.168\./.test(normalized) ||
+    /^10\./.test(normalized) ||
+    /^172\.(1[6-9]|2[0-9]|3[0-1])\./.test(normalized)
+  );
+}
+
+function validateConfiguredBaseUrl(configuredUrl: string): string {
+  const normalized = normalizeApiBaseUrl(configuredUrl);
+  let parsed: URL;
+  try {
+    parsed = new URL(normalized);
+  } catch {
+    throw new Error("EXPO_PUBLIC_API_URL must be a valid absolute URL.");
+  }
+
+  if (!__DEV__ && isLocalOnlyHost(parsed.hostname)) {
+    throw new Error(
+      "EXPO_PUBLIC_API_URL points to a local/private host. Use a publicly reachable API URL for production builds.",
+    );
+  }
+
+  return normalized;
+}
+
 function resolveApiBaseUrl(): string {
   const configuredUrl = process.env.EXPO_PUBLIC_API_URL;
   if (configuredUrl && configuredUrl.trim().length > 0) {
-    return normalizeApiBaseUrl(configuredUrl);
+    return validateConfiguredBaseUrl(configuredUrl);
   }
 
   const hostUri =
@@ -134,11 +165,14 @@ export const api = {
     }
 
     if (!data.ok) {
-      throw new ApiRequestError(data.error?.message || "An API error occurred", {
-        status: response.status,
-        code: data.error?.code,
-        details: data.error?.details,
-      });
+      throw new ApiRequestError(
+        data.error?.message || "An API error occurred",
+        {
+          status: response.status,
+          code: data.error?.code,
+          details: data.error?.details,
+        },
+      );
     }
 
     return data.data;

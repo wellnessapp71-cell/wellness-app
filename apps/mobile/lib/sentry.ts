@@ -2,7 +2,11 @@ import * as Sentry from "@sentry/react-native";
 import { isRunningInExpoGo } from "expo";
 import Constants from "expo-constants";
 
-const SENTRY_DSN = process.env.EXPO_PUBLIC_SENTRY_DSN ?? "";
+const SENTRY_DSN = (
+  process.env.EXPO_PUBLIC_SENTRY_DSN ??
+  process.env.SENTRY_DSN ??
+  ""
+).trim();
 
 export const navigationIntegration = Sentry.reactNavigationIntegration({
   enableTimeToInitialDisplay: !isRunningInExpoGo(),
@@ -12,7 +16,9 @@ export function initSentry() {
   const enabled = SENTRY_DSN.length > 0;
 
   if (!enabled && __DEV__) {
-    console.log("[Sentry] No DSN configured — crash reporting disabled in dev.");
+    console.log(
+      "[Sentry] No DSN configured — crash reporting disabled in dev.",
+    );
   }
 
   Sentry.init({

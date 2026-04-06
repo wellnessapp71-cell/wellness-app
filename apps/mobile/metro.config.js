@@ -48,7 +48,9 @@ function escapePathForRegex(filePath) {
 const config = getDefaultConfig(__dirname);
 
 // 1. Let Metro watch the entire monorepo so it can find packages/*
-config.watchFolders = [workspaceRoot];
+config.watchFolders = Array.from(
+  new Set([...(config.watchFolders ?? []), workspaceRoot]),
+);
 
 // Ignore Next.js build output from apps/web to avoid flaky missing-path
 // watch errors while Metro crawls the monorepo.
@@ -124,4 +126,6 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
 //    failures in constrained sandboxed environments.
 config.transformer.unstable_workerThreads = true;
 
-module.exports = withSentryConfig(withNativeWind(config, { input: "./global.css" }));
+module.exports = withSentryConfig(
+  withNativeWind(config, { input: "./global.css" }),
+);

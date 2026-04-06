@@ -83,6 +83,23 @@ def enableProguardInReleaseBuilds = (findProperty('android.enableProguardInRelea
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+def releaseStoreFile = (findProperty('AURA_RELEASE_STORE_FILE') ?: System.getenv('AURA_RELEASE_STORE_FILE'))
+def releaseStorePassword = (findProperty('AURA_RELEASE_STORE_PASSWORD') ?: System.getenv('AURA_RELEASE_STORE_PASSWORD'))
+def releaseKeyAlias = (findProperty('AURA_RELEASE_KEY_ALIAS') ?: System.getenv('AURA_RELEASE_KEY_ALIAS'))
+def releaseKeyPassword = (findProperty('AURA_RELEASE_KEY_PASSWORD') ?: System.getenv('AURA_RELEASE_KEY_PASSWORD'))
+def hasReleaseSigning = releaseStoreFile && releaseStorePassword && releaseKeyAlias && releaseKeyPassword
+
+def isReleaseTaskRequested = gradle.startParameter.taskNames.any { taskName ->
+    def lower = taskName.toLowerCase()
+    return lower.contains('release') || lower.contains('bundle')
+}
+
+if (isReleaseTaskRequested && !hasReleaseSigning) {
+    throw new GradleException(
+        "Release signing is not configured. Set AURA_RELEASE_STORE_FILE, AURA_RELEASE_STORE_PASSWORD, AURA_RELEASE_KEY_ALIAS, and AURA_RELEASE_KEY_PASSWORD."
+    )
+}
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 
@@ -104,6 +121,14 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        if (hasReleaseSigning) {
+            release {
+                storeFile file(releaseStoreFile)
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            }
+        }
     }
     buildTypes {
         debug {
@@ -112,7 +137,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig hasReleaseSigning ? signingConfigs.release : signingConfigs.debug
             shrinkResources (findProperty('android.enableShrinkResourcesInReleaseBuilds')?.toBoolean() ?: false)
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
