@@ -1,6 +1,6 @@
 {
-  "buildCommand": "cd apps/web && npx next build",
-  "outputDirectory": "apps/web/.next",
   "installCommand": "npm install",
+  "buildCommand": "node scripts/vercel-build.cjs",
+  "outputDirectory": "apps/web/.next",
   "framework": "nextjs"
 }
