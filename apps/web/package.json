@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0 --port 3000",
     "build": "node ./scripts/run-next-build.cjs",
-    "build:vercel": "node -e \"console.log('Node:', process.version, 'Prisma:', require.resolve('@prisma/client'))\" && next build",
+    "build:vercel": "next build",
     "start": "next start",
     "lint": "next lint"
   },
