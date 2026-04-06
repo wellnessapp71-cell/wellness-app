@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const isVercel = process.env.VERCEL === "1";
+
 const nextConfig: NextConfig = {
   transpilePackages: [
     "@aura/types",
@@ -16,11 +18,16 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  experimental: {
-    cpus: 1,
-    workerThreads: true,
-    webpackBuildWorker: false,
-  },
+  // Local-dev-only workarounds — not needed on Vercel
+  ...(isVercel
+    ? {}
+    : {
+        experimental: {
+          cpus: 1,
+          workerThreads: true,
+          webpackBuildWorker: false,
+        },
+      }),
   images: {
     remotePatterns: [
       {
