@@ -18,6 +18,7 @@ import type { LifestyleTrendAnalysis, FieldTrend, TrendDirection } from "@aura/l
 import type { LifestyleBaseline, LifestyleWeeklyReview } from "@aura/types";
 import { LIFESTYLE_DOMAIN_LABELS, type LifestyleDomain } from "@aura/types";
 import Animated, { FadeInDown } from "react-native-reanimated";
+import { captureError } from "@/lib/error-reporting";
 import {
   ChevronLeft,
   TrendingUp,
@@ -92,7 +93,7 @@ export default function InsightsScreen() {
           try {
             const msg = generateCoachMessage(bl);
             setCoachTip(msg.text);
-          } catch {}
+          } catch (err) { captureError(err, { context: "lifestyle coach message" }); }
         }
       })();
     }, []),

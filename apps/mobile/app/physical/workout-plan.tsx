@@ -3,13 +3,17 @@ import {
   Text,
   ScrollView,
   Pressable,
+  TextInput,
   ActivityIndicator,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useRouter, useFocusEffect } from "expo-router";
+import { useRouter, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { useCallback, useState } from "react";
 import { GlassCard } from "@/components/ui/glass-card";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getActiveWorkoutPlan } from "@/lib/plan-store";
+import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 
 const DAY_LABELS: Record<string, string> = {
   monday: "Mon",
@@ -34,16 +38,52 @@ const BODY_PART_COLORS: Record<string, string> = {
 
 export default function WorkoutPlanScreen() {
   const router = useRouter();
+  const { planId } = useLocalSearchParams<{ planId?: string }>();
   const [plan, setPlan] = useState<any>(null);
   const [planType, setPlanType] = useState<string>("gym");
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [activePlanId, setActivePlanId] = useState<string | null>(null);
+  const [feedbackRating, setFeedbackRating] = useState(0);
+  const [feedbackComment, setFeedbackComment] = useState("");
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
+  const [submittingFeedback, setSubmittingFeedback] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
       (async () => {
-        const raw = await AsyncStorage.getItem("@aura/last_generated_plan");
-        const stored = raw ? JSON.parse(raw) : null;
+        let stored: any = null;
+
+        // 1. Deep link: fetch from backend by planId
+        if (planId) {
+          try {
+            const remote = await api.get<any>(`/plans/${planId}`);
+            if (remote?.content) {
+              stored = typeof remote.content === "string"
+                ? JSON.parse(remote.content)
+                : remote.content;
+            }
+          } catch (err) {
+            recordFailedSync("fetch plan by id", err);
+          }
+        }
+
+        // 2. Fall back to plan-store (active plan)
+        if (!stored) {
+          const active = await getActiveWorkoutPlan();
+          if (active?.content) {
+            stored = active.content;
+            if (!planId) setActivePlanId(active.planId);
+          }
+        }
+        if (planId) setActivePlanId(planId);
+
+        // 3. Fall back to last generated plan (legacy)
+        if (!stored) {
+          const raw = await AsyncStorage.getItem("@aura/last_generated_plan");
+          stored = raw ? JSON.parse(raw) : null;
+        }
+
         setPlan(stored);
         setPlanType(stored?.planType ?? "gym");
         // Auto-select first available day
@@ -51,14 +91,30 @@ export default function WorkoutPlanScreen() {
           const firstDay = Object.keys(stored.sessions)[0];
           setSelectedDay(firstDay ?? null);
         } else if (stored?.weekSessions || stored?.schedule) {
-          // yoga plan structure
           const firstDay = Object.keys(stored.weekSessions ?? stored.schedule ?? {})[0];
           setSelectedDay(firstDay ?? null);
         }
         setLoading(false);
       })();
-    }, [])
+    }, [planId])
   );
+
+  async function submitFeedback() {
+    if (!activePlanId || feedbackRating === 0) return;
+    setSubmittingFeedback(true);
+    try {
+      await api.post(`/plans/${activePlanId}/feedback`, {
+        rating: feedbackRating,
+        comment: feedbackComment || undefined,
+        wouldRecommend: feedbackRating >= 4,
+      });
+      setFeedbackSubmitted(true);
+    } catch (err) {
+      recordFailedSync("submit plan feedback", err);
+    } finally {
+      setSubmittingFeedback(false);
+    }
+  }
 
   if (loading) {
     return (
@@ -310,6 +366,67 @@ export default function WorkoutPlanScreen() {
                   );
                 })}
               </View>
+            )}
+
+            {/* Generate New Plan */}
+            <Pressable
+              onPress={() => router.push("/physical/plan-setup")}
+              className="mb-4"
+            >
+              <GlassCard className="p-4 flex-row items-center justify-center gap-2">
+                <Text className="text-[15px] font-semibold text-[#007AFF]">
+                  Generate New Plan
+                </Text>
+              </GlassCard>
+            </Pressable>
+
+            {/* Rate This Plan */}
+            {activePlanId && (
+              <GlassCard className="p-5 mb-10">
+                {feedbackSubmitted ? (
+                  <View className="items-center py-2">
+                    <Text className="text-[17px] font-bold text-[#34C759]">Thanks for your feedback!</Text>
+                    <Text className="text-[13px] text-[#8A8A8E] mt-1">Your rating helps us improve.</Text>
+                  </View>
+                ) : (
+                  <View>
+                    <Text className="text-[15px] font-bold text-black mb-3">Rate This Plan</Text>
+                    <View className="flex-row gap-2 mb-3">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Pressable key={star} onPress={() => setFeedbackRating(star)}>
+                          <Text style={{ fontSize: 28 }}>
+                            {star <= feedbackRating ? "★" : "☆"}
+                          </Text>
+                        </Pressable>
+                      ))}
+                    </View>
+                    <TextInput
+                      placeholder="Any comments? (optional)"
+                      value={feedbackComment}
+                      onChangeText={setFeedbackComment}
+                      multiline
+                      className="bg-[#F2F2F7] rounded-xl p-3 text-[14px] text-black mb-3"
+                      style={{ minHeight: 60, textAlignVertical: "top" }}
+                      placeholderTextColor="#8A8A8E"
+                    />
+                    <Pressable
+                      onPress={submitFeedback}
+                      disabled={feedbackRating === 0 || submittingFeedback}
+                      className="rounded-xl py-3 items-center"
+                      style={{
+                        backgroundColor: feedbackRating > 0 ? "#007AFF" : "#E5E5EA",
+                      }}
+                    >
+                      <Text
+                        className="font-semibold text-[15px]"
+                        style={{ color: feedbackRating > 0 ? "#fff" : "#8A8A8E" }}
+                      >
+                        {submittingFeedback ? "Submitting..." : "Submit Feedback"}
+                      </Text>
+                    </Pressable>
+                  </View>
+                )}
+              </GlassCard>
             )}
           </View>
         ) : (

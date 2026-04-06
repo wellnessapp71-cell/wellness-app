@@ -17,6 +17,7 @@ import {
   getSpiritualContentProgress,
 } from "@/lib/spiritual-store";
 import { analyzeSpiritualCheckIns } from "@aura/spiritual-engine";
+import { captureError } from "@/lib/error-reporting";
 import type {
   SpiritualBaseline,
   SpiritualDailyCheckIn,
@@ -96,7 +97,8 @@ export default function SpiritualInsightsScreen() {
     if (windowCheckIns.length === 0) return null;
     try {
       return analyzeSpiritualCheckIns(windowCheckIns, window);
-    } catch {
+    } catch (err) {
+      captureError(err, { context: "spiritual trend analysis" });
       return null;
     }
   }, [windowCheckIns, window]);

@@ -745,9 +745,9 @@ export default function CameraRepTracker({
       )}
 
       {/* ── Rep quality dots ── */}
-      {counterState.repHistory.length > 0 && (
+      {counterState.repHistory && counterState.repHistory.length > 0 && (
         <View style={styles.repDotsRow}>
-          {counterState.repHistory.map((q, i) => (
+          {counterState.repHistory.map((q: { depthScore: number }, i: number) => (
             <View
               key={i}
               style={[

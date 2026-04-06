@@ -12,6 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { saveProfile, getAuth, updateProfile } from "@/lib/user-store";
 import type { UserProfile } from "@/lib/user-store";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 
 // ── Basic mental questions (simple, not clinical) ────────────────
 
@@ -188,8 +189,8 @@ export default function QuestionnaireScreen() {
       // Sync to API
       try {
         await api.post("/profile", { profile });
-      } catch {
-        // Offline — local save is fine
+      } catch (err) {
+        recordFailedSync("onboarding profile sync", err);
       }
 
       // Clean up temp storage

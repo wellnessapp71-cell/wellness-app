@@ -23,6 +23,7 @@ import {
 } from "@/lib/spiritual-store";
 import { updateProfile } from "@/lib/user-store";
 import { api } from "@/lib/api";
+import { recordFailedSync, captureError } from "@/lib/error-reporting";
 import {
   generateSpiritualWeeklyReview,
   shouldChangePlan,
@@ -225,20 +226,21 @@ export default function SpiritualWeeklyReviewScreen() {
       try {
         const insight = generateWeeklyInsight(review, baseline);
         setInsightText(insight);
-      } catch {
-        // engine may not produce insight
+      } catch (err) {
+        captureError(err, { context: "spiritual weekly insight generation" });
       }
 
       // Sync to API
       try {
         await api.post("/spiritual/weekly-review", review);
-      } catch {
-        /* offline-first */
+      } catch (err) {
+        recordFailedSync("spiritual weekly review sync", err);
       }
 
       setSavedReview(review);
       setSubmitted(true);
-    } catch {
+    } catch (err) {
+      captureError(err, { context: "spiritual weekly review submission" });
       setSubmitted(true);
     }
 

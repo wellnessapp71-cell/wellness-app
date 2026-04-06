@@ -11,6 +11,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { GlassCard } from "@/components/ui/glass-card";
+import { recordFailedSync } from "@/lib/error-reporting";
 import {
   addWeightEntry,
   getWeightHistory,
@@ -48,8 +49,8 @@ export default function WeightLogScreen() {
 
     try {
       await api.post("/progress/weight", { weightKg: kg });
-    } catch {
-      // Offline-first
+    } catch (err) {
+      recordFailedSync("weight log sync", err);
     }
 
     setWeightKg("");

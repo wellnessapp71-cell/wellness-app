@@ -32,6 +32,7 @@ Module._resolveFilename = function (request, parent, isMain, options) {
 };
 
 const { getDefaultConfig } = require("expo/metro-config");
+const { withSentryConfig } = require("@sentry/react-native/metro");
 const { withNativeWind } = require("nativewind/metro");
 const exclusionList = require("metro-config/src/defaults/exclusionList");
 
@@ -123,4 +124,4 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
 //    failures in constrained sandboxed environments.
 config.transformer.unstable_workerThreads = true;
 
-module.exports = withNativeWind(config, { input: "./global.css" });
+module.exports = withSentryConfig(withNativeWind(config, { input: "./global.css" }));

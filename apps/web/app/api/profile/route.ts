@@ -70,10 +70,15 @@ export async function GET(request: Request): Promise<NextResponse> {
       };
     }
 
-    const employeeWorkspace = await buildEmployeeWorkspace(
-      auth.userId,
-      user.organizationMemberships,
-    );
+    let employeeWorkspace = null;
+    try {
+      employeeWorkspace = await buildEmployeeWorkspace(
+        auth.userId,
+        user.organizationMemberships,
+      );
+    } catch (wsErr) {
+      console.error("buildEmployeeWorkspace failed (non-fatal):", wsErr);
+    }
 
     return ok({
       user: {
@@ -298,10 +303,15 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     const profile = await loadProfileSafely(auth.userId);
 
-    const employeeWorkspace = await buildEmployeeWorkspace(
-      auth.userId,
-      updated!.organizationMemberships,
-    );
+    let employeeWorkspace = null;
+    try {
+      employeeWorkspace = await buildEmployeeWorkspace(
+        auth.userId,
+        updated!.organizationMemberships,
+      );
+    } catch (wsErr) {
+      console.error("buildEmployeeWorkspace failed (non-fatal):", wsErr);
+    }
 
     return ok({
       user: {
@@ -340,7 +350,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
 function toPrismaJsonValue(
   value: unknown,
-): Prisma.InputJsonValue | Prisma.JsonNull {
+): Prisma.InputJsonValue | typeof Prisma.JsonNull {
   if (value === null) {
     return Prisma.JsonNull;
   }

@@ -8,6 +8,7 @@ import { TriggerTagPicker } from "@/components/mental/TriggerTagPicker";
 import { saveMentalBaseline, saveMentalPlan } from "@/lib/mental-store";
 import { updateProfile } from "@/lib/user-store";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 import { buildBaseline, generateInitialPlan } from "@aura/mental-engine";
 import {
   PHQ9_QUESTIONS,
@@ -115,8 +116,8 @@ export default function MentalOnboardingScreen() {
             commonTriggers: baseline.commonTriggers,
           },
         });
-      } catch {
-        // local save is enough
+      } catch (err) {
+        recordFailedSync("mental baseline sync", err);
       }
 
       setGeneratedPlan(plan);

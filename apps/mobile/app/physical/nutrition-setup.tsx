@@ -12,6 +12,9 @@ import { GlassCard } from "@/components/ui/glass-card";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getProfile } from "@/lib/user-store";
 import { generateStructuredMealPlan } from "@/lib/nutrition-engine";
+import { recordFailedSync } from "@/lib/error-reporting";
+import { saveActiveNutritionPlan } from "@/lib/plan-store";
+import { api } from "@/lib/api";
 import type {
   ActivityLevel,
   AllergyType,
@@ -222,14 +225,29 @@ export default function NutritionSetupScreen() {
 
       const plan = generateStructuredMealPlan(req);
 
+      // Save locally for the detail screen
       await AsyncStorage.setItem(
         "@aura/last_nutrition_plan",
         JSON.stringify({ structuredPlan: plan, request: req }),
       );
 
+      // Persist to backend (fire-and-forget) and save as active plan
+      let planId = `local_${Date.now().toString(36)}`;
+      try {
+        const saved = await api.post<{ planId: string }>("/nutrition", {
+          action: "save-structured-plan",
+          input: { plan, request: req },
+        });
+        if (saved?.planId) planId = saved.planId;
+      } catch (err) {
+        recordFailedSync("nutrition plan backend save", err);
+      }
+
+      await saveActiveNutritionPlan({ structuredPlan: plan, request: req }, planId);
+
       router.push("/physical/nutrition-plan");
-    } catch {
-      // silent fail
+    } catch (err) {
+      recordFailedSync("nutrition plan generation", err);
     } finally {
       setLoading(false);
     }

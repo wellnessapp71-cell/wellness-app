@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { getSpiritualContentProgress } from "@/lib/spiritual-store";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 import { SPIRITUAL_CONTENT_CATEGORIES, type SpiritualContentCategory } from "@aura/types";
 
 const TEAL = "#30B0C7";
@@ -224,7 +225,8 @@ export default function SpiritualLibraryScreen() {
           } else {
             setContent(FALLBACK_CONTENT);
           }
-        } catch {
+        } catch (err) {
+          recordFailedSync("spiritual library content fetch", err);
           setContent(FALLBACK_CONTENT);
         }
 

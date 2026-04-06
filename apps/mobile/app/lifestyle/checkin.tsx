@@ -12,6 +12,9 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { saveLifestyleCheckIn } from "@/lib/lifestyle-store";
 import { pushCheckIn } from "@/lib/lifestyle-sync";
 import { LIFESTYLE_BLOCKER_TAGS, type LifestyleBlockerTag } from "@aura/types";
+import { recalcLifestyleScore } from "@/lib/scoring-engine";
+import { updateScores } from "@/lib/user-store";
+import { recordFailedSync } from "@/lib/error-reporting";
 
 const THEME = "#FF9500";
 
@@ -172,6 +175,14 @@ export default function LifestyleCheckInScreen() {
 
     // Sync to server (fire & forget)
     pushCheckIn(checkIn);
+
+    // Recalculate lifestyle score using all 7 domains
+    try {
+      const score = await recalcLifestyleScore();
+      await updateScores({ lifestyle: score });
+    } catch (err) {
+      recordFailedSync("lifestyle score recalc", err);
+    }
 
     setSaving(false);
     setSaved(true);

@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { GlassCard } from "@/components/ui/glass-card";
 import {
   BreathingExercise,
@@ -17,6 +17,12 @@ import { GroundingExercise } from "@/components/mental/GroundingExercise";
 import { BodyScanGuide } from "@/components/mental/BodyScanGuide";
 import { saveCopingSession } from "@/lib/mental-store";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
+import {
+  NATURE_SOUNDS,
+  playNatureSound,
+  stopCurrentSound,
+} from "@/lib/audio-engine";
 import type { InterventionType } from "@aura/types";
 
 // ─── State Machine ──────────────────────────────────────────────────────────
@@ -31,19 +37,11 @@ type ToolkitState =
   | "complete";
 
 const AUDIO_SCENES = [
-  { id: "rain", label: "Rain", icon: "🌧️", desc: "Gentle rainfall on leaves" },
-  {
-    id: "ocean",
-    label: "Ocean Waves",
-    icon: "🌊",
-    desc: "Rhythmic waves on shore",
-  },
-  {
-    id: "forest",
-    label: "Forest",
-    icon: "🌲",
-    desc: "Birds and rustling trees",
-  },
+  { id: "rain", label: NATURE_SOUNDS.rain.label, icon: NATURE_SOUNDS.rain.icon, desc: NATURE_SOUNDS.rain.desc },
+  { id: "ocean", label: NATURE_SOUNDS.ocean.label, icon: NATURE_SOUNDS.ocean.icon, desc: NATURE_SOUNDS.ocean.desc },
+  { id: "forest", label: NATURE_SOUNDS.forest.label, icon: NATURE_SOUNDS.forest.icon, desc: NATURE_SOUNDS.forest.desc },
+  { id: "thunder", label: NATURE_SOUNDS.thunder.label, icon: NATURE_SOUNDS.thunder.icon, desc: NATURE_SOUNDS.thunder.desc },
+  { id: "fire", label: NATURE_SOUNDS.fire.label, icon: NATURE_SOUNDS.fire.icon, desc: NATURE_SOUNDS.fire.desc },
 ];
 
 const AUDIO_TIMERS = [
@@ -73,6 +71,13 @@ export default function CalmToolkitScreen() {
     typeof setInterval
   > | null>(null);
 
+  // Cleanup audio on unmount
+  useEffect(() => {
+    return () => {
+      stopCurrentSound();
+    };
+  }, []);
+
   const logSession = useCallback(
     async (
       type: InterventionType,
@@ -95,8 +100,8 @@ export default function CalmToolkitScreen() {
           duration: durationSeconds,
           completion: completed,
         });
-      } catch {
-        /* offline-first */
+      } catch (err) {
+        recordFailedSync("mental coping session sync", err);
       }
 
       setCompletedType(type);
@@ -106,16 +111,20 @@ export default function CalmToolkitScreen() {
     [],
   );
 
-  function startAudio() {
+  async function startAudio() {
     if (!audioScene) return;
     setAudioPlaying(true);
     setAudioTimeLeft(audioTimer);
+
+    // Start real audio playback
+    await playNatureSound(audioScene);
 
     const id = setInterval(() => {
       setAudioTimeLeft((prev) => {
         if (prev <= 1) {
           clearInterval(id);
           setAudioPlaying(false);
+          stopCurrentSound();
           logSession("calm_audio", audioTimer, true);
           return 0;
         }
@@ -125,9 +134,10 @@ export default function CalmToolkitScreen() {
     setAudioIntervalId(id);
   }
 
-  function stopAudio() {
+  async function stopAudio() {
     if (audioIntervalId) clearInterval(audioIntervalId);
     setAudioPlaying(false);
+    await stopCurrentSound();
     const elapsed = audioTimer - audioTimeLeft;
     logSession("calm_audio", elapsed, false);
   }
@@ -143,6 +153,7 @@ export default function CalmToolkitScreen() {
             } else {
               if (audioIntervalId) clearInterval(audioIntervalId);
               setAudioPlaying(false);
+              stopCurrentSound();
               setState("menu");
             }
           }}
@@ -391,8 +402,7 @@ export default function CalmToolkitScreen() {
                 </Pressable>
 
                 <Text className="text-[11px] text-[#8A8A8E] text-center mt-3">
-                  Audio assets are placeholders — plug in real ambient sound
-                  files for production.
+                  Use headphones for the best experience.
                 </Text>
               </>
             ) : (

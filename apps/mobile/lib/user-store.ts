@@ -142,10 +142,17 @@ export async function saveAuth(auth: AuthState): Promise<void> {
   if (!normalized) {
     return;
   }
+  // Store token securely on native, keep metadata in AsyncStorage
+  const { saveAuthToken } = await import("./auth-token");
+  if (normalized.token) {
+    await saveAuthToken(normalized.token);
+  }
   await AsyncStorage.setItem(KEY_AUTH, JSON.stringify(normalized));
 }
 
 export async function clearAuth(): Promise<void> {
+  const { clearAuthToken } = await import("./auth-token");
+  await clearAuthToken();
   await AsyncStorage.removeItem(KEY_AUTH);
   await AsyncStorage.removeItem(KEY_PROFILE);
   await AsyncStorage.removeItem(KEY_WORKSPACE);

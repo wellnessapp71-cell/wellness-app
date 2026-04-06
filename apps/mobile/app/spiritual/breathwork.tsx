@@ -12,6 +12,9 @@ import { Animated, Easing } from "react-native";
 import { GlassCard } from "@/components/ui/glass-card";
 import { savePracticeSession } from "@/lib/spiritual-store";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
+import { recalcSpiritualScore } from "@/lib/scoring-engine";
+import { updateScores } from "@/lib/user-store";
 
 const TEAL = "#30B0C7";
 
@@ -169,8 +172,15 @@ export default function SpiritualBreathworkScreen() {
 
     try {
       await api.post("/spiritual/practice", session);
-    } catch {
-      /* offline-first */
+    } catch (err) {
+      recordFailedSync("breathwork practice sync", err);
+    }
+
+    try {
+      const score = await recalcSpiritualScore();
+      await updateScores({ spiritual: score });
+    } catch (err) {
+      recordFailedSync("spiritual score recalc after breathwork", err);
     }
 
     setState("complete");

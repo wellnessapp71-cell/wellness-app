@@ -5,6 +5,7 @@ import {
   ScrollView,
   Pressable,
   useWindowDimensions,
+  ActivityIndicator,
 } from "react-native";
 import {
   SafeAreaView,
@@ -20,28 +21,51 @@ import {
   ChevronRight,
 } from "lucide-react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useEffect, useState } from "react";
+import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 
-/* ──────────────────────────── Data ──────────────────────────── */
+/* ──────────────────────────── Types ──────────────────────────── */
 
-const EVENTS = [
+interface Seminar {
+  id: string;
+  title: string;
+  message: string;
+  scheduledFor: string;
+  audience: string;
+}
+
+/* ──────────────────────────── Mock fallback data ───────────────── */
+
+const MOCK_SEMINARS: Seminar[] = [
   {
-    id: 1,
+    id: "mock-1",
     title: "Mindful Leadership in Tech",
-    expert: "Dr. Sarah Chen",
-    time: "Tomorrow, 2:00 PM",
-    tags: ["Webinar"],
-    color1: "#5E5CE6",
-    color2: "#AF52DE",
+    message: "Join Dr. Sarah Chen for an interactive session on mindfulness practices for tech professionals.",
+    scheduledFor: new Date(Date.now() + 86400000).toISOString(),
+    audience: "all",
   },
   {
-    id: 2,
-    title: "Bali Healing Retreat '26",
-    expert: "Lumina Wellness",
-    time: "Nov 12 - 16",
-    tags: ["Retreat", "Paid"],
-    color1: "#34C759",
-    color2: "#30B0C7",
+    id: "mock-2",
+    title: "Nutrition for Peak Performance",
+    message: "Learn evidence-based nutrition strategies to boost your energy and focus throughout the day.",
+    scheduledFor: new Date(Date.now() + 86400000 * 5).toISOString(),
+    audience: "all",
   },
+  {
+    id: "mock-3",
+    title: "Stress Management Workshop",
+    message: "Practical tools and techniques to manage workplace stress effectively.",
+    scheduledFor: new Date(Date.now() + 86400000 * 12).toISOString(),
+    audience: "all",
+  },
+];
+
+const GRADIENT_PAIRS: [string, string][] = [
+  ["#5E5CE6", "#AF52DE"],
+  ["#34C759", "#30B0C7"],
+  ["#FF9500", "#FF2D55"],
+  ["#007AFF", "#5AC8FA"],
 ];
 
 const ARTICLES = [
@@ -59,12 +83,60 @@ const ARTICLES = [
   },
 ];
 
+/* ──────────────────────────── Helpers ──────────────────────────── */
+
+function formatSeminarDate(iso: string): string {
+  const d = new Date(iso);
+  const now = new Date();
+  const diffMs = d.getTime() - now.getTime();
+  const diffDays = Math.ceil(diffMs / 86400000);
+
+  if (diffDays <= 0) return "Today";
+  if (diffDays === 1) return "Tomorrow";
+
+  return d.toLocaleDateString(undefined, {
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
 /* ──────────────────────────── Screen ──────────────────────────── */
 
 export default function DiscoverScreen() {
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const CARD_WIDTH = Math.max(Math.min(width * 0.75, 360), 260);
+
+  const [seminars, setSeminars] = useState<Seminar[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [usingMock, setUsingMock] = useState(false);
+
+  useEffect(() => {
+    loadSeminars();
+  }, []);
+
+  async function loadSeminars() {
+    try {
+      setLoading(true);
+      const res = await api.get<{ webinars: Seminar[] }>("/web/webinars?limit=10");
+      const items = res?.webinars ?? [];
+      if (items.length > 0) {
+        setSeminars(items);
+        setUsingMock(false);
+      } else {
+        setSeminars(MOCK_SEMINARS);
+        setUsingMock(true);
+      }
+    } catch (err) {
+      recordFailedSync("discover seminars fetch", err);
+      setSeminars(MOCK_SEMINARS);
+      setUsingMock(true);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   function showComingSoon(feature: string) {
     Alert.alert(
@@ -111,7 +183,7 @@ export default function DiscoverScreen() {
               letterSpacing: -0.2,
             }}
           >
-            Webinars, retreats, and daily insights
+            Seminars, retreats, and daily insights
           </Text>
         </Animated.View>
 
@@ -193,7 +265,7 @@ export default function DiscoverScreen() {
           </GlassCard>
         </Animated.View>
 
-        {/* ── Events ── */}
+        {/* ── Seminars / Events ── */}
         <Animated.View
           entering={FadeInDown.delay(160).duration(600).springify()}
           style={{ marginBottom: 32 }}
@@ -214,145 +286,182 @@ export default function DiscoverScreen() {
                 letterSpacing: -0.3,
               }}
             >
-              Upcoming Events
+              Upcoming Seminars
             </Text>
-            <Pressable
-              onPress={() => showComingSoon("Event directory")}
-              style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
-            >
-              <Text
+            {usingMock && !loading && (
+              <View
                 style={{
-                  color: "#007AFF",
-                  fontSize: 15,
-                  fontWeight: "600",
+                  backgroundColor: "rgba(255,149,0,0.12)",
+                  paddingHorizontal: 10,
+                  paddingVertical: 4,
+                  borderRadius: 8,
                 }}
               >
-                See All
-              </Text>
-            </Pressable>
-          </View>
-
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{
-              paddingRight: 24,
-              gap: 16,
-            }}
-            snapToInterval={CARD_WIDTH + 16}
-            decelerationRate="fast"
-          >
-            {EVENTS.map((event) => (
-              <GlassCard
-                key={event.id}
-                className="overflow-hidden"
-                style={{
-                  width: CARD_WIDTH,
-                  borderWidth: 1,
-                  borderColor: "rgba(0,0,0,0.04)",
-                }}
-              >
-                <LinearGradient
-                  colors={[event.color1, event.color2]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
+                <Text
                   style={{
-                    height: 140,
-                    padding: 16,
-                    justifyContent: "space-between",
+                    color: "#FF9500",
+                    fontSize: 11,
+                    fontWeight: "700",
+                    letterSpacing: 0.5,
+                    textTransform: "uppercase",
                   }}
                 >
-                  <View style={{ alignItems: "flex-end" }}>
-                    <View
-                      style={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: 20,
-                        backgroundColor: "rgba(255,255,255,0.2)",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <CalendarDays size={20} color="#FFFFFF" />
-                    </View>
-                  </View>
-                  <View
+                  Sample
+                </Text>
+              </View>
+            )}
+          </View>
+
+          {loading ? (
+            <View style={{ height: 200, justifyContent: "center", alignItems: "center" }}>
+              <ActivityIndicator size="small" color="#007AFF" />
+            </View>
+          ) : (
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{
+                paddingRight: 24,
+                gap: 16,
+              }}
+              snapToInterval={CARD_WIDTH + 16}
+              decelerationRate="fast"
+            >
+              {seminars.map((seminar, idx) => {
+                const [color1, color2] = GRADIENT_PAIRS[idx % GRADIENT_PAIRS.length];
+                return (
+                  <GlassCard
+                    key={seminar.id}
+                    className="overflow-hidden"
                     style={{
-                      flexDirection: "row",
-                      flexWrap: "wrap",
-                      gap: 8,
+                      width: CARD_WIDTH,
+                      borderWidth: 1,
+                      borderColor: "rgba(0,0,0,0.04)",
                     }}
                   >
-                    {event.tags.map((tag) => (
+                    <LinearGradient
+                      colors={[color1, color2]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                      style={{
+                        height: 140,
+                        padding: 16,
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <View style={{ alignItems: "flex-end" }}>
+                        <View
+                          style={{
+                            width: 40,
+                            height: 40,
+                            borderRadius: 20,
+                            backgroundColor: "rgba(255,255,255,0.2)",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <CalendarDays size={20} color="#FFFFFF" />
+                        </View>
+                      </View>
                       <View
-                        key={tag}
                         style={{
-                          paddingHorizontal: 12,
-                          paddingVertical: 6,
-                          backgroundColor: "rgba(0,0,0,0.3)",
-                          borderRadius: 20,
+                          flexDirection: "row",
+                          flexWrap: "wrap",
+                          gap: 8,
+                        }}
+                      >
+                        <View
+                          style={{
+                            paddingHorizontal: 12,
+                            paddingVertical: 6,
+                            backgroundColor: "rgba(0,0,0,0.3)",
+                            borderRadius: 20,
+                          }}
+                        >
+                          <Text
+                            style={{
+                              fontSize: 11,
+                              fontWeight: "700",
+                              color: "#FFFFFF",
+                              textTransform: "uppercase",
+                              letterSpacing: 1.5,
+                            }}
+                          >
+                            Seminar
+                          </Text>
+                        </View>
+                        {seminar.audience !== "all" && (
+                          <View
+                            style={{
+                              paddingHorizontal: 12,
+                              paddingVertical: 6,
+                              backgroundColor: "rgba(0,0,0,0.3)",
+                              borderRadius: 20,
+                            }}
+                          >
+                            <Text
+                              style={{
+                                fontSize: 11,
+                                fontWeight: "700",
+                                color: "#FFFFFF",
+                                textTransform: "uppercase",
+                                letterSpacing: 1.5,
+                              }}
+                            >
+                              {seminar.audience}
+                            </Text>
+                          </View>
+                        )}
+                      </View>
+                    </LinearGradient>
+                    <View style={{ padding: 20 }}>
+                      <Text
+                        style={{
+                          fontWeight: "700",
+                          color: "#1C1C1E",
+                          fontSize: 18,
+                          lineHeight: 22,
+                          marginBottom: 6,
+                        }}
+                        numberOfLines={2}
+                      >
+                        {seminar.title}
+                      </Text>
+                      <Text
+                        style={{
+                          fontSize: 14,
+                          color: "#8A8A8E",
+                          fontWeight: "500",
+                          lineHeight: 20,
+                        }}
+                        numberOfLines={2}
+                      >
+                        {seminar.message}
+                      </Text>
+                      <View
+                        style={{
+                          marginTop: 16,
+                          paddingTop: 12,
+                          borderTopWidth: 1,
+                          borderTopColor: "rgba(0,0,0,0.04)",
                         }}
                       >
                         <Text
                           style={{
-                            fontSize: 11,
+                            fontSize: 13,
                             fontWeight: "700",
-                            color: "#FFFFFF",
-                            textTransform: "uppercase",
-                            letterSpacing: 1.5,
+                            color: "#FF2D55",
                           }}
                         >
-                          {tag}
+                          {formatSeminarDate(seminar.scheduledFor)}
                         </Text>
                       </View>
-                    ))}
-                  </View>
-                </LinearGradient>
-                <View style={{ padding: 20 }}>
-                  <Text
-                    style={{
-                      fontWeight: "700",
-                      color: "#1C1C1E",
-                      fontSize: 18,
-                      lineHeight: 22,
-                      marginBottom: 6,
-                    }}
-                    numberOfLines={2}
-                  >
-                    {event.title}
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      color: "#8A8A8E",
-                      fontWeight: "500",
-                    }}
-                    numberOfLines={1}
-                  >
-                    With {event.expert}
-                  </Text>
-                  <View
-                    style={{
-                      marginTop: 16,
-                      paddingTop: 12,
-                      borderTopWidth: 1,
-                      borderTopColor: "rgba(0,0,0,0.04)",
-                    }}
-                  >
-                    <Text
-                      style={{
-                        fontSize: 13,
-                        fontWeight: "700",
-                        color: "#FF2D55",
-                      }}
-                    >
-                      {event.time}
-                    </Text>
-                  </View>
-                </View>
-              </GlassCard>
-            ))}
-          </ScrollView>
+                    </View>
+                  </GlassCard>
+                );
+              })}
+            </ScrollView>
+          )}
         </Animated.View>
 
         {/* ── Articles ── */}

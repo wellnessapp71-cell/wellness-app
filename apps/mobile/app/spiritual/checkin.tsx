@@ -15,6 +15,9 @@ import {
   getSpiritualCheckInHistory,
 } from "@/lib/spiritual-store";
 import { api } from "@/lib/api";
+import { recordFailedSync, captureError } from "@/lib/error-reporting";
+import { recalcSpiritualScore } from "@/lib/scoring-engine";
+import { updateScores } from "@/lib/user-store";
 import {
   detectDailyAlerts,
   generateCoachMessage,
@@ -129,8 +132,16 @@ export default function SpiritualCheckInScreen() {
         blockers,
         feelings,
       });
-    } catch {
-      // offline-first
+    } catch (err) {
+      recordFailedSync("spiritual checkin sync", err);
+    }
+
+    // Recalculate spiritual score using all inputs
+    try {
+      const score = await recalcSpiritualScore();
+      await updateScores({ spiritual: score });
+    } catch (err) {
+      recordFailedSync("spiritual score recalc", err);
     }
 
     // Check if we should show a coach message (worsening trend)
@@ -146,8 +157,8 @@ export default function SpiritualCheckInScreen() {
         );
         setCoachMessage(msg.text);
       }
-    } catch {
-      // no trend data yet
+    } catch (err) {
+      captureError(err, { context: "spiritual checkin trend analysis" });
     }
 
     setSaving(false);

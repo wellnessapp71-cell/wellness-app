@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 
 const CONSENT_ITEMS = [
   {
@@ -47,8 +48,8 @@ export default function ConsentScreen() {
     setLoading(true);
     try {
       await api.post("/profile", { consentState: flags });
-    } catch {
-      // Offline — fine
+    } catch (err) {
+      recordFailedSync("consent sync", err);
     }
     setLoading(false);
     router.push("/onboarding/scoring");

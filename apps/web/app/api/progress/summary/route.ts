@@ -9,6 +9,7 @@ import {
   getStreakRewards,
   summarizeWorkoutProgress,
 } from "@aura/fitness-engine";
+import type { FitnessLevel, GoalType } from "@aura/types";
 import { resolveAuthContext } from "@/lib/auth/middleware";
 import { errorResponse, ok } from "@/lib/api/response";
 
@@ -42,8 +43,8 @@ export async function GET(request: Request): Promise<NextResponse> {
       prisma.profile.findUnique({ where: { userId } }),
     ]);
 
-    const fitnessLevel = (profile?.fitnessLevel as any) ?? "intermediate";
-    const goals = (profile?.goals as any[]) ?? ["fat_loss"];
+    const fitnessLevel = (profile?.fitnessLevel ?? "intermediate") as FitnessLevel;
+    const goals: GoalType[] = ["fat_loss"];
     const weightKg = profile?.currentWeightKg ?? 70;
     const targetWeightKg = profile?.targetWeightKg ?? weightKg;
     const heightCm = profile?.heightCm ?? 170;

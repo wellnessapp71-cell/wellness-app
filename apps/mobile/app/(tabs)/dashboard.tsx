@@ -224,7 +224,7 @@ export default function DashboardScreen() {
             setSpiritualDone(profile.spiritualOnboardingDone);
             setLifestyleDone(profile.lifestyleOnboardingDone ?? false);
           }
-          if (auth?.name) setUserName(auth.name.split(" ")[0]);
+          if (auth?.name) setUserName(auth.name.split(" ")[0] ?? auth.name);
           setWorkspace(synced?.employeeWorkspace ?? storedWorkspace);
         } finally {
           setLoading(false);

@@ -46,9 +46,12 @@ export async function POST(request: Request): Promise<NextResponse> {
         ? (validation.data.input.userId ?? null)
         : null;
 
+  const allowAnonymous = validation.data.action === "estimate-meal" ||
+    validation.data.action === "save-structured-plan";
+
   const auth = resolveAuthContext(request, {
     legacyUserId,
-    allowAnonymousWhenCompat: validation.data.action === "estimate-meal",
+    allowAnonymousWhenCompat: allowAnonymous,
   });
   if (!auth) {
     return errorResponse(401, "UNAUTHORIZED", "Missing or invalid auth token.");
@@ -139,6 +142,18 @@ export async function POST(request: Request): Promise<NextResponse> {
         });
 
         return okWithMeta({ action: "build-meal-plan-prompt" }, prompt);
+      }
+      case "save-structured-plan": {
+        const { plan, request: planRequest } = validation.data.input;
+        const saved = await prisma.plan.create({
+          data: {
+            userId: auth.userId,
+            type: "nutrition",
+            content: JSON.parse(JSON.stringify({ structuredPlan: plan, request: planRequest })),
+          },
+        });
+
+        return okWithMeta({ action: "save-structured-plan" }, { planId: saved.id });
       }
     }
   } catch (error) {

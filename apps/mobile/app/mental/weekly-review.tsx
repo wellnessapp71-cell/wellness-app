@@ -27,6 +27,7 @@ import {
   saveMentalPlan,
 } from "@/lib/mental-store";
 import { api } from "@/lib/api";
+import { recordFailedSync, captureError } from "@/lib/error-reporting";
 import {
   generateWeeklyReview,
   compareToBaseline,
@@ -175,14 +176,14 @@ export default function WeeklyReviewScreen() {
           newPlanVersion: review.newPlanVersion ?? undefined,
           notes: reflectionText.trim() || undefined,
         });
-      } catch {
-        // offline-first
+      } catch (err) {
+        recordFailedSync("mental weekly review sync", err);
       }
 
       setNewReview(review);
       setSubmitted(true);
-    } catch {
-      // engine error — still mark as done
+    } catch (err) {
+      captureError(err, { context: "mental weekly review engine" });
       setSubmitted(true);
     }
 

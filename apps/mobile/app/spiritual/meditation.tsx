@@ -13,6 +13,9 @@ import Svg, { Circle } from "react-native-svg";
 import { GlassCard } from "@/components/ui/glass-card";
 import { savePracticeSession } from "@/lib/spiritual-store";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
+import { recalcSpiritualScore } from "@/lib/scoring-engine";
+import { updateScores } from "@/lib/user-store";
 
 const TEAL = "#30B0C7";
 const SIZE = 220;
@@ -127,8 +130,15 @@ export default function SpiritualMeditationScreen() {
 
     try {
       await api.post("/spiritual/practice", session);
-    } catch {
-      /* offline-first */
+    } catch (err) {
+      recordFailedSync("meditation practice sync", err);
+    }
+
+    try {
+      const score = await recalcSpiritualScore();
+      await updateScores({ spiritual: score });
+    } catch (err) {
+      recordFailedSync("spiritual score recalc after meditation", err);
     }
 
     setState("complete");

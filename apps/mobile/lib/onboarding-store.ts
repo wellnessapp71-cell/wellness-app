@@ -38,6 +38,7 @@ export interface SessionLogRef {
   completionPercent: number;
   caloriesBurned: number;
   durationMinutes: number;
+  planId?: string;
 }
 
 export interface ConsentFlags {
@@ -222,4 +223,57 @@ function calculateStreak(logs: SessionLogRef[]): number {
     }
   }
   return streak;
+}
+
+/**
+ * Calculate plan adherence as a 0-100% score.
+ * Compares planned workout days (from plan schedule) vs actual session days this week.
+ */
+export function calculatePlanAdherence(
+  logs: SessionLogRef[],
+  plannedDays: string[],
+): number {
+  if (plannedDays.length === 0) return 100;
+
+  // Get this week's dates (Mon-Sun)
+  const now = new Date();
+  const dayOfWeek = now.getDay(); // 0=Sun
+  const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+  const monday = new Date(now);
+  monday.setDate(now.getDate() + mondayOffset);
+  monday.setHours(0, 0, 0, 0);
+
+  const sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
+  sunday.setHours(23, 59, 59, 999);
+
+  // Session days this week
+  const sessionDaysThisWeek = new Set(
+    logs
+      .filter((l) => {
+        const d = new Date(l.dateIso);
+        return d >= monday && d <= sunday;
+      })
+      .map((l) => l.day),
+  );
+
+  // Days up to today that were planned
+  const dayNames = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+  const todayName = dayNames[now.getDay()];
+  const todayIdx = plannedDays.indexOf(todayName);
+  const daysToCheck = todayIdx >= 0
+    ? plannedDays.slice(0, todayIdx + 1)
+    : plannedDays.filter((d) => {
+        const di = dayNames.indexOf(d);
+        const ti = dayNames.indexOf(todayName);
+        // Compare within week order (mon=1 ... sun=0→7)
+        const dOrd = di === 0 ? 7 : di;
+        const tOrd = ti === 0 ? 7 : ti;
+        return dOrd <= tOrd;
+      });
+
+  if (daysToCheck.length === 0) return 100;
+
+  const completed = daysToCheck.filter((d) => sessionDaysThisWeek.has(d)).length;
+  return Math.round((completed / daysToCheck.length) * 100);
 }

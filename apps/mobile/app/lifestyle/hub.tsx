@@ -4,6 +4,7 @@ import {
   ScrollView,
   Pressable,
   useWindowDimensions,
+  ActivityIndicator,
 } from "react-native";
 import {
   SafeAreaView,
@@ -36,6 +37,7 @@ import Animated, {
   FadeInDown,
   LinearTransition,
 } from "react-native-reanimated";
+import { captureError } from "@/lib/error-reporting";
 import {
   ChevronLeft,
   Lock,
@@ -84,6 +86,7 @@ export default function LifestyleHubScreen() {
   const [coachMsg, setCoachMsg] = useState<LifestyleCoachMessage | null>(null);
   const [todayWaterMl, setTodayWaterMl] = useState(0);
   const [todayMeals, setTodayMeals] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useFocusEffect(
     useCallback(() => {
@@ -91,32 +94,37 @@ export default function LifestyleHubScreen() {
       syncLifestyleData();
 
       (async () => {
-        const profile = await getProfile();
-        if (profile) setScore(profile.scoreLifestyle);
+        setLoading(true);
+        try {
+          const profile = await getProfile();
+          if (profile) setScore(profile.scoreLifestyle);
 
-        const bl = await getLifestyleBaseline();
-        setBaseline(bl);
+          const bl = await getLifestyleBaseline();
+          setBaseline(bl);
 
-        const today = await getTodayLifestyleCheckIn();
-        setTodayCheckIn(today);
+          const today = await getTodayLifestyleCheckIn();
+          setTodayCheckIn(today);
 
-        const currentPlan = await getLifestylePlan();
-        setPlan(currentPlan);
+          const currentPlan = await getLifestylePlan();
+          setPlan(currentPlan);
 
-        if (bl) {
-          try {
-            const msg = generateCoachMessage(bl);
-            setCoachMsg(msg);
-          } catch {}
+          if (bl) {
+            try {
+              const msg = generateCoachMessage(bl);
+              setCoachMsg(msg);
+            } catch (err) { captureError(err, { context: "lifestyle coach message" }); }
+          }
+
+          const todayDate = new Date().toISOString().split("T")[0];
+          const hydLogs = await getHydrationLogs();
+          const todayHyd = hydLogs.filter((l) => l.date === todayDate);
+          setTodayWaterMl(todayHyd.reduce((s, l) => s + l.volumeMl, 0));
+
+          const meals = await getMealLogs();
+          setTodayMeals(meals.filter((m) => m.date === todayDate).length);
+        } finally {
+          setLoading(false);
         }
-
-        const todayDate = new Date().toISOString().split("T")[0];
-        const hydLogs = await getHydrationLogs();
-        const todayHyd = hydLogs.filter((l) => l.date === todayDate);
-        setTodayWaterMl(todayHyd.reduce((s, l) => s + l.volumeMl, 0));
-
-        const meals = await getMealLogs();
-        setTodayMeals(meals.filter((m) => m.date === todayDate).length);
       })();
     }, []),
   );
@@ -160,6 +168,12 @@ export default function LifestyleHubScreen() {
         }}
         showsVerticalScrollIndicator={false}
       >
+        {loading ? (
+          <View className="flex-1 items-center justify-center pt-40">
+            <ActivityIndicator size="large" color="#FF9500" />
+            <Text className="text-[14px] text-[#8A8A8E] mt-4 font-medium">Loading your lifestyle hub…</Text>
+          </View>
+        ) : (<>
         {/* Header */}
         <Animated.View
           entering={FadeInDown.duration(800).springify()}
@@ -367,7 +381,7 @@ export default function LifestyleHubScreen() {
               description={plan.bestNextAction}
               actionLabel="Do it"
               color={THEME}
-              onPress={() => {}}
+              onPress={() => router.push("/lifestyle/checkin")}
             />
           </Animated.View>
         )}
@@ -527,6 +541,7 @@ export default function LifestyleHubScreen() {
             </Text>
           </Pressable>
         </Animated.View>
+        </>)}
       </ScrollView>
     </SafeAreaView>
   );

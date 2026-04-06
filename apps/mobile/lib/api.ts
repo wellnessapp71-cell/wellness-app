@@ -1,6 +1,7 @@
 import Constants from "expo-constants";
 import { Platform } from "react-native";
 import { getAuthToken } from "@/lib/auth-token";
+import { emitUnauthorized } from "@/lib/auth-events";
 
 function normalizeApiBaseUrl(rawUrl: string): string {
   const trimmed = rawUrl.trim().replace(/\/+$/, "");
@@ -84,8 +85,14 @@ export const api = {
 
     let response: Response;
     try {
-      response = await fetch(url, config);
-    } catch {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30_000);
+      response = await fetch(url, { ...config, signal: controller.signal });
+      clearTimeout(timeoutId);
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") {
+        throw new Error("Request timed out after 30 seconds.");
+      }
       throw new Error(
         "Network error. Verify backend is running and EXPO_PUBLIC_API_URL is configured.",
       );
@@ -103,6 +110,14 @@ export const api = {
           throw new Error("Invalid JSON response from API.");
         }
       }
+    }
+
+    if (response.status === 401) {
+      emitUnauthorized();
+      throw new ApiRequestError("Session expired. Please log in again.", {
+        status: 401,
+        code: "UNAUTHORIZED",
+      });
     }
 
     if (!response.ok) {

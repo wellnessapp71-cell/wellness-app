@@ -13,6 +13,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { getProfile, updateProfile } from "@/lib/user-store";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 
 const ACTIVITY_LEVELS = [
   { value: "sedentary", label: "Sedentary", desc: "Little or no exercise" },
@@ -135,8 +136,8 @@ export default function PhysicalQuestionnaireScreen() {
         });
         computedFitnessLevel = result?.fitnessLevel ?? "intermediate";
         fitnessScore = result?.overallScore ?? 50;
-      } catch {
-        // Use defaults if API unavailable
+      } catch (err) {
+        recordFailedSync("fitness assessment sync", err);
       }
 
       // Update unified profile with all physical data

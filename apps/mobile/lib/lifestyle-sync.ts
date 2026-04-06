@@ -8,6 +8,7 @@
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 import {
   getLifestyleBaseline,
   getLifestyleCheckIns,
@@ -49,8 +50,8 @@ async function getSyncState(): Promise<SyncState> {
 async function setSyncState(state: SyncState): Promise<void> {
   try {
     await AsyncStorage.setItem(SYNC_KEY, JSON.stringify(state));
-  } catch {
-    // silently fail
+  } catch (err) {
+    recordFailedSync("setSyncState", err);
   }
 }
 
@@ -173,8 +174,8 @@ export async function syncLifestyleData(): Promise<void> {
 
     // Update sync timestamp
     await setSyncState({ lastSyncAt: response.syncedAt });
-  } catch {
-    // Offline-first: sync failures are expected when offline
+  } catch (err) {
+    recordFailedSync("lifestyle full sync", err);
   }
 }
 
@@ -197,47 +198,47 @@ export async function pushBaseline(baseline: LifestyleBaseline): Promise<void> {
       weakestDomain: baseline.weakestDomain,
       rawAnswers: baseline.rawAnswers,
     });
-  } catch {
-    // offline-first
+  } catch (err) {
+    recordFailedSync("pushBaseline", err);
   }
 }
 
 export async function pushCheckIn(checkIn: LifestyleDailyCheckIn): Promise<void> {
   try {
     await api.post("/lifestyle/checkin", checkIn);
-  } catch {
-    // offline-first
+  } catch (err) {
+    recordFailedSync("pushCheckIn", err);
   }
 }
 
 export async function pushPlan(plan: LifestyleWellnessPlan): Promise<void> {
   try {
     await api.post("/lifestyle/plan", plan);
-  } catch {
-    // offline-first
+  } catch (err) {
+    recordFailedSync("pushPlan", err);
   }
 }
 
 export async function pushWeeklyReview(review: LifestyleWeeklyReview): Promise<void> {
   try {
     await api.post("/lifestyle/weekly-review", review);
-  } catch {
-    // offline-first
+  } catch (err) {
+    recordFailedSync("pushWeeklyReview", err);
   }
 }
 
 export async function pushMonthlyReview(review: LifestyleMonthlyReview): Promise<void> {
   try {
     await api.post("/lifestyle/monthly-review", review);
-  } catch {
-    // offline-first
+  } catch (err) {
+    recordFailedSync("pushMonthlyReview", err);
   }
 }
 
 export async function pushScoreRun(score: LifestyleScoreRun): Promise<void> {
   try {
     await api.post("/lifestyle/score", score);
-  } catch {
-    // offline-first
+  } catch (err) {
+    recordFailedSync("pushScoreRun", err);
   }
 }

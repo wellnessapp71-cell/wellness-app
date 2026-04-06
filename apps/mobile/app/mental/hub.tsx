@@ -5,6 +5,7 @@ import {
   Pressable,
   Linking,
   useWindowDimensions,
+  ActivityIndicator,
 } from "react-native";
 import {
   SafeAreaView,
@@ -41,6 +42,7 @@ import Animated, {
   FadeInDown,
   LinearTransition,
 } from "react-native-reanimated";
+import { captureError } from "@/lib/error-reporting";
 import {
   ChevronLeft,
   Lock,
@@ -74,6 +76,7 @@ export default function MentalHubScreen() {
     useState<InterventionRecommendation | null>(null);
   const [baseline, setBaseline] = useState<MentalBaseline | null>(null);
   const [workspace, setWorkspace] = useState<EmployeeWorkspace | null>(null);
+  const [loading, setLoading] = useState(true);
   const isCompact = width < 390;
   const contentWidth = width - 48;
   const safeContentWidth = Math.max(contentWidth, 280);
@@ -84,40 +87,45 @@ export default function MentalHubScreen() {
   useFocusEffect(
     useCallback(() => {
       (async () => {
-        const synced = await syncFromApi();
-        const profile = await getProfile();
-        const storedWorkspace = await getEmployeeWorkspace();
-        if (profile) {
-          setScore(profile.scoreMental);
-        }
+        setLoading(true);
+        try {
+          const synced = await syncFromApi();
+          const profile = await getProfile();
+          const storedWorkspace = await getEmployeeWorkspace();
+          if (profile) {
+            setScore(profile.scoreMental);
+          }
 
-        const bl = await getMentalBaseline();
-        setBaseline(bl);
+          const bl = await getMentalBaseline();
+          setBaseline(bl);
 
-        const checkIns = await getMentalCheckInHistory(7);
-        const scan = await getLatestRppgScan();
-        const currentPlan = await getCurrentMentalPlan();
-        const weeklyReview = await getLatestWeeklyReview();
+          const checkIns = await getMentalCheckInHistory(7);
+          const scan = await getLatestRppgScan();
+          const currentPlan = await getCurrentMentalPlan();
+          const weeklyReview = await getLatestWeeklyReview();
 
-        setLatestCheckIn(checkIns[checkIns.length - 1] ?? null);
-        setLatestScan(scan);
-        setPlan(currentPlan);
-        setWorkspace(synced?.employeeWorkspace ?? storedWorkspace);
+          setLatestCheckIn(checkIns[checkIns.length - 1] ?? null);
+          setLatestScan(scan);
+          setPlan(currentPlan);
+          setWorkspace(synced?.employeeWorkspace ?? storedWorkspace);
 
-        if (weeklyReview?.trend) {
-          const prevMoodAvg =
-            weeklyReview.trend.moodTrend.reduce((a, b) => a + b, 0) / 7;
-          setPreviousScore(Math.round(prevMoodAvg * 10));
-        }
+          if (weeklyReview?.trend) {
+            const prevMoodAvg =
+              weeklyReview.trend.moodTrend.reduce((a, b) => a + b, 0) / 7;
+            setPreviousScore(Math.round(prevMoodAvg * 10));
+          }
 
-        if (bl) {
-          try {
-            const recs = recommendForUser(
-              bl,
-              scan?.stressIndex ?? bl.stressBase * 10,
-            );
-            setRecommendation(recs[0] ?? null);
-          } catch {}
+          if (bl) {
+            try {
+              const recs = recommendForUser(
+                bl,
+                scan?.stressIndex ?? bl.stressBase * 10,
+              );
+              setRecommendation(recs[0] ?? null);
+            } catch (err) { captureError(err, { context: "mental recommendation engine" }); }
+          }
+        } finally {
+          setLoading(false);
         }
       })();
     }, []),
@@ -147,6 +155,12 @@ export default function MentalHubScreen() {
         }}
         showsVerticalScrollIndicator={false}
       >
+        {loading ? (
+          <View className="flex-1 items-center justify-center pt-40">
+            <ActivityIndicator size="large" color="#007AFF" />
+            <Text className="text-[14px] text-[#8A8A8E] mt-4 font-medium">Loading your mental hub…</Text>
+          </View>
+        ) : (<>
         {/* Header */}
         <Animated.View
           entering={FadeInDown.duration(800).springify()}
@@ -543,6 +557,7 @@ export default function MentalHubScreen() {
             </Text>
           </Pressable>
         </Animated.View>
+        </>)}
       </ScrollView>
     </SafeAreaView>
   );

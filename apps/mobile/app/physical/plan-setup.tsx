@@ -13,6 +13,9 @@ import { GlassCard } from "@/components/ui/glass-card";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getProfile, getAuth } from "@/lib/user-store";
 import { api } from "@/lib/api";
+import { saveActiveWorkoutPlan } from "@/lib/plan-store";
+import { scheduleWorkoutReminders, scheduleMissedPlanNudge } from "@/lib/notification-service";
+import { recordFailedSync } from "@/lib/error-reporting";
 
 type PlanType = "gym" | "yoga";
 type Goal = string;
@@ -98,6 +101,25 @@ export default function PlanSetupScreen() {
         "@aura/last_generated_plan",
         JSON.stringify({ ...plan, planType }),
       );
+
+      // Save as active plan
+      await saveActiveWorkoutPlan(
+        { ...plan, planType },
+        plan.planId ?? `local_${Date.now().toString(36)}`,
+        planType === "yoga" ? "yoga" : "workout",
+      );
+
+      // Schedule notifications for plan days
+      const sessions = plan.sessions ?? plan.weekSessions ?? plan.schedule ?? {};
+      const plannedDays = Object.keys(sessions);
+      if (plannedDays.length > 0) {
+        try {
+          await scheduleWorkoutReminders(plannedDays, sessionMinutes);
+          await scheduleMissedPlanNudge(plannedDays);
+        } catch (err) {
+          recordFailedSync("schedule workout notifications", err);
+        }
+      }
 
       router.push("/physical/workout-plan");
     } catch (err: any) {

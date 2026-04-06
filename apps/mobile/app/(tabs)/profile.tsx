@@ -103,10 +103,11 @@ export default function ProfileScreen() {
   const displayName = auth?.name ?? auth?.username ?? "User";
   const initials = displayName
     .split(" ")
+    .filter((w) => w.length > 0)
     .map((w) => w[0])
     .join("")
     .toUpperCase()
-    .slice(0, 2);
+    .slice(0, 2) || "U";
 
   const overall = profile
     ? Math.round(

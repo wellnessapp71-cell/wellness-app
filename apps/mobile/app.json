@@ -33,7 +33,23 @@
       "expo-router",
       "expo-font",
       [
-        "expo-av",
+        "@sentry/react-native",
+        {
+          "url": "https://sentry.io/",
+          "note": "Set SENTRY_AUTH_TOKEN, SENTRY_ORG, and SENTRY_PROJECT env vars for source map uploads.",
+          "organization": "SET_YOUR_ORG",
+          "project": "SET_YOUR_PROJECT"
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#007AFF"
+        }
+      ],
+      [
+        "expo-audio",
         {
           "microphonePermission": "Allow Aura to access your microphone for guided wellness experiences."
         }
@@ -43,7 +59,8 @@
         {
           "cameraPermission": "Allow Aura to use camera for stress scan"
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "extra": {
       "router": {},

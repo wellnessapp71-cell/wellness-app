@@ -53,6 +53,10 @@ export type NutritionRouteRequest =
   | {
       action: "build-meal-plan-prompt";
       input: MealPlanRequest;
+    }
+  | {
+      action: "save-structured-plan";
+      input: { plan: Record<string, unknown>; request: Record<string, unknown> };
     };
 
 export interface YogaRouteRequest {
@@ -212,6 +216,15 @@ const nutritionRouteRequestSchema: z.ZodType<NutritionRouteRequest> =
       .object({
         action: z.literal("build-meal-plan-prompt"),
         input: mealPlanRequestSchema,
+      })
+      .strict(),
+    z
+      .object({
+        action: z.literal("save-structured-plan"),
+        input: z.object({
+          plan: z.record(z.string(), z.unknown()),
+          request: z.record(z.string(), z.unknown()),
+        }).strict(),
       })
       .strict(),
   ]);

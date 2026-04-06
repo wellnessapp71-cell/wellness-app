@@ -5,11 +5,12 @@ import {
   Animated,
   PanResponder,
   Easing,
+  Dimensions,
+  ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useState, useEffect, useCallback, useMemo, useRef } from "react";
-import { Audio } from "expo-av";
 import * as Speech from "expo-speech";
 import {
   Leaf,
@@ -28,6 +29,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Check,
+  Lightbulb,
+  BookOpen,
 } from "lucide-react-native";
 import { getContentProgress, saveContentProgress } from "@/lib/mental-store";
 import {
@@ -35,20 +38,118 @@ import {
   type MentalLessonModule,
 } from "@/lib/mental-lessons";
 
-const SWIPE_THRESHOLD = 70;
+const { width: SCREEN_WIDTH } = Dimensions.get("window");
+const SWIPE_THRESHOLD = 60;
 
 const THEMES = [
-  { bg: "#F4F9F6", card: "#E8F4EE", accent: "#439C74", Icon: Leaf },
-  { bg: "#F2F6FE", card: "#E6EEFD", accent: "#4A79D1", Icon: Waves },
-  { bg: "#FEF4F6", card: "#FDE9EC", accent: "#D66579", Icon: Heart },
-  { bg: "#F9F5FB", card: "#F3EBF7", accent: "#9C62D6", Icon: Brain },
-  { bg: "#FFFAEB", card: "#FEF4D6", accent: "#DE9936", Icon: Sun },
-  { bg: "#F5FCFE", card: "#EAF7FD", accent: "#37A2C4", Icon: Cloud },
-  { bg: "#FAF6F4", card: "#F5ECE8", accent: "#A87D6C", Icon: Feather },
-  { bg: "#F3FAFF", card: "#E6F4FF", accent: "#459FB8", Icon: Sparkles },
-  { bg: "#FDF7FD", card: "#FAE6FA", accent: "#B36CB2", Icon: Star },
-  { bg: "#F2F4F8", card: "#E5E8F0", accent: "#5C7594", Icon: Moon },
+  {
+    bg: "#F0F7F3",
+    card: "#FFFFFF",
+    cardBorder: "#D4EDDA",
+    accent: "#2D8A56",
+    accentLight: "#E8F5EE",
+    accentGlow: "rgba(45,138,86,0.10)",
+    Icon: Leaf,
+    tipBg: "#F0F9F4",
+  },
+  {
+    bg: "#EEF3FD",
+    card: "#FFFFFF",
+    cardBorder: "#D0DFFA",
+    accent: "#3B6FD4",
+    accentLight: "#E6EEFD",
+    accentGlow: "rgba(59,111,212,0.10)",
+    Icon: Waves,
+    tipBg: "#EDF4FF",
+  },
+  {
+    bg: "#FDF0F2",
+    card: "#FFFFFF",
+    cardBorder: "#F8D4DA",
+    accent: "#CA4B63",
+    accentLight: "#FDE9EC",
+    accentGlow: "rgba(202,75,99,0.10)",
+    Icon: Heart,
+    tipBg: "#FFF0F3",
+  },
+  {
+    bg: "#F5F0FA",
+    card: "#FFFFFF",
+    cardBorder: "#DDD0F0",
+    accent: "#8B52C8",
+    accentLight: "#F3EBF7",
+    accentGlow: "rgba(139,82,200,0.10)",
+    Icon: Brain,
+    tipBg: "#F8F2FD",
+  },
+  {
+    bg: "#FFF8EB",
+    card: "#FFFFFF",
+    cardBorder: "#F5E2B0",
+    accent: "#C98520",
+    accentLight: "#FEF4D6",
+    accentGlow: "rgba(201,133,32,0.10)",
+    Icon: Sun,
+    tipBg: "#FFFAEE",
+  },
+  {
+    bg: "#EFF8FC",
+    card: "#FFFFFF",
+    cardBorder: "#C4E4F0",
+    accent: "#2A90B0",
+    accentLight: "#EAF7FD",
+    accentGlow: "rgba(42,144,176,0.10)",
+    Icon: Cloud,
+    tipBg: "#F0F9FD",
+  },
+  {
+    bg: "#F7F2EF",
+    card: "#FFFFFF",
+    cardBorder: "#E4D5CC",
+    accent: "#9A6E5C",
+    accentLight: "#F5ECE8",
+    accentGlow: "rgba(154,110,92,0.10)",
+    Icon: Feather,
+    tipBg: "#FAF5F2",
+  },
+  {
+    bg: "#EEF7FC",
+    card: "#FFFFFF",
+    cardBorder: "#BFE0EF",
+    accent: "#3590AB",
+    accentLight: "#E6F4FF",
+    accentGlow: "rgba(53,144,171,0.10)",
+    Icon: Sparkles,
+    tipBg: "#F1F9FE",
+  },
+  {
+    bg: "#FAF2FA",
+    card: "#FFFFFF",
+    cardBorder: "#E8CEE8",
+    accent: "#A05CA0",
+    accentLight: "#FAE6FA",
+    accentGlow: "rgba(160,92,160,0.10)",
+    Icon: Star,
+    tipBg: "#FCF4FC",
+  },
+  {
+    bg: "#F0F2F6",
+    card: "#FFFFFF",
+    cardBorder: "#CDD3DE",
+    accent: "#506882",
+    accentLight: "#E5E8F0",
+    accentGlow: "rgba(80,104,130,0.10)",
+    Icon: Moon,
+    tipBg: "#F3F5F9",
+  },
 ];
+
+// Micro-tips shown beneath certain slides
+const SLIDE_TIPS: Record<number, string> = {
+  0: "Take a deep breath before reading each slide",
+  2: "Try to relate this to your own experience",
+  4: "Pause here if you need a moment to reflect",
+};
 
 export default function LessonScreen() {
   const router = useRouter();
@@ -58,10 +159,24 @@ export default function LessonScreen() {
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [sound, setSound] = useState<Audio.Sound | null>(null);
+
+  // ── Refs to avoid stale closures in PanResponder ──
+  const currentSlideRef = useRef(0);
+  const moduleRef = useRef<MentalLessonModule | null>(null);
 
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const slideAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+  const dotScale = useRef(new Animated.Value(1)).current;
+
+  // Keep refs in sync
+  useEffect(() => {
+    currentSlideRef.current = currentSlide;
+  }, [currentSlide]);
+
+  useEffect(() => {
+    moduleRef.current = module;
+  }, [module]);
 
   useEffect(() => {
     (async () => {
@@ -69,7 +184,10 @@ export default function LessonScreen() {
 
       setLoading(true);
       setCurrentSlide(0);
-      setModule(MENTAL_LESSONS_BY_ID[params.moduleId] ?? null);
+      currentSlideRef.current = 0;
+      const loadedModule = MENTAL_LESSONS_BY_ID[params.moduleId] ?? null;
+      setModule(loadedModule);
+      moduleRef.current = loadedModule;
 
       const storedProgress = await getContentProgress();
       setProgress(storedProgress[params.moduleId] ?? 0);
@@ -77,26 +195,11 @@ export default function LessonScreen() {
     })();
   }, [params.moduleId]);
 
-  const stopAudio = useCallback(async () => {
-    if (!sound) {
-      setIsPlaying(false);
-      return;
-    }
-    try {
-      await sound.stopAsync();
-    } catch {}
-    try {
-      await sound.unloadAsync();
-    } catch {}
-    setSound(null);
-    setIsPlaying(false);
-  }, [sound]);
-
   useEffect(() => {
     return () => {
-      void stopAudio();
+      Speech.stop();
     };
-  }, [stopAudio]);
+  }, []);
 
   const updateProgress = useCallback(
     async (slideIndex: number, slideCount: number) => {
@@ -109,49 +212,103 @@ export default function LessonScreen() {
     [params.moduleId, progress],
   );
 
-  const goToSlide = useCallback(
-    async (nextIndex: number) => {
-      if (!module) return;
-      const boundedIndex = Math.max(
-        0,
-        Math.min(module.slides.length - 1, nextIndex),
-      );
-      if (boundedIndex === currentSlide) return;
+  const animateToSlide = useCallback(
+    (nextIndex: number, direction: "next" | "prev") => {
+      const mod = moduleRef.current;
+      if (!mod) return;
 
-      await stopAudio();
+      Speech.stop();
+      setIsPlaying(false);
 
-      const isNext = boundedIndex > currentSlide;
-
+      // Animate out
       fadeAnim.setValue(0);
-      slideAnim.setValue(isNext ? 25 : -25);
+      slideAnim.setValue(direction === "next" ? 40 : -40);
+      scaleAnim.setValue(0.95);
 
-      setCurrentSlide(boundedIndex);
+      setCurrentSlide(nextIndex);
+      currentSlideRef.current = nextIndex;
 
+      // Animate in
       Animated.parallel([
         Animated.timing(fadeAnim, {
           toValue: 1,
-          duration: 300,
+          duration: 350,
           easing: Easing.out(Easing.cubic),
           useNativeDriver: true,
         }),
-        Animated.timing(slideAnim, {
+        Animated.spring(slideAnim, {
           toValue: 0,
-          duration: 400,
-          easing: Easing.out(Easing.back(1.2)),
+          speed: 14,
+          bounciness: 4,
+          useNativeDriver: true,
+        }),
+        Animated.spring(scaleAnim, {
+          toValue: 1,
+          speed: 14,
+          bounciness: 4,
           useNativeDriver: true,
         }),
       ]).start();
 
-      await updateProgress(boundedIndex, module.slides.length);
+      // Dot pulse
+      Animated.sequence([
+        Animated.timing(dotScale, {
+          toValue: 1.4,
+          duration: 150,
+          useNativeDriver: true,
+        }),
+        Animated.spring(dotScale, {
+          toValue: 1,
+          speed: 20,
+          bounciness: 10,
+          useNativeDriver: true,
+        }),
+      ]).start();
+
+      void updateProgress(nextIndex, mod.slides.length);
     },
-    [currentSlide, fadeAnim, slideAnim, module, stopAudio, updateProgress],
+    [fadeAnim, slideAnim, scaleAnim, dotScale, updateProgress],
   );
 
-  const handleToggleAudio = useCallback(async () => {
+  const goToSlide = useCallback(
+    (nextIndex: number) => {
+      const mod = moduleRef.current;
+      const cur = currentSlideRef.current;
+      if (!mod) return;
+      const bounded = Math.max(0, Math.min(mod.slides.length - 1, nextIndex));
+      if (bounded === cur) return;
+      animateToSlide(bounded, bounded > cur ? "next" : "prev");
+    },
+    [animateToSlide],
+  );
+
+  // ── Stable PanResponder using refs ──
+  const goToSlideRef = useRef(goToSlide);
+  useEffect(() => {
+    goToSlideRef.current = goToSlide;
+  }, [goToSlide]);
+
+  const panResponder = useMemo(
+    () =>
+      PanResponder.create({
+        onMoveShouldSetPanResponder: (_, gs) =>
+          Math.abs(gs.dx) > 20 && Math.abs(gs.dx) > Math.abs(gs.dy * 1.5),
+        onPanResponderRelease: (_, gs) => {
+          if (gs.dx <= -SWIPE_THRESHOLD) {
+            goToSlideRef.current(currentSlideRef.current + 1);
+          } else if (gs.dx >= SWIPE_THRESHOLD) {
+            goToSlideRef.current(currentSlideRef.current - 1);
+          }
+        },
+      }),
+    [], // Stable — uses refs internally
+  );
+
+  const handleToggleAudio = useCallback(() => {
     if (!module) return;
     if (isPlaying) {
       Speech.stop();
-      await stopAudio();
+      setIsPlaying(false);
       return;
     }
     const text = module.slides[currentSlide].text;
@@ -164,208 +321,355 @@ export default function LessonScreen() {
       onStopped: () => setIsPlaying(false),
       onError: () => setIsPlaying(false),
     });
-  }, [currentSlide, isPlaying, module, stopAudio]);
+  }, [currentSlide, isPlaying, module]);
 
-  const panResponder = useMemo(
-    () =>
-      PanResponder.create({
-        onMoveShouldSetPanResponder: (_, gestureState) =>
-          Math.abs(gestureState.dx) > 20 &&
-          Math.abs(gestureState.dx) > Math.abs(gestureState.dy),
-        onPanResponderRelease: (_, gestureState) => {
-          if (gestureState.dx <= -SWIPE_THRESHOLD) {
-            void goToSlide(currentSlide + 1);
-          } else if (gestureState.dx >= SWIPE_THRESHOLD) {
-            void goToSlide(currentSlide - 1);
-          }
-        },
-      }),
-    [currentSlide, goToSlide],
-  );
-
+  // ── Loading State ──
   if (loading) {
     return (
-      <SafeAreaView className="flex-1 bg-[#F4F9F6] items-center justify-center">
-        <View className="animate-pulse flex-row items-center gap-3">
-          <Leaf color="#439C74" size={28} />
-          <Text className="text-[17px] font-medium text-[#439C74]">
-            Relaxing...
-          </Text>
-        </View>
+      <SafeAreaView className="flex-1 bg-[#F5F7FA] items-center justify-center">
+        <Animated.View
+          style={{
+            opacity: fadeAnim,
+            transform: [{ scale: scaleAnim }],
+          }}
+        >
+          <View className="items-center gap-4">
+            <View className="w-20 h-20 rounded-[28px] bg-white items-center justify-center"
+              style={{
+                shadowColor: "#000",
+                shadowOpacity: 0.08,
+                shadowRadius: 20,
+                shadowOffset: { width: 0, height: 8 },
+                elevation: 5,
+              }}
+            >
+              <BookOpen color="#3B6FD4" size={32} strokeWidth={2} />
+            </View>
+            <Text className="text-[17px] font-semibold text-[#3B6FD4] tracking-tight">
+              Preparing your lesson…
+            </Text>
+          </View>
+        </Animated.View>
       </SafeAreaView>
     );
   }
 
+  // ── Not Found State ──
   if (!module) {
     return (
-      <SafeAreaView className="flex-1 bg-[#F2F2F7] items-center justify-center px-8">
-        <Text className="text-[18px] font-bold text-black">
-          Lesson not found
-        </Text>
-        <Pressable
-          onPress={() => router.back()}
-          className="mt-5 rounded-full bg-[#AF52DE] px-6 py-3.5 flex-row items-center justify-center gap-2"
-        >
-          <ArrowLeft color="#fff" size={20} />
-          <Text className="text-white font-semibold text-[16px]">Go Back</Text>
-        </Pressable>
+      <SafeAreaView className="flex-1 bg-[#F5F7FA] items-center justify-center px-8">
+        <View className="items-center gap-4">
+          <View className="w-20 h-20 rounded-[28px] bg-[#FEF0F0] items-center justify-center">
+            <Text style={{ fontSize: 36 }}>📭</Text>
+          </View>
+          <Text className="text-[20px] font-bold text-[#1C1C1E] tracking-tight">
+            Lesson not found
+          </Text>
+          <Text className="text-[15px] text-[#8E8E93] text-center leading-6">
+            This lesson might have been removed or is temporarily unavailable.
+          </Text>
+          <Pressable
+            onPress={() => router.back()}
+            className="mt-4 rounded-full bg-[#3B6FD4] px-8 py-4 flex-row items-center gap-2"
+            style={{
+              shadowColor: "#3B6FD4",
+              shadowOpacity: 0.3,
+              shadowRadius: 12,
+              shadowOffset: { width: 0, height: 6 },
+              elevation: 5,
+            }}
+          >
+            <ArrowLeft color="#fff" size={20} />
+            <Text className="text-white font-bold text-[16px]">Go Back</Text>
+          </Pressable>
+        </View>
       </SafeAreaView>
     );
   }
 
   const slide = module.slides[currentSlide];
+  const totalSlides = module.slides.length;
   const atStart = currentSlide === 0;
-  const atEnd = currentSlide === module.slides.length - 1;
+  const atEnd = currentSlide === totalSlides - 1;
   const theme = THEMES[currentSlide % THEMES.length];
   const ThemeIcon = theme.Icon;
+  const progressPercent = ((currentSlide + 1) / totalSlides) * 100;
+  const tip = SLIDE_TIPS[currentSlide];
 
   return (
     <SafeAreaView className="flex-1" style={{ backgroundColor: theme.bg }}>
-      <View className="flex-1 px-6 pt-6 pb-8">
-        {/* Navigation & Controls header */}
-        <View className="flex-row items-center justify-between mb-8">
-          <Pressable
-            onPress={() => router.back()}
-            className="w-12 h-12 rounded-full items-center justify-center"
-            style={{ backgroundColor: theme.card }}
-          >
-            <ArrowLeft color={theme.accent} size={24} />
-          </Pressable>
+      <View className="flex-1">
+        {/* ── Top Navigation Bar ── */}
+        <View className="px-5 pt-4 pb-2">
+          <View className="flex-row items-center justify-between">
+            <Pressable
+              onPress={() => {
+                Speech.stop();
+                router.back();
+              }}
+              className="w-11 h-11 rounded-full items-center justify-center"
+              style={{ backgroundColor: theme.accentLight }}
+            >
+              <ArrowLeft color={theme.accent} size={22} />
+            </Pressable>
 
-          <View className="flex-1 px-4">
-            <Text
-              className="text-[16px] font-bold tracking-tight text-center"
-              style={{ color: theme.accent }}
-              numberOfLines={1}
+            <View className="flex-1 mx-4 items-center">
+              <Text
+                className="text-[15px] font-bold tracking-tight"
+                style={{ color: theme.accent }}
+                numberOfLines={1}
+              >
+                {module.title}
+              </Text>
+            </View>
+
+            <Pressable
+              onPress={handleToggleAudio}
+              className="w-11 h-11 rounded-full items-center justify-center"
+              style={{
+                backgroundColor: isPlaying ? theme.accent : theme.accentLight,
+              }}
             >
-              {module.title}
-            </Text>
-            <Text
-              className="text-[13px] font-medium text-center mt-1 opacity-70"
-              style={{ color: theme.accent }}
-            >
-              {currentSlide + 1} of {module.slides.length}
-            </Text>
+              {isPlaying ? (
+                <VolumeX color="#FFFFFF" size={20} />
+              ) : (
+                <Volume2 color={theme.accent} size={20} />
+              )}
+            </Pressable>
           </View>
 
-          <Pressable
-            onPress={() => void handleToggleAudio()}
-            className="w-12 h-12 rounded-full items-center justify-center"
-            style={{ backgroundColor: isPlaying ? theme.accent : theme.card }}
-          >
-            {isPlaying ? (
-              <VolumeX color="#FFFFFF" size={24} />
-            ) : (
-              <Volume2 color={theme.accent} size={24} />
-            )}
-          </Pressable>
-        </View>
+          {/* ── Segmented Progress Bar ── */}
+          <View className="flex-row mt-4 gap-1">
+            {module.slides.map((_, i) => (
+              <View
+                key={i}
+                className="flex-1 h-[3px] rounded-full overflow-hidden"
+                style={{ backgroundColor: theme.accentLight }}
+              >
+                <View
+                  className="h-full rounded-full"
+                  style={{
+                    width: i < currentSlide ? "100%" : i === currentSlide ? "100%" : "0%",
+                    backgroundColor: theme.accent,
+                    opacity: i <= currentSlide ? 1 : 0.25,
+                  }}
+                />
+              </View>
+            ))}
+          </View>
 
-        {/* Fancy Progress Indicator */}
-        <View
-          className="h-1.5 rounded-full overflow-hidden mb-10"
-          style={{ backgroundColor: theme.card }}
-        >
-          <Animated.View
-            className="h-full rounded-full"
-            style={{
-              width: `${((currentSlide + 1) / module.slides.length) * 100}%`,
-              backgroundColor: theme.accent,
-            }}
-          />
-        </View>
-
-        {/* Content Card with Swipe Support */}
-        <View className="flex-1" {...panResponder.panHandlers}>
-          <Animated.View
-            className="flex-1 w-full rounded-[36px] bg-white overflow-hidden justify-center"
-            style={{
-              opacity: fadeAnim,
-              transform: [{ translateX: slideAnim }],
-              shadowColor: theme.accent,
-              shadowOpacity: 0.12,
-              shadowRadius: 30,
-              shadowOffset: { width: 0, height: 16 },
-              elevation: 8,
-            }}
-          >
+          {/* ── Slide Counter ── */}
+          <View className="flex-row items-center justify-center mt-3 gap-2">
             <View
-              className="absolute top-0 inset-x-0 h-40 justify-end items-center pb-8"
-              style={{ backgroundColor: theme.card }}
+              className="px-3 py-1 rounded-full"
+              style={{ backgroundColor: theme.accentLight }}
+            >
+              <Text
+                className="text-[12px] font-bold"
+                style={{ color: theme.accent }}
+              >
+                {currentSlide + 1} / {totalSlides}
+              </Text>
+            </View>
+            <View
+              className="px-3 py-1 rounded-full"
+              style={{ backgroundColor: theme.accentLight }}
+            >
+              <Text
+                className="text-[12px] font-bold"
+                style={{ color: theme.accent }}
+              >
+                {module.duration}
+              </Text>
+            </View>
+          </View>
+        </View>
+
+        {/* ── Main Content Area with Swipe ── */}
+        <View className="flex-1 px-5 pt-2 pb-4" {...panResponder.panHandlers}>
+          <Animated.View
+            className="flex-1 rounded-[32px] overflow-hidden"
+            style={{
+              backgroundColor: theme.card,
+              opacity: fadeAnim,
+              transform: [
+                { translateX: slideAnim },
+                { scale: scaleAnim },
+              ],
+              borderWidth: 1,
+              borderColor: theme.cardBorder,
+              shadowColor: theme.accent,
+              shadowOpacity: 0.08,
+              shadowRadius: 24,
+              shadowOffset: { width: 0, height: 12 },
+              elevation: 6,
+            }}
+          >
+            {/* ── Decorative Header Strip ── */}
+            <View
+              className="items-center pt-8 pb-6"
+              style={{ backgroundColor: theme.accentGlow }}
             >
               <View
-                className="w-[84px] h-[84px] rounded-[30px] bg-white items-center justify-center -mb-[58px]"
+                className="w-[72px] h-[72px] rounded-[24px] items-center justify-center"
                 style={{
+                  backgroundColor: theme.accentLight,
                   shadowColor: theme.accent,
-                  shadowOpacity: 0.15,
-                  shadowRadius: 15,
-                  shadowOffset: { width: 0, height: 8 },
-                  elevation: 5,
-                  transform: [{ rotate: "10deg" }],
+                  shadowOpacity: 0.12,
+                  shadowRadius: 12,
+                  shadowOffset: { width: 0, height: 6 },
+                  elevation: 4,
                 }}
               >
                 <ThemeIcon
                   color={theme.accent}
-                  size={44}
-                  strokeWidth={2.5}
-                  style={{ transform: [{ rotate: "-10deg" }] }}
+                  size={36}
+                  strokeWidth={2}
                 />
               </View>
             </View>
 
-            <View className="px-8 mt-[40px] mb-4 items-center">
+            {/* ── Slide Content ── */}
+            <ScrollView
+              className="flex-1"
+              contentContainerStyle={{
+                paddingHorizontal: 28,
+                paddingTop: 28,
+                paddingBottom: 24,
+                flexGrow: 1,
+                justifyContent: "center",
+              }}
+              showsVerticalScrollIndicator={false}
+            >
               <Text
-                className="text-[28px] leading-[42px] font-bold text-center"
-                style={{ color: "#2C2C2E", letterSpacing: -0.5 }}
+                className="text-[24px] leading-[38px] font-bold text-center"
+                style={{
+                  color: "#1C1C1E",
+                  letterSpacing: -0.4,
+                }}
               >
                 {slide.text}
               </Text>
+
+              {/* ── Tip Section ── */}
+              {tip && (
+                <View
+                  className="flex-row items-center gap-3 mt-8 p-4 rounded-[20px]"
+                  style={{ backgroundColor: theme.tipBg }}
+                >
+                  <View
+                    className="w-9 h-9 rounded-full items-center justify-center"
+                    style={{ backgroundColor: theme.accentLight }}
+                  >
+                    <Lightbulb color={theme.accent} size={18} strokeWidth={2.5} />
+                  </View>
+                  <Text
+                    className="flex-1 text-[13px] leading-5 font-medium"
+                    style={{ color: theme.accent, opacity: 0.85 }}
+                  >
+                    {tip}
+                  </Text>
+                </View>
+              )}
+            </ScrollView>
+
+            {/* ── Dot Indicators ── */}
+            <View className="flex-row items-center justify-center gap-2 pb-6 px-6">
+              {module.slides.map((_, i) => {
+                const isActive = i === currentSlide;
+                return (
+                  <Pressable
+                    key={i}
+                    onPress={() => goToSlide(i)}
+                    hitSlop={8}
+                  >
+                    <Animated.View
+                      style={{
+                        width: isActive ? 24 : 8,
+                        height: 8,
+                        borderRadius: 4,
+                        backgroundColor: isActive
+                          ? theme.accent
+                          : i < currentSlide
+                            ? theme.accent
+                            : theme.cardBorder,
+                        opacity: isActive ? 1 : i < currentSlide ? 0.5 : 0.35,
+                        transform: isActive ? [{ scale: dotScale }] : [],
+                      }}
+                    />
+                  </Pressable>
+                );
+              })}
             </View>
           </Animated.View>
         </View>
 
-        {/* Beautiful Bottom Controls */}
-        <View className="flex-row items-center justify-between gap-4 mt-8">
-          <Pressable
-            onPress={() => void goToSlide(currentSlide - 1)}
-            disabled={atStart}
-            className="w-[80px] h-[64px] rounded-[24px] items-center justify-center transition-opacity"
-            style={{
-              backgroundColor: atStart ? "transparent" : theme.card,
-              opacity: atStart ? 0.3 : 1,
-            }}
-          >
-            <ChevronLeft
-              color={atStart ? theme.accent : theme.accent}
-              size={32}
-            />
-          </Pressable>
+        {/* ── Bottom Controls ── */}
+        <View className="px-5 pb-4">
+          <View className="flex-row items-center gap-3">
+            {/* Previous Button */}
+            <Pressable
+              onPress={() => goToSlide(currentSlide - 1)}
+              disabled={atStart}
+              className="w-[60px] h-[56px] rounded-[20px] items-center justify-center"
+              style={{
+                backgroundColor: atStart ? "transparent" : theme.accentLight,
+                opacity: atStart ? 0.3 : 1,
+                borderWidth: atStart ? 0 : 1,
+                borderColor: theme.cardBorder,
+              }}
+            >
+              <ChevronLeft
+                color={theme.accent}
+                size={26}
+                strokeWidth={2.5}
+              />
+            </Pressable>
 
-          <Pressable
-            onPress={() => {
-              if (atEnd) {
-                router.back();
-              } else {
-                void goToSlide(currentSlide + 1);
-              }
-            }}
-            className="flex-1 h-[64px] rounded-[24px] flex-row items-center justify-center gap-3"
-            style={{ backgroundColor: theme.accent }}
-          >
-            {atEnd ? (
-              <>
-                <Text className="text-[18px] font-bold text-white">
-                  Complete
-                </Text>
-                <Check color="#FFFFFF" size={24} strokeWidth={3} />
-              </>
-            ) : (
-              <>
-                <Text className="text-[18px] font-bold text-white">Next</Text>
-                <ChevronRight color="#FFFFFF" size={24} strokeWidth={3} />
-              </>
-            )}
-          </Pressable>
+            {/* Main Action Button */}
+            <Pressable
+              onPress={() => {
+                if (atEnd) {
+                  Speech.stop();
+                  router.back();
+                } else {
+                  goToSlide(currentSlide + 1);
+                }
+              }}
+              className="flex-1 h-[56px] rounded-[20px] flex-row items-center justify-center gap-2.5"
+              style={{
+                backgroundColor: theme.accent,
+                shadowColor: theme.accent,
+                shadowOpacity: 0.3,
+                shadowRadius: 12,
+                shadowOffset: { width: 0, height: 6 },
+                elevation: 5,
+              }}
+            >
+              {atEnd ? (
+                <>
+                  <Check color="#FFFFFF" size={22} strokeWidth={3} />
+                  <Text className="text-[17px] font-bold text-white tracking-tight">
+                    Complete Lesson
+                  </Text>
+                </>
+              ) : (
+                <>
+                  <Text className="text-[17px] font-bold text-white tracking-tight">
+                    Continue
+                  </Text>
+                  <ChevronRight color="#FFFFFF" size={22} strokeWidth={3} />
+                </>
+              )}
+            </Pressable>
+          </View>
+
+          {/* ── Swipe Hint ── */}
+          {currentSlide === 0 && (
+            <Text className="text-[12px] text-center mt-3 font-medium" style={{ color: theme.accent, opacity: 0.5 }}>
+              Swipe left or right to navigate
+            </Text>
+          )}
         </View>
       </View>
     </SafeAreaView>

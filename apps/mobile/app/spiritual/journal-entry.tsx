@@ -19,6 +19,7 @@ import {
   deleteSpiritualJournal,
 } from "@/lib/spiritual-store";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 import {
   SPIRITUAL_FEELING_TAGS,
   type SpiritualFeelingTag,
@@ -134,8 +135,8 @@ export default function SpiritualJournalEntryScreen() {
     // Sync to API (fire & forget)
     try {
       await api.post("/spiritual/journal", entry);
-    } catch {
-      // offline-first
+    } catch (err) {
+      recordFailedSync("spiritual journal sync", err);
     }
 
     setSaving(false);

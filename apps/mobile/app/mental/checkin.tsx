@@ -15,6 +15,9 @@ import { TriggerTagPicker } from "@/components/mental/TriggerTagPicker";
 import { saveMentalCheckIn } from "@/lib/mental-store";
 import { api } from "@/lib/api";
 import { getBestIntervention } from "@aura/mental-engine";
+import { recordFailedSync, captureError } from "@/lib/error-reporting";
+import { recalcMentalScore } from "@/lib/scoring-engine";
+import { updateScores } from "@/lib/user-store";
 import {
   MENTAL_INTERVENTION_TYPES,
   type TriggerTag,
@@ -90,8 +93,16 @@ export default function MentalCheckInScreen() {
         copingAction: copingAction || undefined,
         supportReq: supportRequested,
       });
-    } catch {
-      // offline-first
+    } catch (err) {
+      recordFailedSync("mental checkin sync", err);
+    }
+
+    // Recalculate mental score using full 4-signal model
+    try {
+      const score = await recalcMentalScore();
+      await updateScores({ mental: score });
+    } catch (err) {
+      recordFailedSync("mental score recalc", err);
     }
 
     // Check if stress is high or mood is low → suggest intervention
@@ -102,8 +113,8 @@ export default function MentalCheckInScreen() {
         const rec = getBestIntervention(stressIndex);
         setIntervention(rec);
         showIntervention = true;
-      } catch {
-        // engine may not be available
+      } catch (err) {
+        captureError(err, { context: "mental checkin intervention engine" });
       }
     }
 

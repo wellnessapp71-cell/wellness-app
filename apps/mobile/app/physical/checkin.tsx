@@ -11,6 +11,9 @@ import { useState } from "react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { saveDailyCheckIn, getTodayCheckIn } from "@/lib/onboarding-store";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
+import { recalcPhysicalScore } from "@/lib/scoring-engine";
+import { updateScores } from "@/lib/user-store";
 
 const MOODS = [
   { value: "great", label: "Great", emoji: "😁" },
@@ -64,8 +67,16 @@ export default function CheckInScreen() {
     // Try to sync to server
     try {
       await api.post("/progress/checkin", checkIn);
-    } catch {
-      // Offline-first: local save is enough
+    } catch (err) {
+      recordFailedSync("physical checkin sync", err);
+    }
+
+    // Recalculate physical score using all inputs
+    try {
+      const score = await recalcPhysicalScore();
+      await updateScores({ physical: score });
+    } catch (err) {
+      recordFailedSync("physical score recalc", err);
     }
 
     setSaving(false);

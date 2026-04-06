@@ -11,15 +11,17 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter, useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { GlassCard } from "@/components/ui/glass-card";
-import { addSessionLog } from "@/lib/onboarding-store";
+import { addSessionLog, calculatePlanAdherence, getSessionLogs } from "@/lib/onboarding-store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getAuth } from "@/lib/user-store";
+import { getAuth, updateScores } from "@/lib/user-store";
+import { getActiveWorkoutPlan } from "@/lib/plan-store";
 import {
   adaptWorkoutTargets,
   updateFatigueState,
   type FatigueState,
 } from "@/lib/fitness-engine";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 import CameraRepTracker from "@/components/camera-rep-tracker";
 
 type SessionFeedback =
@@ -407,6 +409,10 @@ export default function WorkoutSessionScreen() {
       completionPercent: Math.round(totalCompletion),
     };
 
+    // Get active plan for planId and adherence
+    const activePlan = await getActiveWorkoutPlan();
+    const planId = activePlan?.planId;
+
     // Save locally
     await addSessionLog({
       sessionId: sessionLog.sessionId,
@@ -416,13 +422,34 @@ export default function WorkoutSessionScreen() {
       completionPercent: sessionLog.completionPercent,
       caloriesBurned: totalCal,
       durationMinutes,
+      planId,
     });
+
+    // Update physical score based on plan adherence
+    if (activePlan?.content) {
+      const sessions =
+        activePlan.content.sessions ??
+        activePlan.content.weekSessions ??
+        activePlan.content.schedule ??
+        {};
+      const plannedDays = Object.keys(sessions);
+      const allLogs = await getSessionLogs();
+      const adherence = calculatePlanAdherence(allLogs, plannedDays);
+      // Physical score: weighted blend of adherence (70%) and avg completion (30%)
+      const recentLogs = allLogs.slice(-7);
+      const avgCompletion =
+        recentLogs.length > 0
+          ? recentLogs.reduce((s, l) => s + l.completionPercent, 0) / recentLogs.length
+          : 0;
+      const physicalScore = Math.round(adherence * 0.7 + avgCompletion * 0.3);
+      await updateScores({ physical: Math.min(100, Math.max(0, physicalScore)) });
+    }
 
     // Sync to server
     try {
       await api.post("/workout/log", sessionLog);
-    } catch {
-      // Offline-first
+    } catch (err) {
+      recordFailedSync("workout session sync", err);
     }
   }
 

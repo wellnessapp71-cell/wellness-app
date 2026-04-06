@@ -11,6 +11,7 @@ import { SimulatedFrameSampler, processRppgSignal } from "@/lib/rppg";
 import type { PosResult } from "@/lib/rppg";
 import { saveRppgScan } from "@/lib/mental-store";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 import {
   validateScanResult,
   classifyStressLevel,
@@ -47,12 +48,14 @@ export default function ScanScreen() {
   const cameraRef = useRef<any>(null);
   const samplerRef = useRef<SimulatedFrameSampler | null>(null);
   const countdownRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const navTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
       samplerRef.current?.destroy();
       if (countdownRef.current) clearInterval(countdownRef.current);
+      if (navTimerRef.current) clearTimeout(navTimerRef.current);
     };
   }, []);
 
@@ -182,13 +185,13 @@ export default function ScanScreen() {
         signalQuality: scanResult.signalQuality,
         duration: scanResult.scanDurationSeconds,
       });
-    } catch {
-      // offline-first
+    } catch (err) {
+      recordFailedSync("mental rppg scan sync", err);
     }
 
     setSaving(false);
     setStep("saved");
-    setTimeout(() => router.back(), 1200);
+    navTimerRef.current = setTimeout(() => router.back(), 1200);
   }, [scanResult, router]);
 
   // ── Render ──

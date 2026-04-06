@@ -11,6 +11,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { saveSpiritualBaseline, saveSpiritualPlan } from "@/lib/spiritual-store";
 import { updateProfile } from "@/lib/user-store";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 import {
   buildSpiritualBaseline,
   generateInitialPlan,
@@ -108,8 +109,8 @@ export default function SpiritualOnboardingScreen() {
           preferredSupportStyle: bl.preferredSupportStyle,
           rawAnswers: bl.rawAnswers,
         });
-      } catch {
-        // local save is enough
+      } catch (err) {
+        recordFailedSync("spiritual baseline sync", err);
       }
 
       setBaseline(bl);

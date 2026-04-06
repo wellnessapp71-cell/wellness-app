@@ -327,7 +327,7 @@ model ContentProgress {
 model SpiritualBaseline {
   id                    String   @id @default(cuid())
   userId                String   @map("user_id")
-  user                  User     @relation(fields: [userId], references: [id])
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   meaningScore          Int      @map("meaning_score")
   peaceScore            Int      @map("peace_score")
   mindfulnessScore      Int      @map("mindfulness_score")
@@ -347,7 +347,7 @@ model SpiritualBaseline {
 model SpiritualCheckin {
   id                       String   @id @default(cuid())
   userId                   String   @map("user_id")
-  user                     User     @relation(fields: [userId], references: [id])
+  user                     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   date                     String
   calmScore                Int      @map("calm_score")
   didPractice              Boolean  @map("did_practice")
@@ -364,7 +364,7 @@ model SpiritualCheckin {
 model SpiritualPracticeSession {
   id              String   @id @default(cuid())
   userId          String   @map("user_id")
-  user            User     @relation(fields: [userId], references: [id])
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   type            String
   contentId       String?  @map("content_id")
   durationMinutes Int      @map("duration_minutes")
@@ -378,7 +378,7 @@ model SpiritualPracticeSession {
 model SpiritualJournalEntry {
   id                       String   @id @default(cuid())
   userId                   String   @map("user_id")
-  user                     User     @relation(fields: [userId], references: [id])
+  user                     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   promptType               String   @map("prompt_type")
   moodTag                  String?  @map("mood_tag")
   gratitudeText            String?  @map("gratitude_text")
@@ -394,7 +394,7 @@ model SpiritualJournalEntry {
 model SpiritualWeeklyReport {
   id                    String   @id @default(cuid())
   userId                String   @map("user_id")
-  user                  User     @relation(fields: [userId], references: [id])
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   weekStart             String   @map("week_start")
   weekEnd               String   @map("week_end")
   calmScoreChange       Int      @map("calm_score_change")
@@ -409,7 +409,7 @@ model SpiritualWeeklyReport {
 model SpiritualPlanVersion {
   id         String   @id @default(cuid())
   userId     String   @map("user_id")
-  user       User     @relation(fields: [userId], references: [id])
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   planJson   Json     @map("plan_json")
   reasonCode String   @map("reason_code")
   active     Boolean  @default(true)

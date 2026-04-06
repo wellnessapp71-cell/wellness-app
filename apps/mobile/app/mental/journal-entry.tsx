@@ -21,6 +21,7 @@ import {
   getLatestRppgScan,
 } from "@/lib/mental-store";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 import type { EmotionTag, TriggerTag, MentalJournalEntry, RppgScanResult } from "@aura/types";
 
 const GUIDED_PROMPT =
@@ -82,8 +83,8 @@ export default function JournalEntryScreen() {
 
     try {
       await api.post("/mental/journal", entry);
-    } catch {
-      // offline-first
+    } catch (err) {
+      recordFailedSync("mental journal sync", err);
     }
 
     setSaving(false);

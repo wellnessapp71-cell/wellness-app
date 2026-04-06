@@ -4,6 +4,7 @@ import {
   ScrollView,
   Pressable,
   useWindowDimensions,
+  ActivityIndicator,
 } from "react-native";
 import {
   SafeAreaView,
@@ -15,6 +16,11 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { getProfile } from "@/lib/user-store";
 import type { UserProfile } from "@/lib/user-store";
 import {
+  getActiveWorkoutPlan,
+  getActiveNutritionPlan,
+  type StoredPlan,
+} from "@/lib/plan-store";
+import {
   generateFitnessTag,
   calculateMacroRequirements,
   projectGoal,
@@ -22,6 +28,7 @@ import {
   getStreakRewards,
   getMotivationalMessage,
 } from "@/lib/fitness-engine";
+import type { FitnessLevel } from "@aura/types";
 import Animated, {
   FadeInDown,
   LinearTransition,
@@ -60,6 +67,9 @@ export default function PhysicalHubScreen() {
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const [profile, setProfileState] = useState<UserProfile | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [workoutPlan, setWorkoutPlan] = useState<StoredPlan | null>(null);
+  const [nutritionPlan, setNutritionPlan] = useState<StoredPlan | null>(null);
   const contentWidth = width - 48;
   const safeContentWidth = Math.max(contentWidth, 280);
   const threeColCardWidth = Math.floor((safeContentWidth - 24) / 3);
@@ -67,8 +77,19 @@ export default function PhysicalHubScreen() {
   useFocusEffect(
     useCallback(() => {
       (async () => {
-        const p = await getProfile();
-        setProfileState(p);
+        setLoading(true);
+        try {
+          const [p, wp, np] = await Promise.all([
+            getProfile(),
+            getActiveWorkoutPlan(),
+            getActiveNutritionPlan(),
+          ]);
+          setProfileState(p);
+          setWorkoutPlan(wp);
+          setNutritionPlan(np);
+        } finally {
+          setLoading(false);
+        }
       })();
     }, []),
   );
@@ -85,7 +106,7 @@ export default function PhysicalHubScreen() {
   const levelColor = LEVEL_COLORS[fitnessLevel] ?? "#FF2D55";
 
   const fitnessTag = generateFitnessTag({
-    fitnessLevel: fitnessLevel as any,
+    fitnessLevel: fitnessLevel as FitnessLevel,
     goals: ["fat_loss"],
     hasGymAccess: profile?.hasGymAccess ?? false,
     hasHomeEquipment: profile?.hasHomeEquipment ?? false,
@@ -97,7 +118,7 @@ export default function PhysicalHubScreen() {
     weightKg,
     heightCm: profile?.heightCm ?? 170,
     age: profile?.age ?? 28,
-    gender: (profile?.gender as any) ?? "other",
+    gender: (profile?.gender ?? "other") as "male" | "female" | "other",
     activityLevel,
     goal:
       targetWeightKg < weightKg
@@ -118,7 +139,7 @@ export default function PhysicalHubScreen() {
       : null;
 
   const recoverySuggestion = getRecoverySuggestion({
-    lastCheckIn: null as any,
+    lastCheckIn: null,
     streakDays,
     recentSessionsCount: 0,
     lastSessionCompletionPercent: undefined,
@@ -128,7 +149,7 @@ export default function PhysicalHubScreen() {
 
   const motivationalMessage = getMotivationalMessage({
     streakDays,
-    fitnessLevel: fitnessLevel as any,
+    fitnessLevel: fitnessLevel as FitnessLevel,
   });
 
   const streakRewards = getStreakRewards(streakDays);
@@ -149,6 +170,12 @@ export default function PhysicalHubScreen() {
         }}
         showsVerticalScrollIndicator={false}
       >
+        {loading ? (
+          <View className="flex-1 items-center justify-center pt-40">
+            <ActivityIndicator size="large" color="#FF2D55" />
+            <Text className="text-[14px] text-[#8A8A8E] mt-4 font-medium">Loading your physical hub…</Text>
+          </View>
+        ) : (<>
         {/* Header */}
         <Animated.View
           entering={FadeInDown.duration(800).springify()}
@@ -456,75 +483,145 @@ export default function PhysicalHubScreen() {
           </View>
         </Animated.View>
 
-        {/* Plan options */}
+        {/* Plans section */}
         <Animated.View
           entering={FadeInDown.delay(600).duration(800).springify()}
           className="mb-10"
         >
           <Text className="text-[20px] font-bold text-[#1C1C1E] tracking-tight mb-4">
-            Build Your Plan
+            {workoutPlan || nutritionPlan ? "Your Plans" : "Build Your Plan"}
           </Text>
 
-          <Pressable
-            onPress={() => router.push("/physical/plan-setup")}
-            className="mb-4"
-          >
-            <GlassCard className="p-5 flex-row items-center gap-4 bg-white/60 border border-black/5 shadow-sm shadow-black/5">
-              <View className="w-14 h-14 rounded-2xl items-center justify-center bg-[#FF2D55]/10">
-                <Dumbbell size={28} color="#FF2D55" strokeWidth={2} />
-              </View>
-              <View className="flex-1">
-                <Text className="text-[18px] font-bold text-[#1C1C1E] tracking-tight mb-0.5">
-                  Workout Plan
-                </Text>
-                <Text className="text-[13px] text-[#8A8A8E] mb-2 leading-tight">
-                  Tailored weekly routine based on your goals
-                </Text>
-                <View className="flex-row flex-wrap gap-1.5">
-                  {["Library", "Schedule", "Sets"].map((tag) => (
-                    <View
-                      key={tag}
-                      className="bg-[#FF2D55]/10 px-2 py-1 rounded-[6px]"
-                    >
-                      <Text className="text-[10px] font-bold text-[#FF2D55] uppercase">
-                        {tag}
+          {/* ── Workout / Yoga Plan ── */}
+          {workoutPlan ? (
+            <View className="mb-4">
+              <Pressable onPress={() => router.push("/physical/workout-plan")}>
+                <GlassCard className="p-5 flex-row items-center gap-4 bg-white/60 border-2 border-[#FF2D55]/20">
+                  <View className="w-14 h-14 rounded-2xl items-center justify-center bg-[#FF2D55]/10">
+                    <Dumbbell size={28} color="#FF2D55" strokeWidth={2} />
+                  </View>
+                  <View className="flex-1">
+                    <View className="flex-row items-center gap-2 mb-0.5">
+                      <Text className="text-[18px] font-bold text-[#1C1C1E] tracking-tight">
+                        {workoutPlan.type === "yoga" ? "Yoga Plan" : "Workout Plan"}
                       </Text>
+                      <View className="bg-[#34C759]/15 px-2 py-0.5 rounded-full">
+                        <Text className="text-[10px] font-bold text-[#34C759] uppercase">Active</Text>
+                      </View>
                     </View>
-                  ))}
+                    <Text className="text-[13px] text-[#8A8A8E] leading-tight">
+                      Created {new Date(workoutPlan.createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+                    </Text>
+                  </View>
+                  <ChevronRight size={24} color="#D1D1D6" />
+                </GlassCard>
+              </Pressable>
+              <Pressable
+                onPress={() => router.push("/physical/plan-setup")}
+                className="mt-2 self-center"
+              >
+                <Text className="text-[13px] font-semibold text-[#007AFF]">
+                  Generate New Plan
+                </Text>
+              </Pressable>
+            </View>
+          ) : (
+            <Pressable
+              onPress={() => router.push("/physical/plan-setup")}
+              className="mb-4"
+            >
+              <GlassCard className="p-5 flex-row items-center gap-4 bg-white/60 border border-black/5 shadow-sm shadow-black/5">
+                <View className="w-14 h-14 rounded-2xl items-center justify-center bg-[#FF2D55]/10">
+                  <Dumbbell size={28} color="#FF2D55" strokeWidth={2} />
                 </View>
-              </View>
-              <ChevronRight size={24} color="#D1D1D6" />
-            </GlassCard>
-          </Pressable>
+                <View className="flex-1">
+                  <Text className="text-[18px] font-bold text-[#1C1C1E] tracking-tight mb-0.5">
+                    Workout Plan
+                  </Text>
+                  <Text className="text-[13px] text-[#8A8A8E] mb-2 leading-tight">
+                    Tailored weekly routine based on your goals
+                  </Text>
+                  <View className="flex-row flex-wrap gap-1.5">
+                    {["Library", "Schedule", "Sets"].map((tag) => (
+                      <View
+                        key={tag}
+                        className="bg-[#FF2D55]/10 px-2 py-1 rounded-[6px]"
+                      >
+                        <Text className="text-[10px] font-bold text-[#FF2D55] uppercase">
+                          {tag}
+                        </Text>
+                      </View>
+                    ))}
+                  </View>
+                </View>
+                <ChevronRight size={24} color="#D1D1D6" />
+              </GlassCard>
+            </Pressable>
+          )}
 
-          <Pressable onPress={() => router.push("/physical/nutrition-setup")}>
-            <GlassCard className="p-5 flex-row items-center gap-4 bg-white/60 border border-black/5 shadow-sm shadow-black/5">
-              <View className="w-14 h-14 rounded-2xl items-center justify-center bg-[#34C759]/10">
-                <Utensils size={28} color="#34C759" strokeWidth={2} />
-              </View>
-              <View className="flex-1">
-                <Text className="text-[18px] font-bold text-[#1C1C1E] tracking-tight mb-0.5">
-                  Nutrition Plan
-                </Text>
-                <Text className="text-[13px] text-[#8A8A8E] mb-2 leading-tight">
-                  Calorie targets, macros & meal ideas
-                </Text>
-                <View className="flex-row flex-wrap gap-1.5">
-                  {["Macros", "Goals", "Meals"].map((tag) => (
-                    <View
-                      key={tag}
-                      className="bg-[#34C759]/10 px-2 py-1 rounded-[6px]"
-                    >
-                      <Text className="text-[10px] font-bold text-[#34C759] uppercase">
-                        {tag}
+          {/* ── Nutrition Plan ── */}
+          {nutritionPlan ? (
+            <View>
+              <Pressable onPress={() => router.push("/physical/nutrition-plan")}>
+                <GlassCard className="p-5 flex-row items-center gap-4 bg-white/60 border-2 border-[#34C759]/20">
+                  <View className="w-14 h-14 rounded-2xl items-center justify-center bg-[#34C759]/10">
+                    <Utensils size={28} color="#34C759" strokeWidth={2} />
+                  </View>
+                  <View className="flex-1">
+                    <View className="flex-row items-center gap-2 mb-0.5">
+                      <Text className="text-[18px] font-bold text-[#1C1C1E] tracking-tight">
+                        Nutrition Plan
                       </Text>
+                      <View className="bg-[#34C759]/15 px-2 py-0.5 rounded-full">
+                        <Text className="text-[10px] font-bold text-[#34C759] uppercase">Active</Text>
+                      </View>
                     </View>
-                  ))}
+                    <Text className="text-[13px] text-[#8A8A8E] leading-tight">
+                      Created {new Date(nutritionPlan.createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
+                    </Text>
+                  </View>
+                  <ChevronRight size={24} color="#D1D1D6" />
+                </GlassCard>
+              </Pressable>
+              <Pressable
+                onPress={() => router.push("/physical/nutrition-setup")}
+                className="mt-2 self-center"
+              >
+                <Text className="text-[13px] font-semibold text-[#007AFF]">
+                  Generate New Plan
+                </Text>
+              </Pressable>
+            </View>
+          ) : (
+            <Pressable onPress={() => router.push("/physical/nutrition-setup")}>
+              <GlassCard className="p-5 flex-row items-center gap-4 bg-white/60 border border-black/5 shadow-sm shadow-black/5">
+                <View className="w-14 h-14 rounded-2xl items-center justify-center bg-[#34C759]/10">
+                  <Utensils size={28} color="#34C759" strokeWidth={2} />
                 </View>
-              </View>
-              <ChevronRight size={24} color="#D1D1D6" />
-            </GlassCard>
-          </Pressable>
+                <View className="flex-1">
+                  <Text className="text-[18px] font-bold text-[#1C1C1E] tracking-tight mb-0.5">
+                    Nutrition Plan
+                  </Text>
+                  <Text className="text-[13px] text-[#8A8A8E] mb-2 leading-tight">
+                    Calorie targets, macros & meal ideas
+                  </Text>
+                  <View className="flex-row flex-wrap gap-1.5">
+                    {["Macros", "Goals", "Meals"].map((tag) => (
+                      <View
+                        key={tag}
+                        className="bg-[#34C759]/10 px-2 py-1 rounded-[6px]"
+                      >
+                        <Text className="text-[10px] font-bold text-[#34C759] uppercase">
+                          {tag}
+                        </Text>
+                      </View>
+                    ))}
+                  </View>
+                </View>
+                <ChevronRight size={24} color="#D1D1D6" />
+              </GlassCard>
+            </Pressable>
+          )}
         </Animated.View>
 
         {/* Redo assessment */}
@@ -540,6 +637,7 @@ export default function PhysicalHubScreen() {
             </Text>
           </Pressable>
         </Animated.View>
+        </>)}
       </ScrollView>
     </SafeAreaView>
   );

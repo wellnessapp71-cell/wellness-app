@@ -4,6 +4,8 @@ import {
   ScrollView,
   Pressable,
   useWindowDimensions,
+  type LayoutChangeEvent,
+  type GestureResponderEvent,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -11,61 +13,47 @@ import { useState, useEffect, useRef } from "react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { savePracticeSession } from "@/lib/spiritual-store";
 import { api } from "@/lib/api";
+import {
+  NATURE_SOUNDS,
+  playNatureSound,
+  stopCurrentSound,
+  setVolume,
+} from "@/lib/audio-engine";
+import type { AudioPlayer } from "expo-audio";
+import { recordFailedSync } from "@/lib/error-reporting";
+import { recalcSpiritualScore } from "@/lib/scoring-engine";
+import { updateScores } from "@/lib/user-store";
 
 const TEAL = "#30B0C7";
 
-// ─── Soundscapes ────────────────────────────────────────────────────────────
+const SOUNDSCAPES = Object.entries(NATURE_SOUNDS).map(([id, s]) => ({
+  id,
+  label: s.label,
+  icon: s.icon,
+  desc: s.desc,
+}));
 
-const SOUNDSCAPES = [
-  {
-    id: "rain",
-    label: "Gentle Rain",
-    icon: "🌧️",
-    desc: "Soft rainfall on leaves",
-    mood: "pre-sleep",
-    bgColor: "#4A90D9",
-  },
-  {
-    id: "ocean",
-    label: "Ocean Waves",
-    icon: "🌊",
-    desc: "Rhythmic waves on shore",
-    mood: "stress reset",
-    bgColor: "#2E86AB",
-  },
-  {
-    id: "forest",
-    label: "Forest",
-    icon: "🌲",
-    desc: "Birds and rustling trees",
-    mood: "deep work",
-    bgColor: "#2D936C",
-  },
-  {
-    id: "wind",
-    label: "Mountain Wind",
-    icon: "🏔️",
-    desc: "Calm breeze through valleys",
-    mood: "recovery",
-    bgColor: "#5B7065",
-  },
-  {
-    id: "night",
-    label: "Night Crickets",
-    icon: "🌙",
-    desc: "Peaceful evening sounds",
-    mood: "pre-sleep",
-    bgColor: "#3C4F76",
-  },
-  {
-    id: "stream",
-    label: "Mountain Stream",
-    icon: "💧",
-    desc: "Flowing water over stones",
-    mood: "deep work",
-    bgColor: "#3B92B5",
-  },
-];
+const MOOD_MAP: Record<string, { mood: string; emoji: string; color: string }> = {
+  rain: { mood: "pre-sleep", emoji: "😴", color: "#5856D6" },
+  ocean: { mood: "stress reset", emoji: "🌬️", color: TEAL },
+  forest: { mood: "deep work", emoji: "🎯", color: "#007AFF" },
+  wind: { mood: "recovery", emoji: "🌿", color: "#34C759" },
+  night: { mood: "pre-sleep", emoji: "😴", color: "#5856D6" },
+  stream: { mood: "deep work", emoji: "🎯", color: "#007AFF" },
+  thunder: { mood: "stress reset", emoji: "🌬️", color: TEAL },
+  fire: { mood: "recovery", emoji: "🌿", color: "#34C759" },
+};
+
+const BG_COLORS: Record<string, string> = {
+  rain: "#4A90D9",
+  ocean: "#2E86AB",
+  forest: "#2D936C",
+  wind: "#5B7065",
+  night: "#3C4F76",
+  stream: "#3B92B5",
+  thunder: "#4A5568",
+  fire: "#C0392B",
+};
 
 const TIMER_OPTIONS = [
   { label: "3 min", seconds: 180 },
@@ -74,13 +62,6 @@ const TIMER_OPTIONS = [
   { label: "15 min", seconds: 900 },
   { label: "30 min", seconds: 1800 },
 ];
-
-const MOOD_LABELS: Record<string, { emoji: string; color: string }> = {
-  "pre-sleep": { emoji: "😴", color: "#5856D6" },
-  "deep work": { emoji: "🎯", color: "#007AFF" },
-  "stress reset": { emoji: "🌬️", color: TEAL },
-  recovery: { emoji: "🌿", color: "#34C759" },
-};
 
 type SoundscapeState = "select" | "playing" | "complete";
 
@@ -91,21 +72,27 @@ export default function SpiritualSoundscapeScreen() {
   const fiveColWidth = Math.floor((contentWidth - 32) / 5);
   const [state, setState] = useState<SoundscapeState>("select");
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [timerDuration, setTimerDuration] = useState(300); // 5 min default
+  const [timerDuration, setTimerDuration] = useState(300);
   const [loop, setLoop] = useState(false);
+  const [volume, setVolumeState] = useState(0.8);
 
-  // Playing state
   const [timeLeft, setTimeLeft] = useState(0);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const startRef = useRef(0);
+  const soundRef = useRef<AudioPlayer | null>(null);
+  const sliderWidthRef = useRef(200);
 
   const selectedScene = SOUNDSCAPES.find((s) => s.id === selectedId);
 
-  function startPlaying() {
+  async function startPlaying() {
     if (!selectedId) return;
     setTimeLeft(timerDuration);
     startRef.current = Date.now();
     setState("playing");
+
+    // Start real audio playback
+    const sound = await playNatureSound(selectedId);
+    soundRef.current = sound;
 
     intervalRef.current = setInterval(() => {
       const elapsed = Math.floor((Date.now() - startRef.current) / 1000);
@@ -114,17 +101,20 @@ export default function SpiritualSoundscapeScreen() {
 
       if (remaining <= 0) {
         if (loop) {
-          // Restart timer for loop
           startRef.current = Date.now();
         } else {
-          stopPlaying(true);
+          doStop(true);
         }
       }
     }, 1000);
   }
 
-  async function stopPlaying(completed = false) {
+  async function doStop(completed = false) {
     if (intervalRef.current) clearInterval(intervalRef.current);
+
+    // Stop audio
+    await stopCurrentSound();
+    soundRef.current = null;
 
     const elapsed = Math.floor((Date.now() - startRef.current) / 1000);
     const totalMinutes = Math.max(1, Math.round(elapsed / 60));
@@ -142,23 +132,35 @@ export default function SpiritualSoundscapeScreen() {
 
     try {
       await api.post("/spiritual/practice", session);
-    } catch {
-      /* offline-first */
+    } catch (err) {
+      recordFailedSync("soundscape practice sync", err);
+    }
+
+    try {
+      const score = await recalcSpiritualScore();
+      await updateScores({ spiritual: score });
+    } catch (err) {
+      recordFailedSync("spiritual score recalc after soundscape", err);
     }
 
     setState("complete");
   }
 
-  // Cleanup interval on unmount
+  async function handleVolumeChange(newVol: number) {
+    setVolumeState(newVol);
+    await setVolume(newVol);
+  }
+
   useEffect(() => {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
+      stopCurrentSound();
     };
   }, []);
 
   function handleBack() {
     if (state === "playing") {
-      stopPlaying(false);
+      doStop(false);
     } else {
       router.back();
     }
@@ -193,10 +195,10 @@ export default function SpiritualSoundscapeScreen() {
               Immerse yourself in calming natural soundscapes.
             </Text>
 
-            {/* Soundscape cards */}
             {SOUNDSCAPES.map((scene) => {
               const active = selectedId === scene.id;
-              const moodInfo = MOOD_LABELS[scene.mood];
+              const moodInfo = MOOD_MAP[scene.id];
+              const bgColor = BG_COLORS[scene.id] ?? TEAL;
               return (
                 <Pressable
                   key={scene.id}
@@ -211,7 +213,7 @@ export default function SpiritualSoundscapeScreen() {
                   >
                     <View
                       className="w-12 h-12 rounded-2xl items-center justify-center"
-                      style={{ backgroundColor: scene.bgColor + "25" }}
+                      style={{ backgroundColor: bgColor + "25" }}
                     >
                       <Text style={{ fontSize: 24 }}>{scene.icon}</Text>
                     </View>
@@ -222,15 +224,17 @@ export default function SpiritualSoundscapeScreen() {
                       <Text className="text-[12px] text-[#8A8A8E] mt-0.5">
                         {scene.desc}
                       </Text>
-                      <View className="flex-row items-center gap-1 mt-1">
-                        <Text style={{ fontSize: 10 }}>{moodInfo?.emoji}</Text>
-                        <Text
-                          className="text-[10px] font-semibold uppercase"
-                          style={{ color: moodInfo?.color ?? TEAL }}
-                        >
-                          {scene.mood}
-                        </Text>
-                      </View>
+                      {moodInfo && (
+                        <View className="flex-row items-center gap-1 mt-1">
+                          <Text style={{ fontSize: 10 }}>{moodInfo.emoji}</Text>
+                          <Text
+                            className="text-[10px] font-semibold uppercase"
+                            style={{ color: moodInfo.color }}
+                          >
+                            {moodInfo.mood}
+                          </Text>
+                        </View>
+                      )}
                     </View>
                     {active && (
                       <Text className="font-bold" style={{ color: TEAL }}>
@@ -310,21 +314,15 @@ export default function SpiritualSoundscapeScreen() {
             >
               <Text className="text-white text-[17px] font-semibold">Play</Text>
             </Pressable>
-
-            <Text className="text-[11px] text-[#8A8A8E] text-center mt-3">
-              Audio assets are placeholders — plug in real ambient sound files
-              for production.
-            </Text>
           </View>
         )}
 
         {/* ── Playing ── */}
         {state === "playing" && selectedScene && (
           <View className="items-center pt-10 pb-10">
-            {/* Visual background indicator */}
             <View
               className="w-40 h-40 rounded-full items-center justify-center mb-6"
-              style={{ backgroundColor: selectedScene.bgColor + "30" }}
+              style={{ backgroundColor: (BG_COLORS[selectedScene.id] ?? TEAL) + "30" }}
             >
               <Text style={{ fontSize: 64 }}>{selectedScene.icon}</Text>
             </View>
@@ -336,16 +334,16 @@ export default function SpiritualSoundscapeScreen() {
               {selectedScene.desc}
             </Text>
 
-            {/* Mood badge */}
             <View
-              className="px-3 py-1 rounded-full mb-8"
+              className="px-3 py-1 rounded-full mb-6"
               style={{ backgroundColor: TEAL + "15" }}
             >
               <Text
                 className="text-[11px] font-semibold uppercase"
                 style={{ color: TEAL }}
               >
-                {selectedScene.mood} {loop ? "· looping" : ""}
+                {MOOD_MAP[selectedScene.id]?.mood ?? "ambient"}{" "}
+                {loop ? "· looping" : ""}
               </Text>
             </View>
 
@@ -356,11 +354,36 @@ export default function SpiritualSoundscapeScreen() {
             >
               {minutes}:{seconds.toString().padStart(2, "0")}
             </Text>
-            <Text className="text-[13px] text-[#8A8A8E] mb-8">Playing...</Text>
+            <Text className="text-[13px] text-[#8A8A8E] mb-4">Playing...</Text>
+
+            {/* Volume control */}
+            <View className="flex-row items-center gap-3 mb-8 w-full px-4">
+              <Text className="text-[12px] text-[#8A8A8E]">🔈</Text>
+              <View
+                className="flex-1 h-8 justify-center"
+                onLayout={(e: LayoutChangeEvent) => {
+                  sliderWidthRef.current = e.nativeEvent.layout.width;
+                }}
+              >
+                <Pressable
+                  onPress={(e: GestureResponderEvent) => {
+                    const ratio = e.nativeEvent.locationX / sliderWidthRef.current;
+                    handleVolumeChange(Math.max(0, Math.min(1, ratio)));
+                  }}
+                  className="h-2 bg-[#E5E5EA] rounded-full overflow-hidden justify-center"
+                >
+                  <View
+                    className="h-full rounded-full"
+                    style={{ width: `${volume * 100}%`, backgroundColor: TEAL }}
+                  />
+                </Pressable>
+              </View>
+              <Text className="text-[12px] text-[#8A8A8E]">🔊</Text>
+            </View>
 
             {/* Stop button */}
             <Pressable
-              onPress={() => stopPlaying(false)}
+              onPress={() => doStop(false)}
               className="w-full rounded-2xl py-4 items-center bg-[#FF3B30]"
             >
               <Text className="text-white text-[17px] font-semibold">Stop</Text>

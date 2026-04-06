@@ -14,6 +14,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { CrisisButton } from "@/components/mental/CrisisButton";
 import { saveSupportRequest } from "@/lib/mental-store";
 import { api } from "@/lib/api";
+import { recordFailedSync } from "@/lib/error-reporting";
 import { syncFromApi } from "@/lib/user-store";
 import type { SupportMode, SupportRequest } from "@aura/types";
 
@@ -104,8 +105,8 @@ export default function BookingScreen() {
       finalRequest = response.supportRequest;
       await saveSupportRequest(finalRequest);
       await syncFromApi();
-    } catch {
-      // offline-first
+    } catch (err) {
+      recordFailedSync("mental support booking sync", err);
     }
 
     setSubmittedRequest(finalRequest);

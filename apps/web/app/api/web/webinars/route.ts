@@ -4,6 +4,43 @@ import { z } from "zod";
 import { ok, errorResponse } from "@/lib/api/response";
 import { parseRequestJson } from "@/lib/api/validation";
 import { requireRole } from "@/lib/auth/roles";
+import { resolveAuthContext } from "@/lib/auth/middleware";
+
+/**
+ * GET /api/web/webinars — List upcoming webinars visible to the authenticated user.
+ */
+export async function GET(request: Request): Promise<NextResponse> {
+  const auth = resolveAuthContext(request, { allowAnonymousWhenCompat: true });
+  if (!auth) {
+    return errorResponse(401, "UNAUTHORIZED", "Missing or invalid auth token.");
+  }
+
+  const url = new URL(request.url);
+  const limit = Math.min(parseInt(url.searchParams.get("limit") ?? "20", 10), 50);
+
+  try {
+    const webinars = await prisma.webinarNotification.findMany({
+      where: { scheduledFor: { gte: new Date() } },
+      orderBy: { scheduledFor: "asc" },
+      take: limit,
+      select: {
+        id: true,
+        title: true,
+        message: true,
+        scheduledFor: true,
+        deliveryStatus: true,
+        audience: true,
+        createdAt: true,
+      },
+    });
+
+    return ok({ webinars });
+  } catch (error) {
+    return errorResponse(500, "WEBINAR_LIST_ERROR", "Unable to fetch webinars.", {
+      message: error instanceof Error ? error.message : "Unknown error",
+    });
+  }
+}
 
 const webinarSchema = z.object({
   title: z.string().trim().min(3).max(160),

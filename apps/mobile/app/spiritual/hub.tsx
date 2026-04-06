@@ -4,6 +4,7 @@ import {
   ScrollView,
   Pressable,
   useWindowDimensions,
+  ActivityIndicator,
 } from "react-native";
 import {
   SafeAreaView,
@@ -25,6 +26,7 @@ import {
   generateCoachMessage,
   analyzeSpiritualCheckIns,
 } from "@aura/spiritual-engine";
+import { captureError } from "@/lib/error-reporting";
 import type {
   SpiritualBaseline,
   SpiritualDailyCheckIn,
@@ -69,6 +71,7 @@ export default function SpiritualHubScreen() {
   const [plan, setPlan] = useState<SpiritualWellnessPlan | null>(null);
   const [coachMsg, setCoachMsg] = useState<SpiritualCoachMessage | null>(null);
   const [todayDone, setTodayDone] = useState(false);
+  const [loading, setLoading] = useState(true);
   const contentWidth = width - 48;
   const safeContentWidth = Math.max(contentWidth, 280);
   const twoColCardWidth = Math.floor((safeContentWidth - 12) / 2);
@@ -77,59 +80,64 @@ export default function SpiritualHubScreen() {
   useFocusEffect(
     useCallback(() => {
       (async () => {
-        const profile = await getProfile();
-        if (profile) {
-          setScore(profile.scoreSpiritual);
-        }
-
-        const bl = await getSpiritualBaseline();
-        setBaseline(bl);
-
-        const checkIns = await getSpiritualCheckInHistory(7);
-        const currentPlan = await getCurrentSpiritualPlan();
-        const weeklyReview = await getLatestSpiritualWeeklyReview();
-
-        if (checkIns.length > 0) {
-          setLatestCheckIn(checkIns[checkIns.length - 1]);
-        }
-
-        const today = new Date().toISOString().split("T")[0];
-        setTodayDone(checkIns.some((c) => c.date === today));
-
-        setPlan(currentPlan);
-
-        if (weeklyReview) {
-          const prevScore = profile
-            ? profile.scoreSpiritual - (weeklyReview.calmScoreChange ?? 0)
-            : undefined;
-          if (
-            prevScore !== undefined &&
-            prevScore !== profile?.scoreSpiritual
-          ) {
-            setPreviousScore(Math.max(0, prevScore));
+        setLoading(true);
+        try {
+          const profile = await getProfile();
+          if (profile) {
+            setScore(profile.scoreSpiritual);
           }
-        }
 
-        if (bl) {
-          try {
-            const trendAnalysis = analyzeSpiritualCheckIns(
-              checkIns.map((c) => ({
-                ...c,
-                id: c.id ?? "",
-                createdAt: c.createdAt ?? "",
-              })),
-              7,
-            );
-            const msg = generateCoachMessage(
-              bl.band,
-              bl.weakestDomain,
-              trendAnalysis.overallDirection,
-              latestCheckIn?.blockers?.[0] ?? null,
-            );
-            setCoachMsg(msg);
-          } catch {
-            // engine may not have data yet
+          const bl = await getSpiritualBaseline();
+          setBaseline(bl);
+
+          const checkIns = await getSpiritualCheckInHistory(7);
+          const currentPlan = await getCurrentSpiritualPlan();
+          const weeklyReview = await getLatestSpiritualWeeklyReview();
+
+          if (checkIns.length > 0) {
+            setLatestCheckIn(checkIns[checkIns.length - 1]);
           }
+
+          const today = new Date().toISOString().split("T")[0];
+          setTodayDone(checkIns.some((c) => c.date === today));
+
+          setPlan(currentPlan);
+
+          if (weeklyReview) {
+            const prevScore = profile
+              ? profile.scoreSpiritual - (weeklyReview.calmScoreChange ?? 0)
+              : undefined;
+            if (
+              prevScore !== undefined &&
+              prevScore !== profile?.scoreSpiritual
+            ) {
+              setPreviousScore(Math.max(0, prevScore));
+            }
+          }
+
+          if (bl) {
+            try {
+              const trendAnalysis = analyzeSpiritualCheckIns(
+                checkIns.map((c) => ({
+                  ...c,
+                  id: c.id ?? "",
+                  createdAt: c.createdAt ?? "",
+                })),
+                7,
+              );
+              const msg = generateCoachMessage(
+                bl.band,
+                bl.weakestDomain,
+                trendAnalysis.overallDirection,
+                latestCheckIn?.blockers?.[0] ?? null,
+              );
+              setCoachMsg(msg);
+            } catch (err) {
+              captureError(err, { context: "spiritual hub coach message generation" });
+            }
+          }
+        } finally {
+          setLoading(false);
         }
       })();
     }, []),
@@ -165,6 +173,12 @@ export default function SpiritualHubScreen() {
         }}
         showsVerticalScrollIndicator={false}
       >
+        {loading ? (
+          <View className="flex-1 items-center justify-center pt-40">
+            <ActivityIndicator size="large" color="#30B0C7" />
+            <Text className="text-[14px] text-[#8A8A8E] mt-4 font-medium">Loading your spiritual hub…</Text>
+          </View>
+        ) : (<>
         {/* Header */}
         <Animated.View
           entering={FadeInDown.duration(800).springify()}
@@ -380,9 +394,7 @@ export default function SpiritualHubScreen() {
               </GlassCard>
             </Pressable>
             <Pressable
-              onPress={() => {
-                /* TODO: get help screen */
-              }}
+              onPress={() => router.push("/mental/booking")}
               style={{ width: threeColCardWidth }}
             >
               <GlassCard className="p-4 items-center min-h-[110px] border border-black/5 bg-white/60">
@@ -459,10 +471,10 @@ export default function SpiritualHubScreen() {
                 color: "#FF2D55",
               },
               {
-                icon: Footprints,
-                label: "Nature",
-                route: "/spiritual/meditation",
-                color: "#30B0C7",
+                icon: BrainCircuit,
+                label: "Binaural",
+                route: "/spiritual/binaural-beats",
+                color: "#AF52DE",
               },
             ].map((tile) => {
               const Icon = tile.icon;
@@ -597,6 +609,7 @@ export default function SpiritualHubScreen() {
             </Text>
           </Pressable>
         </Animated.View>
+        </>)}
       </ScrollView>
     </SafeAreaView>
   );

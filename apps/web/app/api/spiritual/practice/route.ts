@@ -36,7 +36,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     return errorResponse(400, "INVALID_PRACTICE", "durationMinutes must be a non-negative number.");
   }
 
-  if (body.rating !== undefined && (typeof body.rating !== "number" || body.rating < 1 || body.rating > 5)) {
+  if (body.rating != null && (typeof body.rating !== "number" || body.rating < 1 || body.rating > 5)) {
     return errorResponse(400, "INVALID_PRACTICE", "rating must be 1-5.");
   }
 
