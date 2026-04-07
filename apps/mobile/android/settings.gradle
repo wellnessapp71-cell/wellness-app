@@ -23,13 +23,50 @@ plugins {
 }
 
 extensions.configure(com.facebook.react.ReactSettingsExtension) { ex ->
-  if (System.getenv('EXPO_USE_COMMUNITY_AUTOLINKING') == '1') {
-    ex.autolinkLibrariesFromCommand()
-  } else {
-    ex.autolinkLibrariesFromCommand(expoAutolinking.rnConfigCommand)
-  }
+  ex.autolinkLibrariesFromCommand(expoAutolinking.rnConfigCommand)
 }
 expoAutolinking.useExpoModules()
+
+def mobileNodeModulesDir = new File(rootDir.getParentFile(), "node_modules")
+def workspaceNodeModulesDir = new File(rootDir.getParentFile().getParentFile().getParentFile(), "node_modules")
+
+def resolveAutolinkSourceDir = { String sourceDir ->
+  def configuredDir = file(sourceDir)
+  if (configuredDir.exists()) {
+    return configuredDir
+  }
+
+  def mobileNodeModulesPrefix = mobileNodeModulesDir.absolutePath + File.separator
+  if (configuredDir.absolutePath.startsWith(mobileNodeModulesPrefix)) {
+    def relativePath = configuredDir.absolutePath.substring(mobileNodeModulesPrefix.length())
+    def workspaceCandidate = new File(workspaceNodeModulesDir, relativePath)
+    if (workspaceCandidate.exists()) {
+      return workspaceCandidate
+    }
+  }
+
+  return configuredDir
+}
+
+def autolinkingConfigFile = new File(rootDir, "build/generated/autolinking/autolinking.json")
+if (autolinkingConfigFile.exists()) {
+  def autolinkingConfig = new groovy.json.JsonSlurper().parseText(autolinkingConfigFile.text)
+  autolinkingConfig.dependencies.each { packageName, dependency ->
+    def androidConfig = dependency?.platforms?.android
+    def sourceDir = androidConfig?.sourceDir
+    if (!sourceDir) {
+      return
+    }
+
+    def projectName = packageName.startsWith('@') ? packageName.substring(1) : packageName
+    projectName = projectName.replace('/', '_')
+    def projectPath = ":${projectName}"
+    def linkedProject = findProject(projectPath)
+    if (linkedProject != null) {
+      linkedProject.projectDir = resolveAutolinkSourceDir(sourceDir)
+    }
+  }
+}
 
 rootProject.name = 'Aura Wellness'
 

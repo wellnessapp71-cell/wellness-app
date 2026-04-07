@@ -9,9 +9,7 @@ def projectRoot = rootDir.getAbsoluteFile().getParentFile().getAbsolutePath()
  * By default you don't need to apply any configuration, just uncomment the lines you need.
  */
 react {
-    // Hardcode entry file for monorepo — resolveAppEntry fails to find our
-    // index.js when EAS hoists expo to the workspace root node_modules.
-    entryFile = file("$projectRoot/index.js")
+    entryFile = file(["node", "-e", "require('expo/scripts/resolveAppEntry')", projectRoot, "android", "absolute"].execute(null, rootDir).text.trim())
     reactNativeDir = new File(["node", "--print", "require.resolve('react-native/package.json')"].execute(null, rootDir).text.trim()).getParentFile().getAbsoluteFile()
     hermesCommand = new File(["node", "--print", "require.resolve('react-native/package.json')"].execute(null, rootDir).text.trim()).getParentFile().getAbsolutePath() + "/sdks/hermesc/%OS-BIN%/hermesc"
     codegenDir = new File(["node", "--print", "require.resolve('@react-native/codegen/package.json', { paths: [require.resolve('react-native/package.json')] })"].execute(null, rootDir).text.trim()).getParentFile().getAbsoluteFile()
@@ -88,14 +86,15 @@ def releaseStorePassword = (findProperty('AURA_RELEASE_STORE_PASSWORD') ?: Syste
 def releaseKeyAlias = (findProperty('AURA_RELEASE_KEY_ALIAS') ?: System.getenv('AURA_RELEASE_KEY_ALIAS'))
 def releaseKeyPassword = (findProperty('AURA_RELEASE_KEY_PASSWORD') ?: System.getenv('AURA_RELEASE_KEY_PASSWORD'))
 def hasReleaseSigning = releaseStoreFile && releaseStorePassword && releaseKeyAlias && releaseKeyPassword
+def isEasBuild = (System.getenv('EAS_BUILD') ?: 'false').toBoolean()
 
 def isReleaseTaskRequested = gradle.startParameter.taskNames.any { taskName ->
     def lower = taskName.toLowerCase()
     return lower.contains('release') || lower.contains('bundle')
 }
 
-if (isReleaseTaskRequested && !hasReleaseSigning) {
-    throw new GradleException(
+if (isReleaseTaskRequested && !hasReleaseSigning && !isEasBuild) {
+    throw new org.gradle.api.GradleException(
         "Release signing is not configured. Set AURA_RELEASE_STORE_FILE, AURA_RELEASE_STORE_PASSWORD, AURA_RELEASE_KEY_ALIAS, and AURA_RELEASE_KEY_PASSWORD."
     )
 }
@@ -137,7 +136,11 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig hasReleaseSigning ? signingConfigs.release : signingConfigs.debug
+            if (hasReleaseSigning) {
+                signingConfig signingConfigs.release
+            } else if (!isEasBuild) {
+                signingConfig signingConfigs.debug
+            }
             shrinkResources (findProperty('android.enableShrinkResourcesInReleaseBuilds')?.toBoolean() ?: false)
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
