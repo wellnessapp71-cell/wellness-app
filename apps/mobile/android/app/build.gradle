@@ -94,7 +94,7 @@ def isReleaseTaskRequested = gradle.startParameter.taskNames.any { taskName ->
 }
 
 if (isReleaseTaskRequested && !hasReleaseSigning && !isEasBuild) {
-    throw new org.gradle.api.GradleException(
+    throw new RuntimeException(
         "Release signing is not configured. Set AURA_RELEASE_STORE_FILE, AURA_RELEASE_STORE_PASSWORD, AURA_RELEASE_KEY_ALIAS, and AURA_RELEASE_KEY_PASSWORD."
     )
 }

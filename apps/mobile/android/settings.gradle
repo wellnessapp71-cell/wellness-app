@@ -29,6 +29,7 @@ expoAutolinking.useExpoModules()
 
 def mobileNodeModulesDir = new File(rootDir.getParentFile(), "node_modules")
 def workspaceNodeModulesDir = new File(rootDir.getParentFile().getParentFile().getParentFile(), "node_modules")
+def nodeModulesCandidates = [mobileNodeModulesDir, workspaceNodeModulesDir]
 
 def resolveAutolinkSourceDir = { String sourceDir ->
   def configuredDir = file(sourceDir)
@@ -48,24 +49,41 @@ def resolveAutolinkSourceDir = { String sourceDir ->
   return configuredDir
 }
 
-def autolinkingConfigFile = new File(rootDir, "build/generated/autolinking/autolinking.json")
-if (autolinkingConfigFile.exists()) {
-  def autolinkingConfig = new groovy.json.JsonSlurper().parseText(autolinkingConfigFile.text)
-  autolinkingConfig.dependencies.each { packageName, dependency ->
-    def androidConfig = dependency?.platforms?.android
-    def sourceDir = androidConfig?.sourceDir
-    if (!sourceDir) {
-      return
-    }
-
-    def projectName = packageName.startsWith('@') ? packageName.substring(1) : packageName
-    projectName = projectName.replace('/', '_')
-    def projectPath = ":${projectName}"
-    def linkedProject = findProject(projectPath)
-    if (linkedProject != null) {
-      linkedProject.projectDir = resolveAutolinkSourceDir(sourceDir)
+def findAndroidSourceDir = { String packagePath ->
+  for (nodeModulesDir in nodeModulesCandidates) {
+    def androidDir = new File(nodeModulesDir, "${packagePath}/android")
+    if (new File(androidDir, "build.gradle").exists() || new File(androidDir, "build.gradle.kts").exists()) {
+      return androidDir
     }
   }
+  return null
+}
+
+def forceAndroidProjectDir = { String projectPath, String packagePath ->
+  def linkedProject = findProject(projectPath)
+  if (linkedProject == null) {
+    return
+  }
+
+  def resolvedDir = findAndroidSourceDir(packagePath)
+  if (resolvedDir != null) {
+    linkedProject.projectDir = resolveAutolinkSourceDir(resolvedDir.absolutePath)
+  }
+}
+
+[
+  ":expo": "expo",
+  ":expo-constants": "expo-constants",
+  ":expo-modules-core": "expo-modules-core",
+  ":react-native-async-storage_async-storage": "@react-native-async-storage/async-storage",
+  ":sentry_react-native": "@sentry/react-native",
+  ":react-native-fs": "react-native-fs",
+  ":react-native-reanimated": "react-native-reanimated",
+  ":react-native-safe-area-context": "react-native-safe-area-context",
+  ":react-native-screens": "react-native-screens",
+  ":react-native-svg": "react-native-svg"
+].each { projectPath, packagePath ->
+  forceAndroidProjectDir(projectPath, packagePath)
 }
 
 rootProject.name = 'Aura Wellness'
