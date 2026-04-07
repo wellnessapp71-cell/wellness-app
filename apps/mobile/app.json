@@ -2,6 +2,7 @@
   "expo": {
     "name": "Aura Wellness",
     "version": "1.0.0",
+    "userInterfaceStyle": "automatic",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -28,6 +29,11 @@
           "project": "aura-mobile"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "60a410dd-9ee6-432b-b682-bf5403a314ee"
+      }
+    }
   }
 }

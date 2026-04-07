@@ -1,0 +1,20 @@
+# Prevent oversized mobile artifacts from being uploaded with web deployments.
+**/*.apk
+**/*.aab
+**/*.ipa
+
+# Android/Gradle build outputs
+android/**/build/**
+apps/mobile/android/**/build/**
+apps/mobile/android/.gradle/**
+
+# Local/generated files
+.vercel/**
+.turbo/**
+.expo/**
+apps/mobile/.expo/**
+apps/web/.next/**
+node_modules/**
+apps/mobile/node_modules/**
+apps/web/node_modules/**
+packages/**/node_modules/**

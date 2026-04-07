@@ -2,9 +2,10 @@
  * Vercel build wrapper — catches and logs any errors clearly.
  */
 const { execSync } = require("child_process");
+const { existsSync } = require("fs");
 const path = require("path");
 
-const webDir = path.resolve(__dirname, "apps", "web");
+const webDir = path.resolve(__dirname, "..", "apps", "web");
 
 console.log("=== VERCEL BUILD DIAGNOSTICS ===");
 console.log("Node version:", process.version);
@@ -13,9 +14,16 @@ console.log("Web dir:", webDir);
 console.log("NODE_ENV:", process.env.NODE_ENV);
 console.log("VERCEL:", process.env.VERCEL);
 
+if (!existsSync(webDir)) {
+  console.error("ERROR: web directory not found:", webDir);
+  process.exit(1);
+}
+
 // Check prisma
 try {
-  const prismaPath = require.resolve("@prisma/client", { paths: [webDir, __dirname] });
+  const prismaPath = require.resolve("@prisma/client", {
+    paths: [webDir, __dirname],
+  });
   console.log("Prisma client found at:", prismaPath);
 } catch (e) {
   console.error("WARNING: @prisma/client not found:", e.message);
