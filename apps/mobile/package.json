@@ -10,8 +10,8 @@
     "web": "expo start --web",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "npm run typecheck",
-    "preflight:android:eas:quick": "cd android && EXPO_NO_METRO_WORKSPACE_ROOT=1 EAS_BUILD=true ./gradlew :app:buildReleasePreBundle --no-daemon --console=plain",
-    "preflight:android:eas:full": "cd android && EXPO_NO_METRO_WORKSPACE_ROOT=1 EAS_BUILD=true ./gradlew clean :app:bundleRelease --no-daemon --console=plain"
+    "preflight:android:eas:quick": "node ./scripts/run-android-preflight.js quick",
+    "preflight:android:eas:full": "node ./scripts/run-android-preflight.js full"
   },
   "dependencies": {
     "@aura/fitness-engine": "*",
