@@ -13,6 +13,9 @@
     },
     "preview": {
       "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
       "env": {
         "EXPO_NO_METRO_WORKSPACE_ROOT": "1"
       }
