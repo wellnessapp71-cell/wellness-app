@@ -1,3 +1,5 @@
+"use client";
+
 import { PortalNavShell } from "@/components/portal-nav-shell";
 import { HR_NAV, HR_ROLE_LABEL } from "@/components/hr-nav";
 
