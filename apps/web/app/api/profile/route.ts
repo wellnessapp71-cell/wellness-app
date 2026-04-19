@@ -231,6 +231,12 @@ export async function POST(request: Request): Promise<NextResponse> {
         ...(p.physicalOnboardingDone !== undefined && {
           physicalOnboardingDone: Boolean(p.physicalOnboardingDone),
         }),
+        ...(p.spiritualOnboardingDone !== undefined && {
+          spiritualOnboardingDone: Boolean(p.spiritualOnboardingDone),
+        }),
+        ...(p.lifestyleOnboardingDone !== undefined && {
+          lifestyleOnboardingDone: Boolean(p.lifestyleOnboardingDone),
+        }),
         // Tracking
         ...(p.streakDays !== undefined && {
           streakDays: Number(p.streakDays),
@@ -449,46 +455,31 @@ async function buildEmployeeWorkspace(
       audience: webinar.audience,
     })),
     supportRequests: supportRequests.map((request) => ({
-      id: request.id,
+      requestId: request.id,
+      userId: request.userId,
       issueType: request.issueType,
       preferredMode: request.preferredMode,
-      sessionType: request.sessionType,
+      sessionType: request.sessionType ?? undefined,
       status: request.status,
-      language: request.language,
-      style: request.style,
-      reason: request.reason,
-      outcome: request.outcome,
-      scheduledFor: request.scheduledFor,
-      acceptedAt: request.acceptedAt,
-      meetingUrl: request.meetingUrl,
-      sessionNotes: request.sessionNotes,
-      createdAt: request.createdAt,
-      organization: request.organization
-        ? {
-            id: request.organization.id,
-            name: request.organization.name,
-            referralCode: request.organization.referralCode,
-          }
-        : null,
-      psychologist: request.psychologist
-        ? {
-            id: request.psychologist.id,
-            name: request.psychologist.name,
-            email: request.psychologist.email,
-          }
-        : null,
-      sessionEvents: request.sessionEvents.map((event) => ({
+      language: request.language ?? null,
+      preferredStyle: request.style ?? null,
+      reason: request.reason ?? null,
+      desiredOutcome: request.outcome ?? null,
+      organizationId: request.organization?.id,
+      organizationName: request.organization?.name,
+      psychologistId: request.psychologist?.id,
+      psychologistName: request.psychologist?.name,
+      scheduledForIso: request.scheduledFor ? request.scheduledFor.toISOString() : undefined,
+      acceptedAtIso: request.acceptedAt ? request.acceptedAt.toISOString() : undefined,
+      meetingUrl: request.meetingUrl ?? undefined,
+      sessionNotes: request.sessionNotes ?? undefined,
+      events: request.sessionEvents.map((event) => ({
         id: event.id,
         eventType: event.eventType,
-        createdAt: event.createdAt,
-        actor: event.actor
-          ? {
-              id: event.actor.id,
-              name: event.actor.name,
-              email: event.actor.email,
-            }
-          : null,
+        createdAtIso: event.createdAt.toISOString(),
+        actorName: event.actor?.name ?? null,
       })),
+      createdAtIso: request.createdAt.toISOString(),
     })),
   };
 }

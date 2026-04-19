@@ -100,9 +100,19 @@ export default function WeightLogScreen() {
                 onPress={handleSave}
                 disabled={saving || !weightKg}
                 className="px-5 py-3 rounded-xl"
-                style={{ backgroundColor: saving || !weightKg ? "#C6C6C8" : "#007AFF" }}
+                style={{
+                  backgroundColor: saving || !weightKg ? "#D1D1D6" : "#1C1C1E",
+                  shadowColor: "#000",
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: saving || !weightKg ? 0 : 0.15,
+                  shadowRadius: 8,
+                  elevation: saving || !weightKg ? 0 : 3,
+                }}
               >
-                <Text className="text-white font-semibold text-[15px]">
+                <Text
+                  className="font-bold text-[15px]"
+                  style={{ color: saving || !weightKg ? "#8A8A8E" : "#FFFFFF" }}
+                >
                   {saving ? "..." : "Save"}
                 </Text>
               </Pressable>

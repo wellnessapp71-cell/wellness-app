@@ -43,6 +43,7 @@ import {
   Droplets,
   Shield,
   Bell,
+  LifeBuoy,
   Settings,
   ChevronRight,
   LogOut,
@@ -177,10 +178,41 @@ export default function ProfileScreen() {
       ]
     : [];
 
-  const settingsRows = [
-    { Icon: Shield, label: "Privacy & Consent", sub: "Manage data sharing", color: "#34C759" },
-    { Icon: Bell, label: "Notifications", sub: "Nudges & reminders", color: "#FF9500" },
-    { Icon: Settings, label: "Account Settings", sub: "Email, password", color: "#8A8A8E" },
+  const settingsRows: {
+    Icon: typeof Shield;
+    label: string;
+    sub: string;
+    color: string;
+    route?: string;
+  }[] = [
+    {
+      Icon: LifeBuoy,
+      label: "Request Support",
+      sub: "Reach your HR or wellbeing team",
+      color: "#167C80",
+      route: "/support/request",
+    },
+    {
+      Icon: Shield,
+      label: "Privacy & Consent",
+      sub: "Manage data sharing",
+      color: "#34C759",
+      route: "/settings/privacy",
+    },
+    {
+      Icon: Bell,
+      label: "Notifications",
+      sub: "Nudges & reminders",
+      color: "#FF9500",
+      route: "/settings/notifications",
+    },
+    {
+      Icon: Settings,
+      label: "Account Settings",
+      sub: "Email, password",
+      color: "#8A8A8E",
+      route: "/settings/account",
+    },
   ];
 
   const pillarScores = [
@@ -299,24 +331,24 @@ export default function ProfileScreen() {
                 className="p-5"
                 style={{
                   borderWidth: 1,
-                  borderColor: "rgba(0,122,255,0.2)",
-                  backgroundColor: "rgba(0,122,255,0.04)",
+                  borderColor: "rgba(0,0,0,0.06)",
+                  backgroundColor: "#FFFFFF",
                 }}
               >
                 <View
                   style={{
                     flexDirection: "row",
                     alignItems: "center",
-                    gap: 12,
-                    marginBottom: 12,
+                    gap: 14,
+                    marginBottom: 14,
                   }}
                 >
                   <View
                     style={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: 20,
-                      backgroundColor: "#007AFF",
+                      width: 44,
+                      height: 44,
+                      borderRadius: 14,
+                      backgroundColor: "#1C1C1E",
                       alignItems: "center",
                       justifyContent: "center",
                     }}
@@ -335,53 +367,93 @@ export default function ProfileScreen() {
                     >
                       {workspace?.organization?.name ?? auth?.organization?.name}
                     </Text>
-                    <Text
+                    <View
                       style={{
-                        fontSize: 13,
-                        fontWeight: "600",
-                        color: "#007AFF",
-                        marginTop: 2,
-                        textTransform: "uppercase",
-                        letterSpacing: 1,
+                        alignSelf: "flex-start",
+                        backgroundColor: "#F2F2F7",
+                        paddingHorizontal: 8,
+                        paddingVertical: 3,
+                        borderRadius: 6,
+                        marginTop: 4,
                       }}
                     >
-                      {auth?.role ?? "employee"} Role
-                    </Text>
+                      <Text
+                        style={{
+                          fontSize: 11,
+                          fontWeight: "700",
+                          color: "#636366",
+                          textTransform: "uppercase",
+                          letterSpacing: 0.8,
+                        }}
+                      >
+                        {auth?.role ?? "employee"}
+                      </Text>
+                    </View>
                   </View>
                 </View>
                 <View
                   style={{
                     height: 1,
                     backgroundColor: "rgba(0,0,0,0.05)",
-                    marginVertical: 12,
+                    marginBottom: 14,
                   }}
                 />
                 <View
                   style={{
                     flexDirection: "row",
-                    flexWrap: "wrap",
                     alignItems: "center",
-                    gap: 16,
+                    gap: 24,
                   }}
                 >
-                  <Text
+                  <View style={{ alignItems: "center" }}>
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        fontWeight: "700",
+                        color: "#1C1C1E",
+                        marginBottom: 2,
+                      }}
+                    >
+                      {workspace?.supportRequests.length ?? 0}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        color: "#8A8A8E",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Requests
+                    </Text>
+                  </View>
+                  <View
                     style={{
-                      fontSize: 14,
-                      color: "#3C3C43",
-                      fontWeight: "500",
+                      width: 1,
+                      height: 28,
+                      backgroundColor: "rgba(0,0,0,0.06)",
                     }}
-                  >
-                    {workspace?.supportRequests.length ?? 0} Requests
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 14,
-                      color: "#3C3C43",
-                      fontWeight: "500",
-                    }}
-                  >
-                    {workspace?.webinars.length ?? 0} Updates Sync
-                  </Text>
+                  />
+                  <View style={{ alignItems: "center" }}>
+                    <Text
+                      style={{
+                        fontSize: 18,
+                        fontWeight: "700",
+                        color: "#1C1C1E",
+                        marginBottom: 2,
+                      }}
+                    >
+                      {workspace?.webinars.length ?? 0}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        color: "#8A8A8E",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Updates Sync
+                    </Text>
+                  </View>
                 </View>
               </GlassCard>
             </View>
@@ -405,13 +477,14 @@ export default function ProfileScreen() {
               style={{
                 marginBottom: 12,
                 borderWidth: 1,
-                borderColor: "rgba(0,0,0,0.04)",
+                borderColor: "rgba(0,0,0,0.06)",
+                backgroundColor: "#FFFFFF",
               }}
             >
               <Text
                 style={{
-                  fontSize: 48,
-                  fontWeight: "700",
+                  fontSize: 52,
+                  fontWeight: "800",
                   color: "#1C1C1E",
                   letterSpacing: -2,
                   marginBottom: 4,
@@ -421,11 +494,11 @@ export default function ProfileScreen() {
               </Text>
               <Text
                 style={{
-                  fontSize: 13,
+                  fontSize: 12,
                   fontWeight: "700",
                   color: "#8A8A8E",
                   textTransform: "uppercase",
-                  letterSpacing: 2,
+                  letterSpacing: 2.5,
                 }}
               >
                 Aura Score
@@ -446,31 +519,43 @@ export default function ProfileScreen() {
                     key={p.label}
                     style={{
                       alignItems: "center",
-                      backgroundColor: "rgba(255,255,255,0.6)",
-                      padding: 12,
+                      backgroundColor: "#FFFFFF",
+                      paddingVertical: 16,
+                      paddingHorizontal: 12,
                       borderRadius: 20,
                       borderWidth: 1,
-                      borderColor: "rgba(0,0,0,0.04)",
+                      borderColor: "rgba(0,0,0,0.06)",
                       flex: 1,
                       minWidth: isCompact ? "45%" : 0,
                       shadowColor: "#000",
-                      shadowOffset: { width: 0, height: 1 },
-                      shadowOpacity: 0.03,
-                      shadowRadius: 4,
-                      elevation: 1,
+                      shadowOffset: { width: 0, height: 2 },
+                      shadowOpacity: 0.05,
+                      shadowRadius: 8,
+                      elevation: 2,
                     }}
                   >
-                    <IconComp
-                      size={20}
-                      color={p.color}
-                      strokeWidth={2.5}
-                      style={{ marginBottom: 8 }}
-                    />
+                    <View
+                      style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: 12,
+                        backgroundColor: p.color + "12",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginBottom: 10,
+                      }}
+                    >
+                      <IconComp
+                        size={18}
+                        color={p.color}
+                        strokeWidth={2.5}
+                      />
+                    </View>
                     <Text
                       style={{
-                        fontSize: 18,
-                        fontWeight: "700",
-                        color: p.color,
+                        fontSize: 22,
+                        fontWeight: "800",
+                        color: "#1C1C1E",
                         marginBottom: 4,
                       }}
                     >
@@ -478,7 +563,7 @@ export default function ProfileScreen() {
                     </Text>
                     <Text
                       style={{
-                        fontSize: 9,
+                        fontSize: 10,
                         fontWeight: "700",
                         color: "#8A8A8E",
                         textTransform: "uppercase",
@@ -499,110 +584,61 @@ export default function ProfileScreen() {
           <View
             style={{
               flexDirection: "row",
-              gap: 12,
+              gap: 10,
               marginBottom: 28,
             }}
           >
-            <GlassCard
-              className="p-5 items-center justify-center"
-              style={{
-                flex: 1,
-                minHeight: 100,
-                borderWidth: 1,
-                borderColor: "rgba(0,0,0,0.04)",
-              }}
-            >
-              <Text
+            {[
+              { value: profile?.streakDays ?? 0, label: "Day\nStreak", color: "#FF9500" },
+              { value: profile?.totalWorkouts ?? 0, label: "Workouts", color: "#34C759" },
+              { value: profile?.totalCaloriesBurned ?? 0, label: "Calories", color: "#FF2D55" },
+            ].map((stat) => (
+              <View
+                key={stat.label}
                 style={{
-                  fontSize: 32,
-                  fontWeight: "700",
-                  color: "#FF9500",
-                  letterSpacing: -1,
-                  marginBottom: 4,
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "#FFFFFF",
+                  paddingVertical: 20,
+                  paddingHorizontal: 12,
+                  borderRadius: 20,
+                  borderWidth: 1,
+                  borderColor: "rgba(0,0,0,0.06)",
+                  minHeight: 100,
+                  shadowColor: "#000",
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: 0.05,
+                  shadowRadius: 8,
+                  elevation: 2,
                 }}
               >
-                {profile?.streakDays ?? 0}
-              </Text>
-              <Text
-                style={{
-                  fontSize: 11,
-                  fontWeight: "700",
-                  color: "#8A8A8E",
-                  textTransform: "uppercase",
-                  letterSpacing: 1.5,
-                }}
-              >
-                Day Streak
-              </Text>
-            </GlassCard>
-
-            <GlassCard
-              className="p-5 items-center justify-center"
-              style={{
-                flex: 1,
-                minHeight: 100,
-                borderWidth: 1,
-                borderColor: "rgba(0,0,0,0.04)",
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 32,
-                  fontWeight: "700",
-                  color: "#34C759",
-                  letterSpacing: -1,
-                  marginBottom: 4,
-                }}
-              >
-                {profile?.totalWorkouts ?? 0}
-              </Text>
-              <Text
-                style={{
-                  fontSize: 11,
-                  fontWeight: "700",
-                  color: "#8A8A8E",
-                  textTransform: "uppercase",
-                  letterSpacing: 1.5,
-                  textAlign: "center",
-                }}
-              >
-                Workouts
-              </Text>
-            </GlassCard>
-
-            <GlassCard
-              className="p-5 items-center justify-center"
-              style={{
-                flex: 1,
-                minHeight: 100,
-                borderWidth: 1,
-                borderColor: "rgba(0,0,0,0.04)",
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 32,
-                  fontWeight: "700",
-                  color: "#FF2D55",
-                  letterSpacing: -1,
-                  marginBottom: 4,
-                }}
-              >
-                {profile?.totalCaloriesBurned ?? 0}
-              </Text>
-              <Text
-                style={{
-                  fontSize: 11,
-                  fontWeight: "700",
-                  color: "#8A8A8E",
-                  textTransform: "uppercase",
-                  letterSpacing: 1.5,
-                  textAlign: "center",
-                }}
-              >
-                Calories
-              </Text>
-            </GlassCard>
+                <Text
+                  style={{
+                    fontSize: 28,
+                    fontWeight: "800",
+                    color: "#1C1C1E",
+                    letterSpacing: -1,
+                    marginBottom: 6,
+                  }}
+                >
+                  {stat.value}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 10,
+                    fontWeight: "700",
+                    color: "#8A8A8E",
+                    textTransform: "uppercase",
+                    letterSpacing: 1.2,
+                    textAlign: "center",
+                    lineHeight: 14,
+                  }}
+                >
+                  {stat.label}
+                </Text>
+              </View>
+            ))}
           </View>
 
           {/* ── Health Details ── */}
@@ -719,6 +755,7 @@ export default function ProfileScreen() {
                 return (
                   <Pressable
                     key={item.label}
+                    onPress={item.route ? () => router.push(item.route as never) : undefined}
                     style={{
                       paddingHorizontal: 20,
                       paddingVertical: 16,
@@ -778,27 +815,34 @@ export default function ProfileScreen() {
 
           {/* ── Sign Out ── */}
           <View style={{ marginBottom: 16 }}>
-            <Pressable onPress={handleSignOut}>
-              <GlassCard
-                className="p-4 flex-row items-center justify-center"
+            <Pressable
+              onPress={handleSignOut}
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 8,
+                backgroundColor: "#1C1C1E",
+                paddingVertical: 16,
+                borderRadius: 16,
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.15,
+                shadowRadius: 12,
+                elevation: 4,
+              }}
+            >
+              <LogOut size={18} color="#FFFFFF" strokeWidth={2.5} />
+              <Text
                 style={{
-                  gap: 8,
-                  borderWidth: 1.5,
-                  borderColor: "rgba(255,59,48,0.2)",
-                  backgroundColor: "rgba(255,59,48,0.04)",
+                  fontSize: 16,
+                  fontWeight: "700",
+                  color: "#FFFFFF",
+                  letterSpacing: -0.2,
                 }}
               >
-                <LogOut size={18} color="#FF3B30" strokeWidth={2.5} />
-                <Text
-                  style={{
-                    fontSize: 16,
-                    fontWeight: "700",
-                    color: "#FF3B30",
-                  }}
-                >
-                  Sign Out
-                </Text>
-              </GlassCard>
+                Sign Out
+              </Text>
             </Pressable>
           </View>
         </Animated.View>

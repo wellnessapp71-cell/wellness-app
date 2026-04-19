@@ -14,7 +14,7 @@ interface ResolveAuthContextOptions {
 }
 
 export function isAuthCompatibilityModeEnabled(): boolean {
-  return process.env.AUTH_COMPAT !== "false";
+  return process.env.AUTH_COMPAT === "true";
 }
 
 export function resolveAuthContext(

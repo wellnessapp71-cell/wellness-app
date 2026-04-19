@@ -111,6 +111,7 @@ export function getDashboardRoute(role: string) {
     case "psychologist":
       return "/psychologist";
     case "employee":
+      return "/app";
     default:
       return "/";
   }

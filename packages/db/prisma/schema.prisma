@@ -36,27 +36,27 @@ model User {
   passwordHash String?  @map("password_hash")
   consentState Json?    @map("consent_state")
   createdAt    DateTime @default(now()) @map("created_at")
-  updatedAt    DateTime @updatedAt      @map("updated_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
 
   // Relations
-  profile          Profile?
-  plans            Plan[]
-  progress         Progress[]
-  mentalBaselines  MentalBaseline[]
-  mentalCheckins   MentalCheckin[]
-  rppgScans        RppgScan[]
-  journalEntries   JournalEntry[]
-  copingSessions   CopingSession[]
-  supportRequests  SupportRequest[]
-  assignedSupportRequests SupportRequest[] @relation("AssignedPsychologist")
-  weeklyReviews    WeeklyReview[]
-  mentalAlerts     MentalAlert[]
-  contentProgress  ContentProgress[]
+  profile                 Profile?
+  plans                   Plan[]
+  progress                Progress[]
+  mentalBaselines         MentalBaseline[]
+  mentalCheckins          MentalCheckin[]
+  rppgScans               RppgScan[]
+  journalEntries          JournalEntry[]
+  copingSessions          CopingSession[]
+  supportRequests         SupportRequest[]
+  assignedSupportRequests SupportRequest[]         @relation("AssignedPsychologist")
+  weeklyReviews           WeeklyReview[]
+  mentalAlerts            MentalAlert[]
+  contentProgress         ContentProgress[]
   organizationMemberships OrganizationMembership[]
-  hrProfile        HrProfile?
-  psychologistProfile PsychologistProfile?
-  createdWebinars  WebinarNotification[] @relation("CreatedWebinars")
-  sessionEvents    SessionEvent[]
+  hrProfile               HrProfile?
+  psychologistProfile     PsychologistProfile?
+  createdWebinars         WebinarNotification[]    @relation("CreatedWebinars")
+  sessionEvents           SessionEvent[]
 
   // Spiritual relations
   spiritualBaselines        SpiritualBaseline[]
@@ -67,12 +67,35 @@ model User {
   spiritualPlanVersions     SpiritualPlanVersion[]
 
   // Lifestyle relations
-  lifestyleBaselines     LifestyleBaseline[]
-  lifestyleCheckins      LifestyleCheckin[]
-  lifestylePlans         LifestylePlan[]
-  lifestyleScoreRuns     LifestyleScoreRun[]
-  lifestyleWeeklyReviews LifestyleWeeklyReview[]
+  lifestyleBaselines      LifestyleBaseline[]
+  lifestyleCheckins       LifestyleCheckin[]
+  lifestylePlans          LifestylePlan[]
+  lifestyleScoreRuns      LifestyleScoreRun[]
+  lifestyleWeeklyReviews  LifestyleWeeklyReview[]
   lifestyleMonthlyReviews LifestyleMonthlyReview[]
+
+  // Admin / HR PRD relations
+  referralCodesCreated     HrReferralCode[]      @relation("HrReferralCodeCreatedBy")
+  referralCodesAsHr        HrReferralCode[]      @relation("HrReferralCodeHr")
+  notificationsCreated     Notification[]        @relation("NotificationCreatedBy")
+  complaintsReported       Complaint[]           @relation("ComplaintReporter")
+  complaintsAssigned       Complaint[]           @relation("ComplaintAssignee")
+  incidentsOwned           Incident[]            @relation("IncidentOwner")
+  clickLogs                ClickLog[]
+  accessRequestsAsHr       AccessApproval[]      @relation("AccessApprovalHr")
+  accessRequestsAsEmployee AccessApproval[]      @relation("AccessApprovalEmployee")
+  accessRequestsApproved   AccessApproval[]      @relation("AccessApprovalApprover")
+  trainingsAssigned        TrainingAssignment[]  @relation("TrainingAssignmentAssignee")
+  trainingsCreated         TrainingAssignment[]  @relation("TrainingAssignmentCreator")
+  helpRequestsFiled        HelpRequest[]         @relation("HelpRequestEmployee")
+  helpRequestsAssigned     HelpRequest[]         @relation("HelpRequestAssignee")
+  consentsGranted          Consent[]
+  auditLogs                AuditLog[]            @relation("AuditLogActor")
+  dataDeletionRequests     DataDeletionRequest[] @relation("DataDeletionRequester")
+  professionalProfile      Professional?
+  reportsRequested         Report[]              @relation("ReportRequestedBy")
+  devicePushTokens         DevicePushToken[]
+  passwordResets           PasswordReset[]
 
   @@map("users")
 }
@@ -86,11 +109,11 @@ model Profile {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // Demographics
-  age    Int
-  gender String
-  heightCm      Float  @map("height_cm")
-  currentWeightKg Float @map("current_weight_kg")
-  targetWeightKg  Float? @map("target_weight_kg")
+  age             Int
+  gender          String
+  heightCm        Float   @map("height_cm")
+  currentWeightKg Float   @map("current_weight_kg")
+  targetWeightKg  Float?  @map("target_weight_kg")
   bodyShape       String? @map("body_shape")
 
   // Pillar scores (single source of truth)
@@ -100,48 +123,48 @@ model Profile {
   scoreLifestyle Int @default(50) @map("score_lifestyle")
 
   // Physical / fitness profile
-  activityLevel      String?  @map("activity_level")
+  activityLevel       String? @map("activity_level")
   exerciseDaysPerWeek Int?    @map("exercise_days_per_week")
-  fitnessLevel       String?  @map("fitness_level")
-  fitnessScore       Int?     @map("fitness_score")
-  hasGymAccess       Boolean  @default(false) @map("has_gym_access")
-  hasHomeEquipment   Boolean  @default(false) @map("has_home_equipment")
+  fitnessLevel        String? @map("fitness_level")
+  fitnessScore        Int?    @map("fitness_score")
+  hasGymAccess        Boolean @default(false) @map("has_gym_access")
+  hasHomeEquipment    Boolean @default(false) @map("has_home_equipment")
 
   // Fitness benchmarks
-  pushUps       Int? @map("push_ups")
-  pullUps       Int? @map("pull_ups")
-  squats        Int?
-  plankSeconds  Int? @map("plank_seconds")
-  burpees       Int?
+  pushUps      Int? @map("push_ups")
+  pullUps      Int? @map("pull_ups")
+  squats       Int?
+  plankSeconds Int? @map("plank_seconds")
+  burpees      Int?
 
   // Nutrition / diet
-  dietType          String?  @map("diet_type")
-  allergies         Json     @default("[]")
-  medicalConditions Json     @default("[]") @map("medical_conditions")
+  dietType           String? @map("diet_type")
+  allergies          Json    @default("[]")
+  medicalConditions  Json    @default("[]") @map("medical_conditions")
   waterGlassesPerDay Int?    @map("water_glasses_per_day")
 
   // Lifestyle (from onboarding questionnaire)
-  sleepHours        Float?  @map("sleep_hours")
-  alcoholFrequency  Int?    @map("alcohol_frequency")
-  tobacco           Boolean @default(false)
-  screenHours       Float?  @map("screen_hours")
+  sleepHours       Float?  @map("sleep_hours")
+  alcoholFrequency Int?    @map("alcohol_frequency")
+  tobacco          Boolean @default(false)
+  screenHours      Float?  @map("screen_hours")
 
   // Spiritual
   spiritualAnswers Json? @map("spiritual_answers")
 
   // Onboarding flags (stored here for quick access)
-  mentalOnboardingDone Boolean @default(false) @map("mental_onboarding_done")
-  physicalOnboardingDone Boolean @default(false) @map("physical_onboarding_done")
+  mentalOnboardingDone    Boolean @default(false) @map("mental_onboarding_done")
+  physicalOnboardingDone  Boolean @default(false) @map("physical_onboarding_done")
   spiritualOnboardingDone Boolean @default(false) @map("spiritual_onboarding_done")
   lifestyleOnboardingDone Boolean @default(false) @map("lifestyle_onboarding_done")
 
   // Tracking
-  streakDays         Int @default(0) @map("streak_days")
-  totalWorkouts      Int @default(0) @map("total_workouts")
+  streakDays          Int @default(0) @map("streak_days")
+  totalWorkouts       Int @default(0) @map("total_workouts")
   totalCaloriesBurned Int @default(0) @map("total_calories_burned")
 
   createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt      @map("updated_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("profiles")
 }
@@ -179,34 +202,34 @@ model Progress {
 // ═══════════════════════════════════════════════════════════════
 
 model MentalBaseline {
-  id           String   @id @default(cuid())
-  userId       String   @map("user_id")
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  phq9         Int
-  gad7         Int
-  stressBase   Int      @map("stress_base")
-  moodBase     Int      @map("mood_base")
-  rawAnswers   Json     @map("raw_answers")
-  createdAt    DateTime @default(now()) @map("created_at")
+  id         String   @id @default(cuid())
+  userId     String   @map("user_id")
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  phq9       Int
+  gad7       Int
+  stressBase Int      @map("stress_base")
+  moodBase   Int      @map("mood_base")
+  rawAnswers Json     @map("raw_answers")
+  createdAt  DateTime @default(now()) @map("created_at")
 
   @@index([userId])
   @@map("mental_baselines")
 }
 
 model MentalCheckin {
-  id              String   @id @default(cuid())
-  userId          String   @map("user_id")
-  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  mood            Int
-  stressManual    Int      @map("stress_manual")
-  anxiety         Int
-  energy          Int
-  focus           Int
-  sleep           Float
-  stressTriggers  Json?    @map("stress_triggers")
-  copingAction    String?  @map("coping_action")
-  supportReq      Boolean  @default(false) @map("support_req")
-  checkinDate     DateTime @default(now()) @map("checkin_date")
+  id             String   @id @default(cuid())
+  userId         String   @map("user_id")
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mood           Int
+  stressManual   Int      @map("stress_manual")
+  anxiety        Int
+  energy         Int
+  focus          Int
+  sleep          Float
+  stressTriggers Json?    @map("stress_triggers")
+  copingAction   String?  @map("coping_action")
+  supportReq     Boolean  @default(false) @map("support_req")
+  checkinDate    DateTime @default(now()) @map("checkin_date")
 
   @@index([userId, checkinDate])
   @@map("daily_checkins")
@@ -254,27 +277,27 @@ model CopingSession {
 }
 
 model SupportRequest {
-  id            String   @id @default(cuid())
-  userId        String   @map("user_id")
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  organizationId String? @map("organization_id")
-  organization  Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
-  issueType     String   @map("issue_type")
-  preferredMode String   @map("preferred_mode")
-  language      String?
-  style         String?
-  reason        String?
-  outcome       String?
-  sessionType   String   @default("text_chat") @map("session_type")
-  psychologistId String? @map("psychologist_id")
-  psychologist  User?    @relation("AssignedPsychologist", fields: [psychologistId], references: [id], onDelete: SetNull)
-  scheduledFor  DateTime? @map("scheduled_for")
-  acceptedAt    DateTime? @map("accepted_at")
-  meetingUrl    String?   @map("meeting_url")
-  sessionNotes  String?   @map("session_notes")
-  status        String   @default("pending")
-  createdAt     DateTime @default(now()) @map("created_at")
-  sessionEvents SessionEvent[]
+  id             String         @id @default(cuid())
+  userId         String         @map("user_id")
+  user           User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organizationId String?        @map("organization_id")
+  organization   Organization?  @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  issueType      String         @map("issue_type")
+  preferredMode  String         @map("preferred_mode")
+  language       String?
+  style          String?
+  reason         String?
+  outcome        String?
+  sessionType    String         @default("text_chat") @map("session_type")
+  psychologistId String?        @map("psychologist_id")
+  psychologist   User?          @relation("AssignedPsychologist", fields: [psychologistId], references: [id], onDelete: SetNull)
+  scheduledFor   DateTime?      @map("scheduled_for")
+  acceptedAt     DateTime?      @map("accepted_at")
+  meetingUrl     String?        @map("meeting_url")
+  sessionNotes   String?        @map("session_notes")
+  status         String         @default("pending")
+  createdAt      DateTime       @default(now()) @map("created_at")
+  sessionEvents  SessionEvent[]
 
   @@index([userId])
   @@index([organizationId, status])
@@ -376,32 +399,32 @@ model SpiritualPracticeSession {
 }
 
 model SpiritualJournalEntry {
-  id                       String   @id @default(cuid())
-  userId                   String   @map("user_id")
-  user                     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  promptType               String   @map("prompt_type")
-  moodTag                  String?  @map("mood_tag")
-  gratitudeText            String?  @map("gratitude_text")
-  reflectionText           String?  @map("reflection_text")
-  whatBroughtCalm          String?  @map("what_brought_calm")
-  whatTriggeredDiscomfort   String?  @map("what_triggered_discomfort")
-  whatHelped               String?  @map("what_helped")
-  createdAt                DateTime @default(now()) @map("created_at")
+  id                      String   @id @default(cuid())
+  userId                  String   @map("user_id")
+  user                    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  promptType              String   @map("prompt_type")
+  moodTag                 String?  @map("mood_tag")
+  gratitudeText           String?  @map("gratitude_text")
+  reflectionText          String?  @map("reflection_text")
+  whatBroughtCalm         String?  @map("what_brought_calm")
+  whatTriggeredDiscomfort String?  @map("what_triggered_discomfort")
+  whatHelped              String?  @map("what_helped")
+  createdAt               DateTime @default(now()) @map("created_at")
 
   @@map("spiritual_journal_entries")
 }
 
 model SpiritualWeeklyReport {
-  id                    String   @id @default(cuid())
-  userId                String   @map("user_id")
-  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  weekStart             String   @map("week_start")
-  weekEnd               String   @map("week_end")
-  calmScoreChange       Int      @map("calm_score_change")
-  engagementSummary     String?  @map("engagement_summary")
-  suggestedNextActions  Json?    @map("suggested_next_actions")
-  reviewData            Json?    @map("review_data")
-  createdAt             DateTime @default(now()) @map("created_at")
+  id                   String   @id @default(cuid())
+  userId               String   @map("user_id")
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  weekStart            String   @map("week_start")
+  weekEnd              String   @map("week_end")
+  calmScoreChange      Int      @map("calm_score_change")
+  engagementSummary    String?  @map("engagement_summary")
+  suggestedNextActions Json?    @map("suggested_next_actions")
+  reviewData           Json?    @map("review_data")
+  createdAt            DateTime @default(now()) @map("created_at")
 
   @@map("spiritual_weekly_reports")
 }
@@ -423,65 +446,65 @@ model SpiritualPlanVersion {
 // ═══════════════════════════════════════════════════════════════
 
 model LifestyleBaseline {
-  id               String   @id @default(cuid())
-  userId           String   @map("user_id")
-  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  sleepScore       Int      @map("sleep_score")
-  nutritionScore   Int      @map("nutrition_score")
-  hydrationScore   Int      @map("hydration_score")
-  movementScore    Int      @map("movement_score")
-  digitalScore     Int      @map("digital_score")
-  natureScore      Int      @map("nature_score")
-  routineScore     Int      @map("routine_score")
-  totalScore       Int      @map("total_score")
-  band             String
-  weakestDomain    String   @map("weakest_domain")
-  rawAnswers       Json     @map("raw_answers")
-  createdAt        DateTime @default(now()) @map("created_at")
+  id             String   @id @default(cuid())
+  userId         String   @map("user_id")
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sleepScore     Int      @map("sleep_score")
+  nutritionScore Int      @map("nutrition_score")
+  hydrationScore Int      @map("hydration_score")
+  movementScore  Int      @map("movement_score")
+  digitalScore   Int      @map("digital_score")
+  natureScore    Int      @map("nature_score")
+  routineScore   Int      @map("routine_score")
+  totalScore     Int      @map("total_score")
+  band           String
+  weakestDomain  String   @map("weakest_domain")
+  rawAnswers     Json     @map("raw_answers")
+  createdAt      DateTime @default(now()) @map("created_at")
 
   @@index([userId])
   @@map("lifestyle_baselines")
 }
 
 model LifestyleCheckin {
-  id                      String   @id @default(cuid())
-  userId                  String   @map("user_id")
-  user                    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  date                    String
-  sleepHours              Float    @map("sleep_hours")
-  sleepQuality            Int      @map("sleep_quality")
-  mealsEaten              Int?     @map("meals_eaten")
-  fruitServings           Int?     @map("fruit_servings")
-  vegServings             Int?     @map("veg_servings")
-  fruitVegServings        Int?     @map("fruit_veg_servings")
-  proteinFiberMeals       Int?     @map("protein_fiber_meals")
-  ultraProcessedServings  Int?     @map("ultra_processed_servings")
-  sugaryServings          Int?     @map("sugary_servings")
-  lateEatingCount         Int?     @map("late_eating_count")
-  stressEating            String?  @map("stress_eating")
-  waterMl                 Int      @map("water_ml")
-  waterBeforeNoon         Int?     @map("water_before_noon")
-  hydrationSpanHours      Int?     @map("hydration_span_hours")
-  metWaterGoal            String?  @map("met_water_goal")
-  activeMinutes           Int?     @map("active_minutes")
-  movementBreaks          Int?     @map("movement_breaks")
-  strengthOrYoga          Boolean? @map("strength_or_yoga")
-  sittingMinutesMax       Int?     @map("sitting_minutes_max")
-  strengthYogaDone        String?  @map("strength_yoga_done")
-  screenMinutesNonWork    Int?     @map("screen_minutes_non_work")
-  screenHoursNonWork      Float?   @map("screen_hours_non_work")
-  bedtimeScreenMinutes    Int?     @map("bedtime_screen_minutes")
-  notificationsAfter8pm   Int?     @map("notifications_after_8pm")
-  usedFocusMode           String?  @map("used_focus_mode")
-  outdoorMinutes          Int?     @map("outdoor_minutes")
-  morningDaylightMinutes  Int?     @map("morning_daylight_minutes")
-  gotOutdoors             Boolean? @map("got_outdoors")
-  morningRoutineDone      String?  @map("morning_routine_done")
-  eveningRoutineDone      String?  @map("evening_routine_done")
-  sameWakeTimeDays        Int?     @map("same_wake_time_days")
-  routineCompletion       String?  @map("routine_completion")
-  blockers                Json     @default("[]")
-  createdAt               DateTime @default(now()) @map("created_at")
+  id                     String   @id @default(cuid())
+  userId                 String   @map("user_id")
+  user                   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date                   String
+  sleepHours             Float    @map("sleep_hours")
+  sleepQuality           Int      @map("sleep_quality")
+  mealsEaten             Int?     @map("meals_eaten")
+  fruitServings          Int?     @map("fruit_servings")
+  vegServings            Int?     @map("veg_servings")
+  fruitVegServings       Int?     @map("fruit_veg_servings")
+  proteinFiberMeals      Int?     @map("protein_fiber_meals")
+  ultraProcessedServings Int?     @map("ultra_processed_servings")
+  sugaryServings         Int?     @map("sugary_servings")
+  lateEatingCount        Int?     @map("late_eating_count")
+  stressEating           String?  @map("stress_eating")
+  waterMl                Int      @map("water_ml")
+  waterBeforeNoon        Int?     @map("water_before_noon")
+  hydrationSpanHours     Int?     @map("hydration_span_hours")
+  metWaterGoal           String?  @map("met_water_goal")
+  activeMinutes          Int?     @map("active_minutes")
+  movementBreaks         Int?     @map("movement_breaks")
+  strengthOrYoga         Boolean? @map("strength_or_yoga")
+  sittingMinutesMax      Int?     @map("sitting_minutes_max")
+  strengthYogaDone       String?  @map("strength_yoga_done")
+  screenMinutesNonWork   Int?     @map("screen_minutes_non_work")
+  screenHoursNonWork     Float?   @map("screen_hours_non_work")
+  bedtimeScreenMinutes   Int?     @map("bedtime_screen_minutes")
+  notificationsAfter8pm  Int?     @map("notifications_after_8pm")
+  usedFocusMode          String?  @map("used_focus_mode")
+  outdoorMinutes         Int?     @map("outdoor_minutes")
+  morningDaylightMinutes Int?     @map("morning_daylight_minutes")
+  gotOutdoors            Boolean? @map("got_outdoors")
+  morningRoutineDone     String?  @map("morning_routine_done")
+  eveningRoutineDone     String?  @map("evening_routine_done")
+  sameWakeTimeDays       Int?     @map("same_wake_time_days")
+  routineCompletion      String?  @map("routine_completion")
+  blockers               Json     @default("[]")
+  createdAt              DateTime @default(now()) @map("created_at")
 
   @@unique([userId, date])
   @@index([userId, date])
@@ -529,26 +552,26 @@ model LifestyleScoreRun {
 }
 
 model LifestyleWeeklyReview {
-  id                    String   @id @default(cuid())
-  userId                String   @map("user_id")
-  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  weekStart             String   @map("week_start")
-  weekEnd               String   @map("week_end")
-  goodSleepDays         Int      @map("good_sleep_days")
-  hydrationTargetDays   Int      @map("hydration_target_days")
-  mealLogDays           Int      @map("meal_log_days")
-  balancedMealDays      Int?     @map("balanced_meal_days")
-  movementDays          Int      @map("movement_days")
-  moderateActivityDays  Int?     @map("moderate_activity_days")
-  strengthYogaDays      Int?     @map("strength_yoga_days")
-  screenInterferenceDays Int     @map("screen_interference_days")
-  screenUnderLimitDays  Int?     @map("screen_under_limit_days")
-  outdoorDays           Int      @map("outdoor_days")
-  routineDays           Int?     @map("routine_days")
-  helpedMostHabit       String?  @map("helped_most_habit")
-  blockedMostHabit      String?  @map("blocked_most_habit")
-  scoreChange           Int      @map("score_change")
-  createdAt             DateTime @default(now()) @map("created_at")
+  id                     String   @id @default(cuid())
+  userId                 String   @map("user_id")
+  user                   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  weekStart              String   @map("week_start")
+  weekEnd                String   @map("week_end")
+  goodSleepDays          Int      @map("good_sleep_days")
+  hydrationTargetDays    Int      @map("hydration_target_days")
+  mealLogDays            Int      @map("meal_log_days")
+  balancedMealDays       Int?     @map("balanced_meal_days")
+  movementDays           Int      @map("movement_days")
+  moderateActivityDays   Int?     @map("moderate_activity_days")
+  strengthYogaDays       Int?     @map("strength_yoga_days")
+  screenInterferenceDays Int      @map("screen_interference_days")
+  screenUnderLimitDays   Int?     @map("screen_under_limit_days")
+  outdoorDays            Int      @map("outdoor_days")
+  routineDays            Int?     @map("routine_days")
+  helpedMostHabit        String?  @map("helped_most_habit")
+  blockedMostHabit       String?  @map("blocked_most_habit")
+  scoreChange            Int      @map("score_change")
+  createdAt              DateTime @default(now()) @map("created_at")
 
   @@index([userId])
   @@map("lifestyle_weekly_reviews")
@@ -580,23 +603,42 @@ model LifestyleMonthlyReview {
 // ═══════════════════════════════════════════════════════════════
 
 model Organization {
-  id            String   @id @default(cuid())
-  name          String
-  slug          String   @unique
-  referralCode  String   @unique @map("referral_code")
-  industry      String?
-  companySize   Int?     @map("company_size")
-  website       String?
-  contactEmail  String?  @map("contact_email")
-  contactPhone  String?  @map("contact_phone")
-  active        Boolean  @default(true)
-  createdAt     DateTime @default(now()) @map("created_at")
-  updatedAt     DateTime @updatedAt @map("updated_at")
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  referralCode String   @unique @map("referral_code")
+  industry     String?
+  companySize  Int?     @map("company_size")
+  website      String?
+  contactEmail String?  @map("contact_email")
+  contactPhone String?  @map("contact_phone")
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
 
-  memberships    OrganizationMembership[]
-  hrProfiles     HrProfile[]
+  memberships          OrganizationMembership[]
+  hrProfiles           HrProfile[]
   webinarNotifications WebinarNotification[]
-  supportRequests SupportRequest[]
+  supportRequests      SupportRequest[]
+
+  departments          Department[]
+  hrReferralCodes      HrReferralCode[]
+  notifications        Notification[]
+  complaints           Complaint[]
+  incidents            Incident[]
+  clickLogs            ClickLog[]
+  accessApprovals      AccessApproval[]
+  featureFlags         FeatureFlag[]
+  departmentHealth     DepartmentHealth[]
+  trainingAssignments  TrainingAssignment[]
+  helpRequests         HelpRequest[]
+  consents             Consent[]
+  auditLogs            AuditLog[]
+  retentionPolicies    RetentionPolicy[]
+  branding             OrganizationBranding?
+  dataQualityAlerts    DataQualityAlert[]
+  dataDeletionRequests DataDeletionRequest[]
+  usageBenchmarks      UsageBenchmark[]
 
   @@map("organizations")
 }
@@ -621,14 +663,14 @@ model OrganizationMembership {
 }
 
 model HrProfile {
-  id             String   @id @default(cuid())
-  userId         String   @unique @map("user_id")
-  organizationId String   @map("organization_id")
-  jobTitle       String   @map("job_title")
-  phone          String?
-  onboardingNotes String? @map("onboarding_notes")
-  createdAt      DateTime @default(now()) @map("created_at")
-  updatedAt      DateTime @updatedAt @map("updated_at")
+  id              String   @id @default(cuid())
+  userId          String   @unique @map("user_id")
+  organizationId  String   @map("organization_id")
+  jobTitle        String   @map("job_title")
+  phone           String?
+  onboardingNotes String?  @map("onboarding_notes")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
 
   user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
@@ -638,19 +680,19 @@ model HrProfile {
 }
 
 model PsychologistProfile {
-  id               String   @id @default(cuid())
-  userId           String   @unique @map("user_id")
-  licenseNumber    String   @unique @map("license_number")
-  specialties      Json     @default("[]")
-  yearsExperience  Int      @default(0) @map("years_experience")
-  education        String
-  bio              String?
-  languages        Json     @default("[]")
-  sessionModes     Json     @default("[]") @map("session_modes")
-  availability     Json?    @map("availability")
-  verificationStatus String @default("pending") @map("verification_status")
-  createdAt        DateTime @default(now()) @map("created_at")
-  updatedAt        DateTime @updatedAt @map("updated_at")
+  id                 String   @id @default(cuid())
+  userId             String   @unique @map("user_id")
+  licenseNumber      String   @unique @map("license_number")
+  specialties        Json     @default("[]")
+  yearsExperience    Int      @default(0) @map("years_experience")
+  education          String
+  bio                String?
+  languages          Json     @default("[]")
+  sessionModes       Json     @default("[]") @map("session_modes")
+  availability       Json?    @map("availability")
+  verificationStatus String   @default("pending") @map("verification_status")
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -684,8 +726,479 @@ model SessionEvent {
   createdAt        DateTime @default(now()) @map("created_at")
 
   supportRequest SupportRequest @relation(fields: [supportRequestId], references: [id], onDelete: Cascade)
-  actor         User?          @relation(fields: [actorUserId], references: [id], onDelete: SetNull)
+  actor          User?          @relation(fields: [actorUserId], references: [id], onDelete: SetNull)
 
   @@index([supportRequestId, createdAt])
   @@map("session_events")
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ADMIN + HR PORTAL MODELS (PRD v2)
+// ═══════════════════════════════════════════════════════════════
+
+model Department {
+  id             String   @id @default(cuid())
+  organizationId String   @map("organization_id")
+  name           String
+  parentId       String?  @map("parent_id")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  organization     Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  parent           Department?        @relation("DepartmentHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children         Department[]       @relation("DepartmentHierarchy")
+  departmentHealth DepartmentHealth[]
+
+  @@unique([organizationId, name])
+  @@index([organizationId])
+  @@map("departments")
+}
+
+model HrReferralCode {
+  id              String    @id @default(cuid())
+  code            String    @unique
+  organizationId  String    @map("organization_id")
+  hrUserId        String?   @map("hr_user_id")
+  hrName          String    @map("hr_name")
+  hrEmail         String    @map("hr_email")
+  hrPhone         String?   @map("hr_phone")
+  role            String?
+  departmentScope Json?     @map("department_scope")
+  purpose         String?
+  status          String    @default("active")
+  expiresAt       DateTime? @map("expires_at")
+  createdById     String    @map("created_by_id")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  revokedAt       DateTime? @map("revoked_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  hrUser       User?        @relation("HrReferralCodeHr", fields: [hrUserId], references: [id], onDelete: SetNull)
+  createdBy    User         @relation("HrReferralCodeCreatedBy", fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, status])
+  @@map("hr_referral_codes")
+}
+
+model Notification {
+  id             String    @id @default(cuid())
+  organizationId String?   @map("organization_id")
+  title          String
+  body           String
+  audienceType   String    @default("all") @map("audience_type")
+  audience       Json?
+  channels       Json      @default("[\"in_app\"]")
+  startTime      DateTime  @map("start_time")
+  endTime        DateTime? @map("end_time")
+  status         String    @default("scheduled")
+  emergency      Boolean   @default(false)
+  createdById    String    @map("created_by_id")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdBy    User          @relation("NotificationCreatedBy", fields: [createdById], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, startTime])
+  @@index([status])
+  @@map("notifications")
+}
+
+model Complaint {
+  id             String    @id @default(cuid())
+  reporterUserId String    @map("reporter_user_id")
+  organizationId String?   @map("organization_id")
+  category       String
+  severity       String    @default("normal")
+  subject        String
+  body           String
+  source         String    @default("employee")
+  status         String    @default("open")
+  assignedToId   String?   @map("assigned_to_id")
+  slaDueAt       DateTime? @map("sla_due_at")
+  resolvedAt     DateTime? @map("resolved_at")
+  resolutionNote String?   @map("resolution_note")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  reporter     User          @relation("ComplaintReporter", fields: [reporterUserId], references: [id], onDelete: Cascade)
+  assignedTo   User?         @relation("ComplaintAssignee", fields: [assignedToId], references: [id], onDelete: SetNull)
+  organization Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+
+  @@index([status, severity])
+  @@index([organizationId, status])
+  @@index([assignedToId, status])
+  @@map("complaints")
+}
+
+model Incident {
+  id            String    @id @default(cuid())
+  title         String
+  module        String
+  severity      String    @default("minor")
+  status        String    @default("investigating")
+  startTime     DateTime  @map("start_time")
+  resolvedAt    DateTime? @map("resolved_at")
+  affectedOrgId String?   @map("affected_org_id")
+  alertChannel  String?   @map("alert_channel")
+  postmortemUrl String?   @map("postmortem_url")
+  timeline      Json?
+  ownerId       String?   @map("owner_id")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  owner        User?         @relation("IncidentOwner", fields: [ownerId], references: [id], onDelete: SetNull)
+  organization Organization? @relation(fields: [affectedOrgId], references: [id], onDelete: SetNull)
+
+  @@index([status, severity])
+  @@index([module])
+  @@map("incidents")
+}
+
+model Professional {
+  id                 String    @id @default(cuid())
+  userId             String?   @unique @map("user_id")
+  name               String
+  role               String    @default("psychologist")
+  specialties        Json      @default("[]")
+  licenseId          String?   @map("license_id")
+  licenseExpiry      DateTime? @map("license_expiry")
+  languages          Json      @default("[]")
+  region             String?
+  availability       Json?
+  pricing            Json?
+  verificationStatus String    @default("pending") @map("verification_status")
+  bookable           Boolean   @default(false)
+  status             String    @default("active")
+  bio                String?
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @updatedAt @map("updated_at")
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([role, status])
+  @@map("professionals")
+}
+
+model ClickLog {
+  id              String    @id @default(cuid())
+  userId          String    @map("user_id")
+  organizationId  String?   @map("organization_id")
+  department      String?
+  section         String
+  screen          String
+  action          String
+  startTs         DateTime  @map("start_ts")
+  endTs           DateTime? @map("end_ts")
+  durationSeconds Int?      @map("duration_seconds")
+  device          String?
+  platform        String?
+  source          String?
+  metadata        Json?
+  createdAt       DateTime  @default(now()) @map("created_at")
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+
+  @@index([userId, startTs])
+  @@index([organizationId, section, startTs])
+  @@map("click_logs")
+}
+
+model AccessApproval {
+  id             String    @id @default(cuid())
+  hrUserId       String    @map("hr_user_id")
+  employeeUserId String    @map("employee_user_id")
+  organizationId String    @map("organization_id")
+  scope          Json
+  reason         String
+  purpose        String?
+  status         String    @default("pending")
+  expiresAt      DateTime? @map("expires_at")
+  requestedAt    DateTime  @default(now()) @map("requested_at")
+  approvedAt     DateTime? @map("approved_at")
+  approvedById   String?   @map("approved_by_id")
+  revokedAt      DateTime? @map("revoked_at")
+  denialReason   String?   @map("denial_reason")
+
+  hr           User         @relation("AccessApprovalHr", fields: [hrUserId], references: [id], onDelete: Cascade)
+  employee     User         @relation("AccessApprovalEmployee", fields: [employeeUserId], references: [id], onDelete: Cascade)
+  approvedBy   User?        @relation("AccessApprovalApprover", fields: [approvedById], references: [id], onDelete: SetNull)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([hrUserId, status])
+  @@index([employeeUserId, status])
+  @@index([organizationId, status])
+  @@map("access_approvals")
+}
+
+model FeatureFlag {
+  id             String   @id @default(cuid())
+  flagKey        String   @map("flag_key")
+  organizationId String?  @map("organization_id")
+  module         String
+  enabled        Boolean  @default(false)
+  rolloutScope   Json?    @map("rollout_scope")
+  notes          String?
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([flagKey, organizationId])
+  @@index([module])
+  @@map("feature_flags")
+}
+
+model DepartmentHealth {
+  id                String   @id @default(cuid())
+  organizationId    String   @map("organization_id")
+  departmentId      String?  @map("department_id")
+  departmentName    String   @map("department_name")
+  snapshotDate      DateTime @map("snapshot_date")
+  physicalScore     Float?   @map("physical_score")
+  mentalScore       Float?   @map("mental_score")
+  innerCalmScore    Float?   @map("inner_calm_score")
+  lifestyleScore    Float?   @map("lifestyle_score")
+  participationRate Float?   @map("participation_rate")
+  riskBand          String?  @map("risk_band")
+  employeeCount     Int      @default(0) @map("employee_count")
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  department   Department?  @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+
+  @@unique([organizationId, departmentName, snapshotDate])
+  @@index([organizationId, snapshotDate])
+  @@map("department_health")
+}
+
+model TrainingAssignment {
+  id             String    @id @default(cuid())
+  organizationId String    @map("organization_id")
+  createdById    String    @map("created_by_id")
+  targetType     String    @map("target_type")
+  targetId       String    @map("target_id")
+  assigneeUserId String?   @map("assignee_user_id")
+  theme          String
+  format         String
+  title          String
+  description    String?
+  dueDate        DateTime? @map("due_date")
+  status         String    @default("assigned")
+  completedAt    DateTime? @map("completed_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdBy    User         @relation("TrainingAssignmentCreator", fields: [createdById], references: [id], onDelete: Cascade)
+  assignee     User?        @relation("TrainingAssignmentAssignee", fields: [assigneeUserId], references: [id], onDelete: SetNull)
+
+  @@index([organizationId, status])
+  @@index([assigneeUserId, status])
+  @@map("training_assignments")
+}
+
+model HelpRequest {
+  id             String    @id @default(cuid())
+  employeeUserId String    @map("employee_user_id")
+  organizationId String    @map("organization_id")
+  category       String
+  priority       String    @default("normal")
+  subject        String?
+  message        String?
+  status         String    @default("open")
+  assignedToId   String?   @map("assigned_to_id")
+  slaDueAt       DateTime? @map("sla_due_at")
+  closedAt       DateTime? @map("closed_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  employee     User         @relation("HelpRequestEmployee", fields: [employeeUserId], references: [id], onDelete: Cascade)
+  assignedTo   User?        @relation("HelpRequestAssignee", fields: [assignedToId], references: [id], onDelete: SetNull)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, status, priority])
+  @@index([employeeUserId])
+  @@map("help_requests")
+}
+
+model Consent {
+  id             String    @id @default(cuid())
+  employeeUserId String    @map("employee_user_id")
+  organizationId String    @map("organization_id")
+  scope          String
+  purpose        String?
+  grantedAt      DateTime  @default(now()) @map("granted_at")
+  revokedAt      DateTime? @map("revoked_at")
+  expiresAt      DateTime? @map("expires_at")
+  metadata       Json?
+
+  employee     User         @relation(fields: [employeeUserId], references: [id], onDelete: Cascade)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([employeeUserId, scope])
+  @@index([organizationId, scope])
+  @@map("consents")
+}
+
+model AuditLog {
+  id             String   @id @default(cuid())
+  actorUserId    String?  @map("actor_user_id")
+  actorRole      String?  @map("actor_role")
+  organizationId String?  @map("organization_id")
+  eventType      String   @map("event_type")
+  targetType     String?  @map("target_type")
+  targetId       String?  @map("target_id")
+  summary        String
+  payload        Json?
+  ipAddress      String?  @map("ip_address")
+  userAgent      String?  @map("user_agent")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  actor        User?         @relation("AuditLogActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+  organization Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+
+  @@index([actorUserId, createdAt])
+  @@index([organizationId, createdAt])
+  @@index([eventType, createdAt])
+  @@map("audit_logs")
+}
+
+model RetentionPolicy {
+  id             String   @id @default(cuid())
+  organizationId String?  @map("organization_id")
+  dataType       String   @map("data_type")
+  retentionDays  Int      @map("retention_days")
+  action         String   @default("delete")
+  enabled        Boolean  @default(true)
+  notes          String?
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, dataType])
+  @@map("retention_policies")
+}
+
+model DataDeletionRequest {
+  id             String    @id @default(cuid())
+  organizationId String?   @map("organization_id")
+  subjectUserId  String?   @map("subject_user_id")
+  requesterId    String    @map("requester_id")
+  requestType    String    @map("request_type")
+  scope          Json
+  status         String    @default("pending")
+  completedAt    DateTime? @map("completed_at")
+  notes          String?
+  createdAt      DateTime  @default(now()) @map("created_at")
+
+  requester    User          @relation("DataDeletionRequester", fields: [requesterId], references: [id], onDelete: Cascade)
+  organization Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+
+  @@index([status])
+  @@map("data_deletion_requests")
+}
+
+model OrganizationBranding {
+  id                 String   @id @default(cuid())
+  organizationId     String   @unique @map("organization_id")
+  logoUrl            String?  @map("logo_url")
+  primaryColor       String?  @map("primary_color")
+  secondaryColor     String?  @map("secondary_color")
+  emailTemplate      Json?    @map("email_template")
+  timezone           String   @default("UTC")
+  domains            Json     @default("[]")
+  communicationPrefs Json?    @map("communication_prefs")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@map("organization_branding")
+}
+
+model DataQualityAlert {
+  id             String    @id @default(cuid())
+  organizationId String?   @map("organization_id")
+  alertType      String    @map("alert_type")
+  severity       String    @default("warning")
+  module         String?
+  summary        String
+  details        Json?
+  status         String    @default("open")
+  detectedAt     DateTime  @default(now()) @map("detected_at")
+  resolvedAt     DateTime? @map("resolved_at")
+
+  organization Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+
+  @@index([status, severity])
+  @@map("data_quality_alerts")
+}
+
+model UsageBenchmark {
+  id             String   @id @default(cuid())
+  organizationId String   @map("organization_id")
+  departmentName String?  @map("department_name")
+  period         String
+  periodStart    DateTime @map("period_start")
+  engagementRate Float?   @map("engagement_rate")
+  completionRate Float?   @map("completion_rate")
+  sectionUsage   Json?    @map("section_usage")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, departmentName, period, periodStart])
+  @@index([organizationId, periodStart])
+  @@map("usage_benchmarks")
+}
+
+model Report {
+  id             String    @id @default(cuid())
+  requestedById  String    @map("requested_by_id")
+  type           String
+  dateRange      Json      @map("date_range")
+  format         String    @default("csv")
+  status         String    @default("pending")
+  scheduledEmail String?   @map("scheduled_email")
+  fileUrl        String?   @map("file_url")
+  generatedAt    DateTime? @map("generated_at")
+  lastSentAt     DateTime? @map("last_sent_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+
+  requestedBy User @relation("ReportRequestedBy", fields: [requestedById], references: [id], onDelete: Cascade)
+
+  @@index([requestedById, createdAt])
+  @@index([type, status])
+  @@map("reports")
+}
+
+model DevicePushToken {
+  id         String   @id @default(cuid())
+  userId     String   @map("user_id")
+  token      String   @unique
+  platform   String
+  deviceName String?  @map("device_name")
+  appVersion String?  @map("app_version")
+  createdAt  DateTime @default(now()) @map("created_at")
+  lastSeenAt DateTime @default(now()) @map("last_seen_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("device_push_tokens")
+}
+
+model PasswordReset {
+  id         String    @id @default(cuid())
+  userId     String    @map("user_id")
+  tokenHash  String    @unique @map("token_hash")
+  expiresAt  DateTime  @map("expires_at")
+  usedAt     DateTime? @map("used_at")
+  requestIp  String?   @map("request_ip")
+  createdAt  DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@map("password_resets")
 }

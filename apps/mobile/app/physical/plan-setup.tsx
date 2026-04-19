@@ -162,7 +162,7 @@ export default function PlanSetupScreen() {
                   }}
                   className="py-3 rounded-xl items-center"
                   style={{
-                    backgroundColor: planType === t ? "#007AFF" : "transparent",
+                    backgroundColor: planType === t ? "#1C1C1E" : "transparent",
                   }}
                 >
                   <Text
@@ -231,9 +231,9 @@ export default function PlanSetupScreen() {
                 className="py-4 rounded-xl items-center"
                 style={{
                   width: threeColCardWidth,
-                  backgroundColor: sessionMinutes === mins ? "#007AFF" : "#fff",
+                  backgroundColor: sessionMinutes === mins ? "#1C1C1E" : "#fff",
                   borderWidth: 1.5,
-                  borderColor: sessionMinutes === mins ? "#007AFF" : "#E5E5EA",
+                  borderColor: sessionMinutes === mins ? "#1C1C1E" : "#E5E5EA",
                 }}
               >
                 <Text
@@ -277,10 +277,20 @@ export default function PlanSetupScreen() {
           <Pressable
             onPress={handleGenerate}
             className="rounded-2xl py-4 items-center"
-            style={{ backgroundColor: "#007AFF" }}
+            style={{
+              backgroundColor: "#1C1C1E",
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.2,
+              shadowRadius: 12,
+              elevation: 4,
+            }}
           >
-            <Text className="text-white text-[17px] font-semibold">
-              Generate {planType === "gym" ? "Workout" : "Yoga"} Plan ✨
+            <Text
+              className="text-[17px] font-bold"
+              style={{ color: "#FFFFFF", letterSpacing: -0.2 }}
+            >
+              Generate {planType === "gym" ? "Workout" : "Yoga"} Plan
             </Text>
           </Pressable>
         )}

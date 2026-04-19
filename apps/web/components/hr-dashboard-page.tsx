@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { BellRing, BrainCircuit, Building2, HeartPulse, Sparkles, Users } from "lucide-react";
+import { BellRing, BrainCircuit, HeartPulse, Sparkles, Users } from "lucide-react";
 import { GlassCard } from "@/components/wellness/glass-card";
-import { fetchWithAuth, getDashboardRoute, getStoredAuth, type StoredAuthUser } from "@/lib/client-auth";
-import { PortalShell } from "@/components/portal-shell";
+import { fetchWithAuth } from "@/lib/client-auth";
+import { PageHeader } from "@/components/portal-nav-shell";
 
 interface HrDashboardPayload {
   organization: {
@@ -64,8 +63,6 @@ interface HrDashboardPayload {
 }
 
 export function HrDashboardPage() {
-  const router = useRouter();
-  const [auth, setAuth] = useState<StoredAuthUser | null>(null);
   const [data, setData] = useState<HrDashboardPayload | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [webinar, setWebinar] = useState({
@@ -85,24 +82,12 @@ export function HrDashboardPage() {
   }
 
   useEffect(() => {
-    const stored = getStoredAuth();
-    if (!stored) {
-      router.replace("/login?role=hr");
-      return;
-    }
-    if (stored.role !== "hr") {
-      router.replace(getDashboardRoute(stored.role));
-      return;
-    }
-    setAuth(stored);
     void load();
     const interval = window.setInterval(() => {
       void load();
     }, 30000);
     return () => window.clearInterval(interval);
-  }, [router]);
-
-  if (!auth) return null;
+  }, []);
 
   async function handleCreateWebinar(event: React.FormEvent) {
     event.preventDefault();
@@ -119,11 +104,11 @@ export function HrDashboardPage() {
   }
 
   return (
-    <PortalShell
-      auth={auth}
-      title={data?.organization.name ?? "HR workspace"}
-      subtitle="Push webinars, monitor wellbeing signals, and stay ahead of employee support needs."
-    >
+    <>
+      <PageHeader
+        title={data?.organization.name ?? "HR workspace"}
+        subtitle="Push webinars, monitor wellbeing signals, and stay ahead of employee support needs."
+      />
       <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
         <div className="space-y-6">
           <div className="grid gap-4 md:grid-cols-4">
@@ -259,7 +244,7 @@ export function HrDashboardPage() {
           </GlassCard>
         </div>
       </div>
-    </PortalShell>
+    </>
   );
 }
 

@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Animated, Easing } from "react-native";
+import { View, Text, Pressable, Animated, Easing, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
@@ -107,16 +107,20 @@ export default function ScoringScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-[#F2F2F7]">
-      <View className="flex-1 px-6 pt-6">
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={{ paddingHorizontal: 24, paddingTop: 24 }}
+        showsVerticalScrollIndicator={false}
+      >
         <Text className="text-[34px] font-bold text-black tracking-tight leading-tight mb-1">
           Your Baseline
         </Text>
-        <Text className="text-[17px] text-[#8A8A8E] font-medium mb-8">
+        <Text className="text-[17px] text-[#8A8A8E] font-medium mb-6">
           Here's your initial wellness profile.
         </Text>
 
         {/* Wellness Wheel */}
-        <View className="items-center mb-8">
+        <View className="items-center mb-6">
           <Svg width={size} height={size}>
             {/* Track rings */}
             {PILLARS.map((pillar, i) => (
@@ -168,7 +172,7 @@ export default function ScoringScreen() {
         </View>
 
         {/* Pillar score grid */}
-        <View className="flex-row flex-wrap gap-3 mb-8">
+        <View className="flex-row flex-wrap gap-3 mb-6">
           {PILLARS.map((pillar) => (
             <View
               key={pillar.key}
@@ -189,19 +193,29 @@ export default function ScoringScreen() {
           ))}
         </View>
 
-        <View className="flex-1" />
-
         <Text className="text-[13px] text-[#8A8A8E] text-center mb-4 leading-relaxed">
           Scores update as you complete each section's detailed assessment.
         </Text>
+      </ScrollView>
 
+      <View className="px-6 pb-6 pt-3">
         <Pressable
           onPress={handleGetStarted}
           disabled={loading}
-          className="mb-6 rounded-2xl py-4 items-center"
-          style={{ backgroundColor: loading ? "#C6C6C8" : "#007AFF" }}
+          className="rounded-2xl py-4 items-center"
+          style={{
+            backgroundColor: loading ? "#D1D1D6" : "#1C1C1E",
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: loading ? 0 : 0.2,
+            shadowRadius: 12,
+            elevation: loading ? 0 : 4,
+          }}
         >
-          <Text className="text-white text-[17px] font-semibold">
+          <Text
+            className="text-[17px] font-bold"
+            style={{ color: loading ? "#8A8A8E" : "#FFFFFF", letterSpacing: -0.2 }}
+          >
             Get Started
           </Text>
         </Pressable>

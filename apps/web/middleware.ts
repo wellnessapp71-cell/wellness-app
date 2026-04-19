@@ -1,30 +1,36 @@
 import { NextRequest, NextResponse } from "next/server";
 
 // ── CORS Configuration ──────────────────────────────────────────────────────
-const ALLOWED_ORIGINS = ["*"]; // Allow all origins (mobile app has no fixed origin)
+// Browser origins are restricted to an allowlist (comma-separated in env).
+// The mobile app sends no Origin header, so those requests bypass CORS entirely.
 const ALLOWED_METHODS = "GET, POST, PUT, PATCH, DELETE, OPTIONS";
 const ALLOWED_HEADERS = "Content-Type, Authorization, X-Requested-With";
-const MAX_AGE = "86400"; // Preflight cache: 24 hours
+const MAX_AGE = "86400";
+
+function parseAllowedOrigins(): string[] {
+  const raw = process.env.ALLOWED_ORIGINS ?? "";
+  const fromEnv = raw
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  if (fromEnv.length > 0) return fromEnv;
+  return ["http://localhost:3000", "http://127.0.0.1:3000"];
+}
 
 function corsHeaders(origin: string | null): Record<string, string> {
-  // If we allow all origins, echo back the request origin (or "*").
-  const allowedOrigin =
-    ALLOWED_ORIGINS.includes("*")
-      ? (origin ?? "*")
-      : ALLOWED_ORIGINS.includes(origin ?? "")
-        ? origin!
-        : "";
+  // Native apps (Expo/React Native) don't send Origin — skip CORS entirely.
+  if (!origin) return {};
 
-  if (!allowedOrigin) return {};
+  const allowed = parseAllowedOrigins();
+  if (!allowed.includes(origin)) return {};
 
   return {
-    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Origin": origin,
     "Access-Control-Allow-Methods": ALLOWED_METHODS,
     "Access-Control-Allow-Headers": ALLOWED_HEADERS,
     "Access-Control-Max-Age": MAX_AGE,
-    // Required when the client sends credentials (cookies / auth headers)
-    // and origin is not "*".
-    ...(allowedOrigin !== "*" ? { "Access-Control-Allow-Credentials": "true" } : {}),
+    "Access-Control-Allow-Credentials": "true",
+    Vary: "Origin",
   };
 }
 

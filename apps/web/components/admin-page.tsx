@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Building2, Hospital, ShieldPlus, Trash2, Users } from "lucide-react";
 import { GlassCard } from "@/components/wellness/glass-card";
-import { fetchWithAuth, getDashboardRoute, getStoredAuth, type StoredAuthUser } from "@/lib/client-auth";
-import { PortalShell } from "@/components/portal-shell";
+import { fetchWithAuth } from "@/lib/client-auth";
+import { PageHeader } from "@/components/portal-nav-shell";
 
 interface AdminDashboardPayload {
   stats: {
@@ -28,8 +27,6 @@ interface AdminDashboardPayload {
 }
 
 export function AdminPage() {
-  const router = useRouter();
-  const [auth, setAuth] = useState<StoredAuthUser | null>(null);
   const [data, setData] = useState<AdminDashboardPayload | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({
@@ -52,20 +49,8 @@ export function AdminPage() {
   }
 
   useEffect(() => {
-    const stored = getStoredAuth();
-    if (!stored) {
-      router.replace("/login?role=admin");
-      return;
-    }
-    if (stored.role !== "admin") {
-      router.replace(getDashboardRoute(stored.role));
-      return;
-    }
-    setAuth(stored);
     void load();
-  }, [router]);
-
-  if (!auth) return null;
+  }, []);
 
   async function handleCreateOrganization(event: React.FormEvent) {
     event.preventDefault();
@@ -92,11 +77,11 @@ export function AdminPage() {
   }
 
   return (
-    <PortalShell
-      auth={auth}
-      title="Admin command center"
-      subtitle="Oversee organizations, referral onboarding, employee coverage, and the support queue."
-    >
+    <>
+      <PageHeader
+        title="Admin command center"
+        subtitle="Oversee organizations, referral onboarding, employee coverage, and the support queue."
+      />
       <div className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
         <div className="space-y-6">
           <div className="grid gap-4 md:grid-cols-4">
@@ -189,7 +174,7 @@ export function AdminPage() {
           </form>
         </GlassCard>
       </div>
-    </PortalShell>
+    </>
   );
 }
 

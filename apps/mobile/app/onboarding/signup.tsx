@@ -305,9 +305,9 @@ export default function SignupScreen() {
                       onPress={() => setGender(g.value)}
                       className="flex-1 py-3.5 rounded-xl border items-center shadow-sm"
                       style={{
-                        backgroundColor: gender === g.value ? "#007AFF" : "#FFFFFF",
-                        borderColor: gender === g.value ? "#007AFF" : "rgba(0,0,0,0.05)",
-                        shadowColor: gender === g.value ? "#007AFF" : "#000",
+                        backgroundColor: gender === g.value ? "#1C1C1E" : "#FFFFFF",
+                        borderColor: gender === g.value ? "#1C1C1E" : "rgba(0,0,0,0.05)",
+                        shadowColor: gender === g.value ? "#1C1C1E" : "#000",
                         shadowOpacity: gender === g.value ? 0.2 : 0.05,
                         shadowRadius: gender === g.value ? 8 : 2,
                       }}
@@ -383,10 +383,20 @@ export default function SignupScreen() {
             <Pressable
               onPress={handleSubmit}
               disabled={loading}
-              className="rounded-[20px] py-4 items-center mb-6"
-              style={{ backgroundColor: loading ? "#E5E5EA" : "#007AFF" }}
+              className="rounded-2xl py-4 items-center mb-6"
+              style={{
+                backgroundColor: loading ? "#D1D1D6" : "#1C1C1E",
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: loading ? 0 : 0.2,
+                shadowRadius: 12,
+                elevation: loading ? 0 : 4,
+              }}
             >
-              <Text className={`text-[17px] font-bold ${loading ? "text-[#8A8A8E]" : "text-white"}`}>
+              <Text
+                className="text-[17px] font-bold"
+                style={{ color: loading ? "#8A8A8E" : "#FFFFFF", letterSpacing: -0.2 }}
+              >
                 {loading ? "Creating account..." : "Create Account"}
               </Text>
             </Pressable>

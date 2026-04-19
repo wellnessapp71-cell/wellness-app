@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web:
+    name: Web (typecheck + lint + engines)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # Supplied so prisma generate + tsc resolve without a live DB.
+      DATABASE_URL: postgresql://ci:ci@localhost:5432/ci?schema=public
+      JWT_SECRET: ci-jwt-secret-must-be-at-least-32-chars-long
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Prisma generate
+        run: npx prisma generate --schema=packages/db/prisma/schema.prisma
+
+      - name: Prisma validate
+        run: npx prisma validate --schema=packages/db/prisma/schema.prisma
+
+      - name: Typecheck web
+        working-directory: apps/web
+        run: npx tsc --noEmit
+
+      - name: Lint web
+        working-directory: apps/web
+        run: npx next lint --max-warnings=0
+        continue-on-error: true
+
+      - name: Engine tests
+        run: npm run test --workspaces --if-present
+
+  mobile:
+    name: Mobile (typecheck)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Prisma generate
+        run: npx prisma generate --schema=packages/db/prisma/schema.prisma
+
+      - name: Typecheck mobile
+        working-directory: apps/mobile
+        run: npx tsc --noEmit
+
+  secret-scan:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true

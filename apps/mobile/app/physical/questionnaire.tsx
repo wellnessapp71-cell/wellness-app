@@ -255,9 +255,9 @@ export default function PhysicalQuestionnaireScreen() {
                     onPress={() => setExerciseDays(d)}
                     className="w-12 h-12 rounded-xl items-center justify-center"
                     style={{
-                      backgroundColor: exerciseDays === d ? "#007AFF" : "#fff",
+                      backgroundColor: exerciseDays === d ? "#1C1C1E" : "#fff",
                       borderWidth: 1.5,
-                      borderColor: exerciseDays === d ? "#007AFF" : "#E5E5EA",
+                      borderColor: exerciseDays === d ? "#1C1C1E" : "#E5E5EA",
                     }}
                   >
                     <Text
@@ -293,10 +293,10 @@ export default function PhysicalQuestionnaireScreen() {
                     className="px-4 py-2.5 rounded-full"
                     style={{
                       backgroundColor:
-                        bodyShape === s.value ? "#007AFF" : "#fff",
+                        bodyShape === s.value ? "#1C1C1E" : "#fff",
                       borderWidth: 1.5,
                       borderColor:
-                        bodyShape === s.value ? "#007AFF" : "#E5E5EA",
+                        bodyShape === s.value ? "#1C1C1E" : "#E5E5EA",
                     }}
                   >
                     <Text
@@ -335,9 +335,9 @@ export default function PhysicalQuestionnaireScreen() {
                       onPress={() => item.set(!item.val)}
                       className="py-3.5 rounded-xl items-center"
                       style={{
-                        backgroundColor: item.val ? "#007AFF" : "#fff",
+                        backgroundColor: item.val ? "#1C1C1E" : "#fff",
                         borderWidth: 1.5,
-                        borderColor: item.val ? "#007AFF" : "#E5E5EA",
+                        borderColor: item.val ? "#1C1C1E" : "#E5E5EA",
                       }}
                     >
                       <Text
@@ -434,9 +434,9 @@ export default function PhysicalQuestionnaireScreen() {
                     className="px-4 py-2.5 rounded-full"
                     style={{
                       backgroundColor:
-                        dietType === d.value ? "#007AFF" : "#fff",
+                        dietType === d.value ? "#1C1C1E" : "#fff",
                       borderWidth: 1.5,
-                      borderColor: dietType === d.value ? "#007AFF" : "#E5E5EA",
+                      borderColor: dietType === d.value ? "#1C1C1E" : "#E5E5EA",
                     }}
                   >
                     <Text
@@ -535,19 +535,41 @@ export default function PhysicalQuestionnaireScreen() {
                 setStep((s) => s + 1);
               }}
               className="rounded-2xl py-4 items-center"
-              style={{ backgroundColor: "#007AFF" }}
+              style={{
+                backgroundColor: "#1C1C1E",
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.2,
+                shadowRadius: 12,
+                elevation: 4,
+              }}
             >
-              <Text className="text-white text-[17px] font-semibold">Next</Text>
+              <Text
+                className="text-[17px] font-bold"
+                style={{ color: "#FFFFFF", letterSpacing: -0.2 }}
+              >
+                Next
+              </Text>
             </Pressable>
           ) : (
             <Pressable
               onPress={handleSubmit}
               disabled={loading}
               className="rounded-2xl py-4 items-center"
-              style={{ backgroundColor: loading ? "#C6C6C8" : "#007AFF" }}
+              style={{
+                backgroundColor: loading ? "#D1D1D6" : "#1C1C1E",
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: loading ? 0 : 0.2,
+                shadowRadius: 12,
+                elevation: loading ? 0 : 4,
+              }}
             >
-              <Text className="text-white text-[17px] font-semibold">
-                {loading ? "Computing your profile…" : "Compute My Score →"}
+              <Text
+                className="text-[17px] font-bold"
+                style={{ color: loading ? "#8A8A8E" : "#FFFFFF", letterSpacing: -0.2 }}
+              >
+                {loading ? "Computing your profile..." : "Compute My Score"}
               </Text>
             </Pressable>
           )}

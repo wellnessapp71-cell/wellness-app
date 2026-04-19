@@ -18,10 +18,10 @@ import { recordFailedSync } from "@/lib/error-reporting";
 
 const MENTAL_QUESTIONS = [
   "How would you rate your overall mood most days?",
-  "How well do you handle stress?",
-  "How often do you feel anxious or worried?",
-  "How well do you sleep?",
-  "How focused do you feel during the day?",
+  "How well do you manage everyday stress?",
+  "How calm and at ease do you generally feel?",
+  "How would you rate your sleep quality?",
+  "How well can you stay focused during the day?",
 ];
 const MENTAL_LABELS = ["Poor", "Fair", "Good", "Very Good", "Excellent"];
 
@@ -51,6 +51,30 @@ const SCREEN_OPTIONS = [
   { label: "> 8 hrs", value: 9 },
 ];
 
+// ── Physical questions ───────────────────────────────────────────
+
+const ACTIVITY_OPTIONS = [
+  { label: "Sedentary", value: 0 },
+  { label: "Light (1–2 days)", value: 1 },
+  { label: "Moderate (3–4 days)", value: 2 },
+  { label: "Active (5–6 days)", value: 3 },
+  { label: "Very Active (daily)", value: 4 },
+];
+
+const EXERCISE_MIN_OPTIONS = [
+  { label: "0 min", value: 0 },
+  { label: "10–20 min", value: 1 },
+  { label: "20–30 min", value: 2 },
+  { label: "30–45 min", value: 3 },
+  { label: "45+ min", value: 4 },
+];
+
+const PHYSICAL_QUESTIONS = [
+  "How would you rate your current fitness level?",
+  "How much energy do you have throughout the day?",
+];
+const PHYSICAL_LABELS = ["Very Low", "Low", "Moderate", "Good", "Excellent"];
+
 // ── Spiritual questions ──────────────────────────────────────────
 
 const SPIRITUAL_QUESTIONS = [
@@ -60,12 +84,19 @@ const SPIRITUAL_QUESTIONS = [
 ];
 const FREQ_LABELS = ["Never", "Rarely", "Sometimes", "Often", "Always"];
 
-type Section = "intro" | "mental" | "lifestyle" | "spiritual";
-const SECTIONS: Section[] = ["intro", "mental", "lifestyle", "spiritual"];
+type Section = "intro" | "physical" | "mental" | "lifestyle" | "spiritual";
+const SECTIONS: Section[] = ["intro", "physical", "mental", "lifestyle", "spiritual"];
 
 export default function QuestionnaireScreen() {
   const router = useRouter();
   const [sectionIdx, setSectionIdx] = useState(0);
+
+  // Physical
+  const [activityLevel, setActivityLevel] = useState(-1);
+  const [exerciseMinutes, setExerciseMinutes] = useState(-1);
+  const [physicalAnswers, setPhysicalAnswers] = useState<number[]>(
+    Array(2).fill(-1),
+  );
 
   // Mental (5 questions, 0-4 each: 0=poor, 4=excellent)
   const [mentalAnswers, setMentalAnswers] = useState<number[]>(
@@ -89,6 +120,12 @@ export default function QuestionnaireScreen() {
 
   function canAdvance(): boolean {
     if (section === "intro") return true;
+    if (section === "physical")
+      return (
+        activityLevel >= 0 &&
+        exerciseMinutes >= 0 &&
+        physicalAnswers.every((v) => v >= 0)
+      );
     if (section === "mental") return mentalAnswers.every((v) => v >= 0);
     if (section === "lifestyle")
       return (
@@ -128,11 +165,20 @@ export default function QuestionnaireScreen() {
     const spirTotal = spiritualAnswers.reduce((a, b) => a + b, 0);
     const spiritualScore = Math.round((spirTotal / (3 * 4)) * 100);
 
+    // Physical: weighted average of activity level, exercise duration, fitness & energy self-ratings
+    const physSelfRate =
+      physicalAnswers.reduce((a, b) => a + b, 0) / (2 * 4); // 0–1
+    const physicalScore = Math.round(
+      (activityLevel / 4) * 30 +
+        (exerciseMinutes / 4) * 25 +
+        physSelfRate * 45,
+    );
+
     return {
       scoreMental: mentalScore,
       scoreLifestyle: lifestyleScore,
       scoreSpiritual: spiritualScore,
-      scorePhysical: 50, // placeholder until physical assessment
+      scorePhysical: physicalScore,
     };
   }
 
@@ -258,6 +304,78 @@ export default function QuestionnaireScreen() {
           </View>
         )}
 
+        {section === "physical" && (
+          <View className="pb-6">
+            <Text className="text-[22px] font-bold text-black tracking-tight mb-1">
+              Your Activity
+            </Text>
+            <Text className="text-[14px] text-[#8A8A8E] mb-6">
+              Tell us about your current physical activity and fitness.
+            </Text>
+
+            <OptionGroup
+              label="How active are you in a typical week?"
+              options={ACTIVITY_OPTIONS}
+              selected={activityLevel}
+              onSelect={setActivityLevel}
+            />
+
+            <OptionGroup
+              label="Average exercise session length?"
+              options={EXERCISE_MIN_OPTIONS}
+              selected={exerciseMinutes}
+              onSelect={setExerciseMinutes}
+            />
+
+            {PHYSICAL_QUESTIONS.map((q, qi) => (
+              <View
+                key={qi}
+                className="mb-4 bg-white rounded-2xl p-4"
+                style={{
+                  shadowColor: "#000",
+                  shadowOpacity: 0.04,
+                  shadowRadius: 8,
+                }}
+              >
+                <Text className="text-[15px] font-semibold text-black mb-3">
+                  {qi + 1}. {q}
+                </Text>
+                <View className="flex-row gap-1.5">
+                  {PHYSICAL_LABELS.map((label, li) => {
+                    const active = physicalAnswers[qi] === li;
+                    return (
+                      <Pressable
+                        key={li}
+                        onPress={() =>
+                          setPhysicalAnswers((a) => {
+                            const n = [...a];
+                            n[qi] = li;
+                            return n;
+                          })
+                        }
+                        className="flex-1 py-2.5 rounded-xl items-center"
+                        style={{
+                          backgroundColor: active ? "#1C1C1E" : "#F2F2F7",
+                          borderWidth: 1,
+                          borderColor: active ? "#1C1C1E" : "#E5E5EA",
+                        }}
+                      >
+                        <Text
+                          className="text-[10px] font-semibold text-center px-0.5"
+                          style={{ color: active ? "#fff" : "#3C3C43" }}
+                          numberOfLines={2}
+                        >
+                          {label}
+                        </Text>
+                      </Pressable>
+                    );
+                  })}
+                </View>
+              </View>
+            ))}
+          </View>
+        )}
+
         {section === "mental" && (
           <View className="pb-6">
             <Text className="text-[22px] font-bold text-black tracking-tight mb-1">
@@ -295,9 +413,9 @@ export default function QuestionnaireScreen() {
                         }
                         className="flex-1 py-2.5 rounded-xl items-center"
                         style={{
-                          backgroundColor: active ? "#007AFF" : "#F2F2F7",
+                          backgroundColor: active ? "#1C1C1E" : "#F2F2F7",
                           borderWidth: 1,
-                          borderColor: active ? "#007AFF" : "#E5E5EA",
+                          borderColor: active ? "#1C1C1E" : "#E5E5EA",
                         }}
                       >
                         <Text
@@ -348,10 +466,10 @@ export default function QuestionnaireScreen() {
                     className="flex-1 py-4 rounded-xl items-center"
                     style={{
                       backgroundColor:
-                        tobacco === (opt === "Yes") ? "#007AFF" : "#fff",
+                        tobacco === (opt === "Yes") ? "#1C1C1E" : "#fff",
                       borderWidth: 1.5,
                       borderColor:
-                        tobacco === (opt === "Yes") ? "#007AFF" : "#E5E5EA",
+                        tobacco === (opt === "Yes") ? "#1C1C1E" : "#E5E5EA",
                     }}
                   >
                     <Text
@@ -442,23 +560,36 @@ export default function QuestionnaireScreen() {
         <View className="h-8" />
       </ScrollView>
 
-      <View className="px-6 pb-6 pt-2">
-        <Pressable
-          onPress={handleNext}
-          disabled={!canAdvance() || loading}
-          className="rounded-2xl py-4 items-center"
-          style={{
-            backgroundColor: canAdvance() && !loading ? "#007AFF" : "#C6C6C8",
-          }}
-        >
-          <Text className="text-white text-[17px] font-semibold">
-            {loading
-              ? "Computing scores..."
-              : sectionIdx === SECTIONS.length - 1
-                ? "See My Scores"
-                : "Next"}
-          </Text>
-        </Pressable>
+      <View className="px-6 pb-6 pt-3">
+        {(() => {
+          const enabled = canAdvance() && !loading;
+          return (
+            <Pressable
+              onPress={handleNext}
+              disabled={!enabled}
+              className="rounded-2xl py-4 items-center"
+              style={{
+                backgroundColor: enabled ? "#1C1C1E" : "#D1D1D6",
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: enabled ? 0.2 : 0,
+                shadowRadius: 12,
+                elevation: enabled ? 4 : 0,
+              }}
+            >
+              <Text
+                className="text-[17px] font-bold"
+                style={{ color: enabled ? "#FFFFFF" : "#8A8A8E", letterSpacing: -0.2 }}
+              >
+                {loading
+                  ? "Computing scores..."
+                  : sectionIdx === SECTIONS.length - 1
+                    ? "See My Scores"
+                    : "Next"}
+              </Text>
+            </Pressable>
+          );
+        })()}
       </View>
     </SafeAreaView>
   );

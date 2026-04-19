@@ -156,17 +156,32 @@ export default function ReferralScreen() {
 
           {/* CTA */}
           <Animated.View entering={FadeInDown.delay(300).duration(800).springify()}>
-            <Pressable
-              onPress={handleSubmit}
-              disabled={loading || code.trim().length === 0}
-              className="rounded-[20px] py-4 items-center flex-row justify-center gap-3"
-              style={{ backgroundColor: loading || code.trim().length === 0 ? "#E5E5EA" : "#007AFF" }}
-            >
-              <Text className={`text-[17px] font-bold ${loading || code.trim().length === 0 ? "text-[#8A8A8E]" : "text-white"}`}>
-                {loading ? "Verifying..." : "Continue"}
-              </Text>
-              {!loading && code.trim().length > 0 && <ArrowRight size={20} color="#FFFFFF" />}
-            </Pressable>
+            {(() => {
+              const enabled = !loading && code.trim().length > 0;
+              return (
+                <Pressable
+                  onPress={handleSubmit}
+                  disabled={!enabled}
+                  className="rounded-2xl py-4 items-center flex-row justify-center gap-3"
+                  style={{
+                    backgroundColor: enabled ? "#1C1C1E" : "#D1D1D6",
+                    shadowColor: "#000",
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: enabled ? 0.2 : 0,
+                    shadowRadius: 12,
+                    elevation: enabled ? 4 : 0,
+                  }}
+                >
+                  <Text
+                    className="text-[17px] font-bold"
+                    style={{ color: enabled ? "#FFFFFF" : "#8A8A8E", letterSpacing: -0.2 }}
+                  >
+                    {loading ? "Verifying..." : "Continue"}
+                  </Text>
+                  {enabled && <ArrowRight size={20} color="#FFFFFF" />}
+                </Pressable>
+              );
+            })()}
           </Animated.View>
         </ScrollView>
       </KeyboardAvoidingView>

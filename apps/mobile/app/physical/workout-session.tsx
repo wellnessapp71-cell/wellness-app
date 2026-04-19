@@ -927,9 +927,9 @@ export default function WorkoutSessionScreen() {
                   className="py-2.5 rounded-xl items-center"
                   style={{
                     backgroundColor:
-                      inputMode === "manual" ? "#007AFF" : "#fff",
+                      inputMode === "manual" ? "#1C1C1E" : "#fff",
                     borderWidth: 1.5,
-                    borderColor: inputMode === "manual" ? "#007AFF" : "#E5E5EA",
+                    borderColor: inputMode === "manual" ? "#1C1C1E" : "#E5E5EA",
                   }}
                 >
                   <Text
@@ -983,9 +983,9 @@ export default function WorkoutSessionScreen() {
                   className="py-3 rounded-xl items-center"
                   style={{
                     backgroundColor:
-                      inputMode === "manual" ? "#007AFF" : "#fff",
+                      inputMode === "manual" ? "#1C1C1E" : "#fff",
                     borderWidth: 1.5,
-                    borderColor: inputMode === "manual" ? "#007AFF" : "#E5E5EA",
+                    borderColor: inputMode === "manual" ? "#1C1C1E" : "#E5E5EA",
                   }}
                 >
                   <Text

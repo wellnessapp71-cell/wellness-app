@@ -20,11 +20,39 @@ export async function GET(request: Request): Promise<NextResponse> {
     return response;
   }
 
-  const organizations = await prisma.organization.findMany({
-    orderBy: { createdAt: "desc" },
-  });
+  const url = new URL(request.url);
+  const search = url.searchParams.get("search")?.trim();
+  const activeParam = url.searchParams.get("active");
+  const take = Math.min(Math.max(Number(url.searchParams.get("take")) || 50, 1), 200);
+  const skip = Math.max(Number(url.searchParams.get("skip")) || 0, 0);
 
-  return ok({ organizations });
+  const where: Record<string, unknown> = {};
+  if (search) {
+    where.OR = [
+      { name: { contains: search, mode: "insensitive" } },
+      { referralCode: { contains: search, mode: "insensitive" } },
+      { industry: { contains: search, mode: "insensitive" } },
+    ];
+  }
+  if (activeParam === "true") where.active = true;
+  if (activeParam === "false") where.active = false;
+
+  const [organizations, total] = await Promise.all([
+    prisma.organization.findMany({
+      where,
+      include: {
+        _count: {
+          select: { memberships: true, hrProfiles: true, departments: true, hrReferralCodes: true },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+      take,
+      skip,
+    }),
+    prisma.organization.count({ where }),
+  ]);
+
+  return ok({ organizations, total, take, skip });
 }
 
 export async function POST(request: Request): Promise<NextResponse> {

@@ -17,9 +17,11 @@ export async function POST(request: Request): Promise<NextResponse> {
 
   const body = parsed.data as any;
 
-  // Auth
   const auth = await resolveAuthContext(request, { allowAnonymousWhenCompat: true });
-  const userId = auth?.userId ?? body.userId ?? "default";
+  if (!auth?.userId) {
+    return errorResponse(401, "UNAUTHORIZED", "Missing or invalid auth token.");
+  }
+  const userId = auth.userId;
 
   if (!body.exercises || !Array.isArray(body.exercises)) {
     return errorResponse(400, "INVALID_LOG", "exercises array is required");

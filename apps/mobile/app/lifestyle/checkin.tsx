@@ -275,9 +275,9 @@ export default function LifestyleCheckInScreen() {
                     onPress={() => setWaterMl(w.value)}
                     className="px-4 py-3 rounded-xl"
                     style={{
-                      backgroundColor: active ? "#007AFF" : "#fff",
+                      backgroundColor: active ? "#1C1C1E" : "#fff",
                       borderWidth: 1.5,
-                      borderColor: active ? "#007AFF" : "#E5E5EA",
+                      borderColor: active ? "#1C1C1E" : "#E5E5EA",
                     }}
                   >
                     <Text

@@ -5,12 +5,15 @@
  */
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Sentry } from "./sentry";
 import { api } from "./api";
 import type { SupportRequest } from "@aura/types";
 
 const KEY_AUTH = "@aura/auth";
 const KEY_PROFILE = "@aura/profile";
 const KEY_WORKSPACE = "@aura/workspace";
+const KEY_CONSENT = "@aura/consent";
+const KEY_NOTIF_PREFS = "@aura/notif-prefs";
 
 // ── Types ────────────────────────────────────────────────────────
 
@@ -156,6 +159,8 @@ export async function clearAuth(): Promise<void> {
   await AsyncStorage.removeItem(KEY_AUTH);
   await AsyncStorage.removeItem(KEY_PROFILE);
   await AsyncStorage.removeItem(KEY_WORKSPACE);
+  await AsyncStorage.removeItem(KEY_CONSENT);
+  await AsyncStorage.removeItem(KEY_NOTIF_PREFS);
 }
 
 // Re-export from cycle-free module (see auth-token.ts)
@@ -241,6 +246,57 @@ export async function updateScores(
   await updateProfile(partial);
 }
 
+// ── Consent & notification prefs ─────────────────────────────────
+
+export type ConsentStateValue = {
+  hrSharing: boolean;
+  research: boolean;
+  dataExport: boolean;
+};
+
+export async function getConsentState(): Promise<ConsentStateValue | null> {
+  try {
+    const raw = await AsyncStorage.getItem(KEY_CONSENT);
+    return raw ? (JSON.parse(raw) as ConsentStateValue) : null;
+  } catch {
+    return null;
+  }
+}
+
+export async function setConsentState(consent: ConsentStateValue): Promise<void> {
+  await AsyncStorage.setItem(KEY_CONSENT, JSON.stringify(consent));
+}
+
+export type NotificationPrefs = {
+  dailyNudges: boolean;
+  weeklyReview: boolean;
+  emergencyBroadcasts: boolean;
+  supportUpdates: boolean;
+  marketing: boolean;
+};
+
+export const DEFAULT_NOTIFICATION_PREFS: NotificationPrefs = {
+  dailyNudges: true,
+  weeklyReview: true,
+  emergencyBroadcasts: true,
+  supportUpdates: true,
+  marketing: false,
+};
+
+export async function getNotificationPrefs(): Promise<NotificationPrefs> {
+  try {
+    const raw = await AsyncStorage.getItem(KEY_NOTIF_PREFS);
+    if (!raw) return DEFAULT_NOTIFICATION_PREFS;
+    return { ...DEFAULT_NOTIFICATION_PREFS, ...(JSON.parse(raw) as Partial<NotificationPrefs>) };
+  } catch {
+    return DEFAULT_NOTIFICATION_PREFS;
+  }
+}
+
+export async function setNotificationPrefs(prefs: NotificationPrefs): Promise<void> {
+  await AsyncStorage.setItem(KEY_NOTIF_PREFS, JSON.stringify(prefs));
+}
+
 // ── Full state ───────────────────────────────────────────────────
 
 export async function getFullState(): Promise<FullUserState> {
@@ -265,8 +321,8 @@ async function syncProfileToApi(
 ): Promise<void> {
   try {
     await api.post("/profile", { profile: partial });
-  } catch {
-    // Offline — local save is fine
+  } catch (err) {
+    reportSyncError("saveUserProfileRemote", err);
   }
 }
 
@@ -396,9 +452,56 @@ export async function syncFromApi(): Promise<FullUserState | null> {
       consentState: data.user.consentState as FullUserState["consentState"],
       employeeWorkspace: workspace,
     };
-  } catch {
-    // Offline — return local state
+  } catch (err) {
+    reportSyncError("syncFromApi", err);
     return getFullState();
+  }
+}
+
+// ── Telemetry ────────────────────────────────────────────────────
+
+type SyncTelemetryPayload = {
+  scope: string;
+  message: string;
+  status?: number;
+  code?: string;
+  timestamp: string;
+};
+
+type SyncErrorReporter = (payload: SyncTelemetryPayload) => void;
+
+let syncErrorReporter: SyncErrorReporter | null = null;
+
+export function setSyncErrorReporter(reporter: SyncErrorReporter | null): void {
+  syncErrorReporter = reporter;
+}
+
+function reportSyncError(scope: string, err: unknown): void {
+  const payload: SyncTelemetryPayload = {
+    scope,
+    message: err instanceof Error ? err.message : String(err),
+    status: typeof (err as { status?: unknown })?.status === "number" ? (err as { status: number }).status : undefined,
+    code: typeof (err as { code?: unknown })?.code === "string" ? (err as { code: string }).code : undefined,
+    timestamp: new Date().toISOString(),
+  };
+
+  if (__DEV__) {
+    console.warn(`[user-store.sync:${scope}]`, payload);
+  }
+
+  try {
+    Sentry.captureException(err instanceof Error ? err : new Error(payload.message), {
+      tags: { scope: `user-store.${scope}` },
+      extra: payload,
+    });
+  } catch {
+    // never let telemetry break user flow
+  }
+
+  try {
+    syncErrorReporter?.(payload);
+  } catch {
+    // never let telemetry break user flow
   }
 }
 

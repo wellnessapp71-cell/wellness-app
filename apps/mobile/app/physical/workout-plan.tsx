@@ -414,7 +414,12 @@ export default function WorkoutPlanScreen() {
                       disabled={feedbackRating === 0 || submittingFeedback}
                       className="rounded-xl py-3 items-center"
                       style={{
-                        backgroundColor: feedbackRating > 0 ? "#007AFF" : "#E5E5EA",
+                        backgroundColor: feedbackRating > 0 ? "#1C1C1E" : "#D1D1D6",
+                        shadowColor: "#000",
+                        shadowOffset: { width: 0, height: 2 },
+                        shadowOpacity: feedbackRating > 0 ? 0.15 : 0,
+                        shadowRadius: 8,
+                        elevation: feedbackRating > 0 ? 3 : 0,
                       }}
                     >
                       <Text

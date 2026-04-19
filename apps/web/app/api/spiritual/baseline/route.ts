@@ -79,6 +79,11 @@ export async function POST(request: Request): Promise<NextResponse> {
       },
     });
 
+    await prisma.profile.updateMany({
+      where: { userId },
+      data: { spiritualOnboardingDone: true },
+    });
+
     return ok({ baselineId: baseline.id, ...baseline });
   } catch (error) {
     return errorResponse(500, "BASELINE_SAVE_ERROR", "Unable to save spiritual baseline.", {

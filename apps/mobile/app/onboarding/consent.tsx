@@ -118,14 +118,24 @@ export default function ConsentScreen() {
         </Text>
       </ScrollView>
 
-      <View className="px-6 pb-6 pt-2">
+      <View className="px-6 pb-6 pt-3">
         <Pressable
           onPress={handleContinue}
           disabled={loading}
           className="rounded-2xl py-4 items-center"
-          style={{ backgroundColor: loading ? "#C6C6C8" : "#007AFF" }}
+          style={{
+            backgroundColor: loading ? "#D1D1D6" : "#1C1C1E",
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: loading ? 0 : 0.2,
+            shadowRadius: 12,
+            elevation: loading ? 0 : 4,
+          }}
         >
-          <Text className="text-white text-[17px] font-semibold">
+          <Text
+            className="text-[17px] font-bold"
+            style={{ color: loading ? "#8A8A8E" : "#FFFFFF", letterSpacing: -0.2 }}
+          >
             {loading ? "Saving..." : "Continue"}
           </Text>
         </Pressable>

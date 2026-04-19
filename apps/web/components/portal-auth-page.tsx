@@ -225,7 +225,7 @@ export function PortalAuthPage({ mode }: PortalAuthPageProps) {
                   {item === "admin" && "Platform-wide visibility across organizations and employees."}
                   {item === "hr" && "Company insights, webinar broadcast, and employee support tracking."}
                   {item === "psychologist" && "Session triage, acceptance, scheduling, and care delivery."}
-                  {item === "employee" && (mode === "login" ? "Download the Aura app to access your employee wellness portal." : "Join your company's wellness program with your referral code.")}
+                  {item === "employee" && (mode === "login" ? "Your personal wellness dashboard — also available on the Aura mobile app." : "Join your company's wellness program with your referral code.")}
                 </p>
               </button>
             ))}
@@ -234,31 +234,70 @@ export function PortalAuthPage({ mode }: PortalAuthPageProps) {
 
         <GlassCard className="border-white/80 bg-white/80 p-7 backdrop-blur-xl lg:p-9">
           {mode === "login" && role === "employee" ? (
-            <div className="flex min-h-[340px] flex-col items-center justify-center text-center">
-              <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-[28px] bg-[#167C80]/10">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-[#167C80]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
-                </svg>
-              </div>
-              <h2 className="text-2xl font-semibold tracking-tight text-[#10242A]">
-                Get the Aura app
-              </h2>
-              <p className="mx-auto mt-3 max-w-sm text-sm leading-7 text-[#607883]">
-                Employee wellness features are available on the Aura mobile app. Download it from your app store to access personalized plans, check-ins, and support.
-              </p>
-              <a
-                href="#playstore"
-                className="mt-8 inline-flex items-center gap-3 rounded-[22px] bg-[#10242A] px-8 py-4 text-sm font-semibold text-white transition hover:bg-[#17303A]"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3.609 1.814L13.792 12 3.61 22.186a.988.988 0 01-.61-.921V2.735a.99.99 0 01.609-.921zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.807 1.626a1 1 0 010 1.732l-2.808 1.626-2.535-2.537 2.536-2.447zM5.864 3.658L16.8 9.99l-2.302 2.302L5.864 3.658z"/>
-                </svg>
-                Download on Play Store
-              </a>
-              <p className="mt-4 text-xs text-[#8DA5AE]">
-                Coming soon to iOS App Store
+          <div>
+            <div className="mb-6 rounded-[20px] border border-[#BFE3E3] bg-[#EDF7F7] px-5 py-4 text-sm leading-6 text-[#17303A]">
+              <p className="font-semibold">Prefer the mobile experience?</p>
+              <p className="mt-1 text-[#2F4952]">
+                Install the Aura app for on-the-go check-ins, plans, and push reminders. The web portal gives you the same dashboard and tools on a larger screen.
               </p>
             </div>
+            <form className="space-y-5" onSubmit={handleSubmit}>
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#167C80]">
+                  Secure login
+                </p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[#10242A]">
+                  Sign in as Employee
+                </h2>
+              </div>
+
+              <div className="grid gap-4">
+                {fields.map((field) => {
+                  const fieldErr = fieldErrors[field.key];
+                  const errBorder = fieldErr ? "border-[#E2564A]" : "border-[#D7E3E7]";
+                  return (
+                    <label key={field.key} className="flex flex-col gap-2">
+                      <span className="text-sm font-semibold text-[#2F4952]">{field.label}</span>
+                      <input
+                        type={field.type}
+                        value={form[field.key] ?? ""}
+                        onChange={(event) => {
+                          setForm((current) => ({ ...current, [field.key]: event.target.value }));
+                          if (fieldErr) setFieldErrors((prev) => { const n = { ...prev }; delete n[field.key]; return n; });
+                        }}
+                        placeholder={field.placeholder}
+                        className={`rounded-[20px] border ${errBorder} bg-[#F8FBFC] px-4 py-3 text-sm text-[#17303A] outline-none transition focus:border-[#167C80] focus:bg-white`}
+                      />
+                      {fieldErr && <p className="mt-0.5 text-xs font-medium text-[#B42318]">{fieldErr}</p>}
+                    </label>
+                  );
+                })}
+              </div>
+
+              {error && (
+                <div className="rounded-[18px] border border-[#F4C6CD] bg-[#FFF5F7] px-4 py-3 text-sm text-[#B42318]">
+                  {error}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={submitting}
+                className="w-full rounded-[22px] bg-[#10242A] px-5 py-4 text-sm font-semibold text-white transition hover:bg-[#17303A] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {submitting ? "Please wait..." : "Continue"}
+              </button>
+
+              <div className="flex items-center justify-between">
+                <Link href="/signup?role=employee" className="text-sm font-semibold text-[#167C80] transition hover:text-[#10242A]">
+                  Create account
+                </Link>
+                <Link href="/forgot-password" className="text-sm font-semibold text-[#167C80] transition hover:text-[#10242A]">
+                  Forgot password?
+                </Link>
+              </div>
+            </form>
+          </div>
           ) : (
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="flex items-center justify-between">
@@ -332,6 +371,17 @@ export function PortalAuthPage({ mode }: PortalAuthPageProps) {
             >
               {submitting ? "Please wait..." : mode === "signup" ? "Create workspace" : "Continue"}
             </button>
+
+            {mode === "login" && (
+              <div className="flex justify-end">
+                <Link
+                  href="/forgot-password"
+                  className="text-sm font-semibold text-[#167C80] transition hover:text-[#10242A]"
+                >
+                  Forgot password?
+                </Link>
+              </div>
+            )}
           </form>
           )}
         </GlassCard>

@@ -134,9 +134,9 @@ export default function CheckInScreen() {
                     onPress={() => setMood(m.value)}
                     className="items-center py-3 rounded-2xl"
                     style={{
-                      backgroundColor: mood === m.value ? "#007AFF" : "#fff",
+                      backgroundColor: mood === m.value ? "#1C1C1E" : "#fff",
                       borderWidth: 1.5,
-                      borderColor: mood === m.value ? "#007AFF" : "#E5E5EA",
+                      borderColor: mood === m.value ? "#1C1C1E" : "#E5E5EA",
                     }}
                   >
                     <Text style={{ fontSize: 24 }}>{m.emoji}</Text>
@@ -245,9 +245,19 @@ export default function CheckInScreen() {
             onPress={handleSave}
             disabled={saving}
             className="rounded-2xl py-4 items-center"
-            style={{ backgroundColor: saving ? "#C6C6C8" : "#007AFF" }}
+            style={{
+              backgroundColor: saving ? "#D1D1D6" : "#1C1C1E",
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: saving ? 0 : 0.2,
+              shadowRadius: 12,
+              elevation: saving ? 0 : 4,
+            }}
           >
-            <Text className="text-white text-[17px] font-semibold">
+            <Text
+              className="text-[17px] font-bold"
+              style={{ color: saving ? "#8A8A8E" : "#FFFFFF", letterSpacing: -0.2 }}
+            >
               {saving ? "Saving..." : "Save Check-in"}
             </Text>
           </Pressable>

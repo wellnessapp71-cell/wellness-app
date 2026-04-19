@@ -304,6 +304,18 @@ export default function DashboardScreen() {
           },
         ]
       : []),
+    ...(!lifestyleDone
+      ? [
+          {
+            key: "lifestyle",
+            title: "Lifestyle Baseline",
+            sub: "Sleep, hydration, movement",
+            color: "#34C759",
+            Icon: Leaf,
+            route: "/lifestyle/onboarding" as const,
+          },
+        ]
+      : []),
   ];
 
   return (

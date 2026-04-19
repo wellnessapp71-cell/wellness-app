@@ -145,7 +145,7 @@ export default function LoginScreen() {
               <Text className="text-[12px] font-bold text-[#8A8A8E] uppercase tracking-widest">
                 Password
               </Text>
-              <Pressable>
+              <Pressable onPress={() => router.push("/onboarding/forgot-password")}>
                 <Text className="text-[13px] text-[#007AFF] font-bold">Forgot?</Text>
               </Pressable>
             </View>
@@ -167,17 +167,32 @@ export default function LoginScreen() {
           </Animated.View>
 
           <Animated.View entering={FadeInDown.delay(400).duration(800).springify()}>
-            <Pressable
-              onPress={handleLogin}
-              disabled={loading || !login.trim() || !password}
-              className="rounded-[20px] py-4 items-center flex-row justify-center gap-2"
-              style={{ backgroundColor: loading || !login.trim() || !password ? "#E5E5EA" : "#007AFF" }}
-            >
-              {!loading && login.trim() && password && <LogIn size={20} color="#FFFFFF" />}
-              <Text className={`text-[17px] font-bold ${loading || !login.trim() || !password ? "text-[#8A8A8E]" : "text-white"}`}>
-                {loading ? "Logging in..." : "Log In"}
-              </Text>
-            </Pressable>
+            {(() => {
+              const enabled = !loading && !!login.trim() && !!password;
+              return (
+                <Pressable
+                  onPress={handleLogin}
+                  disabled={!enabled}
+                  className="rounded-2xl py-4 items-center flex-row justify-center gap-2"
+                  style={{
+                    backgroundColor: enabled ? "#1C1C1E" : "#D1D1D6",
+                    shadowColor: "#000",
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: enabled ? 0.2 : 0,
+                    shadowRadius: 12,
+                    elevation: enabled ? 4 : 0,
+                  }}
+                >
+                  {enabled && <LogIn size={20} color="#FFFFFF" />}
+                  <Text
+                    className="text-[17px] font-bold"
+                    style={{ color: enabled ? "#FFFFFF" : "#8A8A8E", letterSpacing: -0.2 }}
+                  >
+                    {loading ? "Logging in..." : "Log In"}
+                  </Text>
+                </Pressable>
+              );
+            })()}
           </Animated.View>
 
           <View className="flex-1 min-h-[40px]" />
